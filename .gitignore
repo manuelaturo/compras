@@ -605,3 +605,6 @@ obj/
 .vs/compras/config/applicationhost.config
 obj/Debug/compras.csproj.AssemblyReference.cache
 obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+.vs/compras/config/applicationhost.config
+.vs/compras/v16/.suo
+
