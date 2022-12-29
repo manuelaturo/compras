@@ -593,3 +593,15 @@ FodyWeavers.xsd
 # Archivos adicionales creados por Visual Studio
 
 # Fin de https://www.toptal.com/developers/gitignore/api/visualstudio,aspnetcore,openframeworks+visualstudio
+bin/
+.bin/
+obj/
+.obj/
+/.vs/comedor/v16/.suo
+/bin
+/.vs/comedor/config/applicationhost.config
+/.vs/slnx.sqlite
+.vs/compras/v16/.suo
+.vs/compras/config/applicationhost.config
+obj/Debug/compras.csproj.AssemblyReference.cache
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
