@@ -1,6 +1,7 @@
-﻿@model List<compras.Models.CoustomerReportComedorRS>
+﻿@model compras.Models.CoustomerReportComedorRS
+
 @{
-    ViewBag.Title = "ReportesEvento";
+    ViewBag.Title = "ReportesSala";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +61,7 @@
             <!-- Brand Logo -->
             <a href="../index.html" class="brand-link">
                 <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">EventosPV</span>
+                <span class="brand-text font-weight-light">SalasPV</span>
             </a>
 
             <!-- Sidebar -->
@@ -95,7 +96,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="reporteEvento.html" class="nav-link active">
+                            <a href="reporteEvento.html" class="nav-link">
                                 <p>
                                     Reporte eventos
 
@@ -109,6 +110,8 @@
                                 </p>
                             </a>
                         </li>
+
+
 
 
                     </ul>
@@ -125,7 +128,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Usuarios en eventos</h1>
+                            <h1 class="m-0">Usuarios de Salas</h1>
                         </div><!-- /.col -->
 
                     </div><!-- /.row -->
@@ -143,7 +146,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Reporte de usuarios </h3>
+                                    <h3 class="card-title">Reporte de usuarios</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -192,32 +195,29 @@
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
                                                 <th>Empresa</th>
-                                                <th>Evento</th>
+                                                <th>Sala</th>
                                                 <th>Fecha</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var item in Model)
-                                            {
-                                                <tr>
-                                                    <td>@Html.DisplayFor(modelItem => item.numEmploye)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.name)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.lastName)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.empresa)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.comedor)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.date)</td>
+                                            <tr>
+                                                <td> @Html.DisplayNameFor(model => model.numEmploye)</td>
+                                                <td> @Html.DisplayNameFor(model => model.name)</td>
+                                                <td> @Html.DisplayNameFor(model => model.lastName)</td>
+                                                <td> @Html.DisplayNameFor(model => model.empresa)</td>
+                                                <td> @Html.DisplayNameFor(model => model.comedor)</td>
+                                                <td> @Html.DisplayNameFor(model => model.date)</td>
 
-                                                </tr>
-                                            }
-                                            </tbody>
+                                            </tr>
+                                        </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
                                                 <th>Empresa</th>
-                                                <th>Evento</th>
+                                                <th>Sala</th>
                                                 <th>Fecha</th>
 
                                             </tr>
@@ -257,9 +257,7 @@
     <!-- jQuery UI 1.11.4 -->
     <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
     <!-- Bootstrap 4 -->
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Select2 -->
@@ -305,73 +303,66 @@
 
 
 
-    <script>
-        $(function () {
-            //Date picker
-            $('#fromDate').datetimepicker({
-                format: 'DD-MM-YYYY'
-            });
+    <script>$(function () {
+    //Date picker
+    $('#fromDate').datetimepicker({
+        format: 'DD-MM-YYYY'
+    });
 
-            //Date picker
-            $('#toDate').datetimepicker({
-                format: 'DD-MM-YYYY'
-            });
+   //Date picker
+    $('#toDate').datetimepicker({
+        format: 'DD-MM-YYYY'
+    });
 
-            $("#tablausuarios").DataTable({
-                responsive: true, lengthChange: true, autoWidth: false,
-                buttons: [
-                    {
-                        extend: 'copy',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'csv',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'excel',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'colvis',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    }
-                ]
-            }).buttons().container().appendTo('#tablausuarios_wrapper .col-md-6:eq(0)');
-
-
-
-        });
+    $("#tablausuarios").DataTable({
+      responsive: true, lengthChange: true, autoWidth: false,
+    	buttons: [
+            {
+                extend: 'copy',
+                exportOptions: {
+                    columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+			 {
+                extend: 'csv',
+                exportOptions: {
+                   columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+                        {
+                extend: 'print',
+                exportOptions: {
+                     columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+			            {
+                extend: 'colvis',
+                exportOptions: {
+                    columns: [ 0,1,2,3,4,5 ]
+                }
+            }
+        ]
+    }).buttons().container().appendTo('#tablausuarios_wrapper .col-md-6:eq(0)');
 
 
 
-    </script>
+  });</script>
 
 
 
 
 </body>
 </html>
-
-
 
