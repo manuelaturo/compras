@@ -41,6 +41,7 @@ namespace compras.BD
             {
                 DateTime insertdate = DateTime.Now;
                 var usr = 1;
+                
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
@@ -57,17 +58,17 @@ namespace compras.BD
            ", Fecha_Creacion" +
            ", Numero_Empleado)" +
      "VALUES ( " +
-           "@Correo" +
+           "@email" +
       "     , @Nombre" +
-      "     , @Apellido_Paterno" +
-       "    , @Apellido_Materno" +
-        "   , @Password" +
-         "  , @Perfil" +
-          " , @Fecha_Nacimiento" +
-           ", @Curp" +
-           ", @Id_Usuario_Crear" +
-           ", @Fecha_Creacion" +
-           ", @Numero_Empleado)",
+      "     , @APaterno" +
+       "    , @AMaterno" +
+        "   , @password" +
+         "  , @perfil" +
+          " , @fechaNacimiento" +
+           ", @curp" +
+           ", @usr" +
+           ", @insertdate" +
+           ", @noEmpledo)",
                         new
                         {
                             us.email,
