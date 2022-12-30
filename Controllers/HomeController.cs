@@ -1,4 +1,5 @@
-﻿using System;
+﻿using compras.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -33,9 +34,8 @@ namespace compras.Controllers
         }
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            ReportService comedorService = new ReportService();
+            return View(comedorService.getGeneralReport());
         }
 
         public ActionResult Contact()

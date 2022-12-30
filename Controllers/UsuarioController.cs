@@ -1,4 +1,5 @@
 ﻿using compras.Models;
+using compras.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,9 @@ namespace compras.Controllers
         //[System.Web.Http.HttpPost]
         public ActionResult Add(Usuario usuario)
         {
-            Service.UsuarioService.AddUsuario(usuario);
+
+            UsuarioService us = new UsuarioService();
+                us.AddUsuario(usuario);
             return null;
             //return Ok(Service.UsuarioService.AddUsuario(usuario));
         }
