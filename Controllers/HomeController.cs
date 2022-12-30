@@ -28,7 +28,7 @@ namespace compras.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Home/Index");
             }
            
         }
