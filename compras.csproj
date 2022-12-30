@@ -130,6 +130,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BD\AutenticacionDAO.cs" />
     <Compile Include="BD\Entities\ReportComedor.cs" />
     <Compile Include="BD\Entities\UsuariosEntity.cs" />
     <Compile Include="BD\ReportDAO.cs" />
