@@ -61,7 +61,7 @@ namespace compras.Service
         }
         public static Usuario GetUsuarioBynoEmpleado(int noEmpleado)
         {
-
+            List<Usuario> usuarios1 = new List<Usuario>();
             try
             {
                 using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
