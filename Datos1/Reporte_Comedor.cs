@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace compras.Datos
+namespace compras.Datos1
 {
     using System;
     using System.Collections.Generic;

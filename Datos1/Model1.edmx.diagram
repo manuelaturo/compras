@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="774152453bb742118b8751a7b6ab23b2" Name="Diagram1">
+      <Diagram DiagramId="77fc10ac63c746178cb9c224b0c1ddf9" Name="Diagram1">
         <EntityTypeShape EntityType="ComedorModel.Cat_Comedor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ComedorModel.Cat_Estatus" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ComedorModel.Cat_Roles" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />

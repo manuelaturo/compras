@@ -132,15 +132,22 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
           <Property Name="Fecha_Actualizar" Type="date" />
           <Property Name="Numero_Empleado" Type="int" Nullable="false" />
           <Property Name="ubicacion" Type="varchar(max)" Nullable="false" />
+          <Property Name="status" Type="int" />
+          <Property Name="Compañia" Type="varchar" MaxLength="50" />
         </EntityType>
         <Function Name="AddEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Correo" Type="varchar" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Apellido_Paterno" Type="varchar" Mode="In" />
           <Parameter Name="Apellido_Materno" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Perfil" Type="int" Mode="In" />
           <Parameter Name="Fecha_Nacimiento" Type="date" Mode="In" />
           <Parameter Name="Curp" Type="varchar" Mode="In" />
           <Parameter Name="Numero_Empleado" Type="int" Mode="In" />
+          <Parameter Name="ubicacion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="Compañia" Type="varchar" Mode="In" />
         </Function>
         <Function Name="DeleteEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Numero_Empleado" Type="int" Mode="In" />
@@ -154,9 +161,14 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Apellido_Paterno" Type="varchar" Mode="In" />
           <Parameter Name="Apellido_Materno" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Perfil" Type="int" Mode="In" />
           <Parameter Name="Fecha_Nacimiento" Type="date" Mode="In" />
           <Parameter Name="Curp" Type="varchar" Mode="In" />
           <Parameter Name="Numero_Empleado" Type="int" Mode="In" />
+          <Parameter Name="ubicacion" Type="varchar" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="Compañia" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="ComedorModelStoreContainer">
           <EntitySet Name="Cat_Comedor" EntityType="Self.Cat_Comedor" Schema="dbo" store:Type="Tables" />
@@ -294,6 +306,8 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
           <Property Name="Fecha_Actualizar" Type="DateTime" Precision="0" />
           <Property Name="Numero_Empleado" Type="Int32" Nullable="false" />
           <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="Compañia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Orden_Compra">
           <Key>
@@ -311,7 +325,7 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
           <Property Name="Costo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Fecha_Alta" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityContainer Name="ComedorEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ComedorEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cat_Comedor" EntityType="Self.Cat_Comedor" />
           <EntitySet Name="Cat_Estatus" EntityType="Self.Cat_Estatus" />
           <EntitySet Name="Cat_Roles" EntityType="Self.Cat_Roles" />
@@ -328,9 +342,14 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Apellido_Paterno" Mode="In" Type="String" />
             <Parameter Name="Apellido_Materno" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Perfil" Mode="In" Type="Int32" />
             <Parameter Name="Fecha_Nacimiento" Mode="In" Type="DateTime" />
             <Parameter Name="Curp" Mode="In" Type="String" />
             <Parameter Name="Numero_Empleado" Mode="In" Type="Int32" />
+            <Parameter Name="ubicacion" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="Compañia" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteEmpleado">
             <Parameter Name="Numero_Empleado" Mode="In" Type="Int32" />
@@ -344,35 +363,60 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Apellido_Paterno" Mode="In" Type="String" />
             <Parameter Name="Apellido_Materno" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Perfil" Mode="In" Type="Int32" />
             <Parameter Name="Fecha_Nacimiento" Mode="In" Type="DateTime" />
             <Parameter Name="Curp" Mode="In" Type="String" />
             <Parameter Name="Numero_Empleado" Mode="In" Type="Int32" />
+            <Parameter Name="ubicacion" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="Compañia" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getUsuarios_Result">
           <Property Type="Int32" Name="Id_Usuario" Nullable="false" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Apellido_Paterno" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Apellido_Materno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Perfil" Nullable="false" />
           <Property Type="DateTime" Name="Fecha_Nacimiento" Nullable="false" />
           <Property Type="String" Name="Curp" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Usuario_Crear" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Creacion" Nullable="false" />
+          <Property Type="Int32" Name="Id_Usuario_Actualizar" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Actualizar" Nullable="true" />
           <Property Type="Int32" Name="Numero_Empleado" Nullable="false" />
+          <Property Type="String" Name="ubicacion" Nullable="false" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+          <Property Type="String" Name="Compañia" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="getUsuariosbynoEmpleado_Result">
           <Property Type="Int32" Name="Id_Usuario" Nullable="false" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Apellido_Paterno" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Apellido_Materno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Perfil" Nullable="false" />
           <Property Type="DateTime" Name="Fecha_Nacimiento" Nullable="false" />
           <Property Type="String" Name="Curp" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Usuario_Crear" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Creacion" Nullable="false" />
+          <Property Type="Int32" Name="Id_Usuario_Actualizar" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Actualizar" Nullable="true" />
           <Property Type="Int32" Name="Numero_Empleado" Nullable="false" />
+          <Property Type="String" Name="ubicacion" Nullable="false" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+          <Property Type="String" Name="Compañia" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ComedorModelStoreContainer" CdmEntityContainer="ComedorEntities">
+        <EntityContainerMapping StorageEntityContainer="ComedorModelStoreContainer" CdmEntityContainer="ComedorEntities1">
           <EntitySetMapping Name="Cat_Comedor">
             <EntityTypeMapping TypeName="ComedorModel.Cat_Comedor">
               <MappingFragment StoreEntitySet="Cat_Comedor">
@@ -490,6 +534,8 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
                 <ScalarProperty Name="Fecha_Actualizar" ColumnName="Fecha_Actualizar" />
                 <ScalarProperty Name="Numero_Empleado" ColumnName="Numero_Empleado" />
                 <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -511,12 +557,22 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
             <ResultMapping>
               <ComplexTypeMapping TypeName="ComedorModel.getUsuarios_Result">
                 <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
                 <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
                 <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
                 <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="Id_Usuario_Crear" ColumnName="Id_Usuario_Crear" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Id_Usuario_Actualizar" ColumnName="Id_Usuario_Actualizar" />
+                <ScalarProperty Name="Fecha_Actualizar" ColumnName="Fecha_Actualizar" />
                 <ScalarProperty Name="Numero_Empleado" ColumnName="Numero_Empleado" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -524,12 +580,22 @@ advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida 
             <ResultMapping>
               <ComplexTypeMapping TypeName="ComedorModel.getUsuariosbynoEmpleado_Result">
                 <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
                 <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
                 <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
                 <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="Id_Usuario_Crear" ColumnName="Id_Usuario_Crear" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Id_Usuario_Actualizar" ColumnName="Id_Usuario_Actualizar" />
+                <ScalarProperty Name="Fecha_Actualizar" ColumnName="Fecha_Actualizar" />
                 <ScalarProperty Name="Numero_Empleado" ColumnName="Numero_Empleado" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

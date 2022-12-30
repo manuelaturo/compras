@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace compras.Datos
+namespace compras.Datos1
 {
     using System;
     using System.Data.Entity;
@@ -15,10 +15,10 @@ namespace compras.Datos
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ComedorEntities : DbContext
+    public partial class ComedorEntities1 : DbContext
     {
-        public ComedorEntities()
-            : base("name=ComedorEntities")
+        public ComedorEntities1()
+            : base("name=ComedorEntities1")
         {
         }
     
@@ -39,7 +39,7 @@ namespace compras.Datos
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Orden_Compra> Orden_Compra { get; set; }
     
-        public virtual int AddEmpleado(string correo, string nombre, string apellido_Paterno, string apellido_Materno, Nullable<System.DateTime> fecha_Nacimiento, string curp, Nullable<int> numero_Empleado)
+        public virtual int AddEmpleado(string correo, string nombre, string apellido_Paterno, string apellido_Materno, string password, Nullable<int> perfil, Nullable<System.DateTime> fecha_Nacimiento, string curp, Nullable<int> numero_Empleado, string ubicacion, Nullable<int> status, string compañia)
         {
             var correoParameter = correo != null ?
                 new ObjectParameter("Correo", correo) :
@@ -57,6 +57,14 @@ namespace compras.Datos
                 new ObjectParameter("Apellido_Materno", apellido_Materno) :
                 new ObjectParameter("Apellido_Materno", typeof(string));
     
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var perfilParameter = perfil.HasValue ?
+                new ObjectParameter("Perfil", perfil) :
+                new ObjectParameter("Perfil", typeof(int));
+    
             var fecha_NacimientoParameter = fecha_Nacimiento.HasValue ?
                 new ObjectParameter("Fecha_Nacimiento", fecha_Nacimiento) :
                 new ObjectParameter("Fecha_Nacimiento", typeof(System.DateTime));
@@ -69,7 +77,19 @@ namespace compras.Datos
                 new ObjectParameter("Numero_Empleado", numero_Empleado) :
                 new ObjectParameter("Numero_Empleado", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEmpleado", correoParameter, nombreParameter, apellido_PaternoParameter, apellido_MaternoParameter, fecha_NacimientoParameter, curpParameter, numero_EmpleadoParameter);
+            var ubicacionParameter = ubicacion != null ?
+                new ObjectParameter("ubicacion", ubicacion) :
+                new ObjectParameter("ubicacion", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(int));
+    
+            var compañiaParameter = compañia != null ?
+                new ObjectParameter("Compañia", compañia) :
+                new ObjectParameter("Compañia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddEmpleado", correoParameter, nombreParameter, apellido_PaternoParameter, apellido_MaternoParameter, passwordParameter, perfilParameter, fecha_NacimientoParameter, curpParameter, numero_EmpleadoParameter, ubicacionParameter, statusParameter, compañiaParameter);
         }
     
         public virtual int DeleteEmpleado(Nullable<int> numero_Empleado)
@@ -95,7 +115,7 @@ namespace compras.Datos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsuariosbynoEmpleado_Result>("getUsuariosbynoEmpleado", noEmpleadoParameter);
         }
     
-        public virtual int UpDateEmpleado(string correo, string nombre, string apellido_Paterno, string apellido_Materno, Nullable<System.DateTime> fecha_Nacimiento, string curp, Nullable<int> numero_Empleado)
+        public virtual int UpDateEmpleado(string correo, string nombre, string apellido_Paterno, string apellido_Materno, string password, Nullable<int> perfil, Nullable<System.DateTime> fecha_Nacimiento, string curp, Nullable<int> numero_Empleado, string ubicacion, Nullable<int> status, string compañia)
         {
             var correoParameter = correo != null ?
                 new ObjectParameter("Correo", correo) :
@@ -113,6 +133,14 @@ namespace compras.Datos
                 new ObjectParameter("Apellido_Materno", apellido_Materno) :
                 new ObjectParameter("Apellido_Materno", typeof(string));
     
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var perfilParameter = perfil.HasValue ?
+                new ObjectParameter("Perfil", perfil) :
+                new ObjectParameter("Perfil", typeof(int));
+    
             var fecha_NacimientoParameter = fecha_Nacimiento.HasValue ?
                 new ObjectParameter("Fecha_Nacimiento", fecha_Nacimiento) :
                 new ObjectParameter("Fecha_Nacimiento", typeof(System.DateTime));
@@ -125,7 +153,19 @@ namespace compras.Datos
                 new ObjectParameter("Numero_Empleado", numero_Empleado) :
                 new ObjectParameter("Numero_Empleado", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpDateEmpleado", correoParameter, nombreParameter, apellido_PaternoParameter, apellido_MaternoParameter, fecha_NacimientoParameter, curpParameter, numero_EmpleadoParameter);
+            var ubicacionParameter = ubicacion != null ?
+                new ObjectParameter("ubicacion", ubicacion) :
+                new ObjectParameter("ubicacion", typeof(string));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(int));
+    
+            var compañiaParameter = compañia != null ?
+                new ObjectParameter("Compañia", compañia) :
+                new ObjectParameter("Compañia", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpDateEmpleado", correoParameter, nombreParameter, apellido_PaternoParameter, apellido_MaternoParameter, passwordParameter, perfilParameter, fecha_NacimientoParameter, curpParameter, numero_EmpleadoParameter, ubicacionParameter, statusParameter, compañiaParameter);
         }
     }
 }

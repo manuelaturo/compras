@@ -1,4 +1,9 @@
+
 ﻿using System;
+
+﻿using compras.BD;
+using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,10 +14,11 @@ namespace compras.Service
     {
         public bool checkUsuario(string correo, string password)
         {
+
             bool response =false;
             try
             {
-                using (Datos.ComedorEntities context = new Datos.ComedorEntities())
+                using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
                 {
                     //DynamicParameters par = new DynamicParameters();
 
@@ -37,6 +43,10 @@ namespace compras.Service
 
                 throw;
             }
+
+            AutenticacionDAO dao = new AutenticacionDAO();
+           return dao.checkUsuario(correo, password);
+
         }
     }
 }

@@ -7,12 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace compras.Datos
+namespace compras.Datos1
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Usuarios
+    public partial class getUsuariosbynoEmpleado_Result
     {
         public int Id_Usuario { get; set; }
         public string Correo { get; set; }
@@ -29,5 +28,7 @@ namespace compras.Datos
         public Nullable<System.DateTime> Fecha_Actualizar { get; set; }
         public int Numero_Empleado { get; set; }
         public string ubicacion { get; set; }
+        public Nullable<int> status { get; set; }
+        public string Compañia { get; set; }
     }
 }
