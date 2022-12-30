@@ -3,6 +3,7 @@ using compras.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 using System.Web.Mvc;
@@ -29,17 +30,26 @@ namespace compras.Controllers
             //return Ok(Service.UsuarioService.GetUsuarioBynoEmpleado(Id));
         }
 
-        //[System.Web.Http.Route("Api/UsuarioADD")]
-        //[System.Web.Http.HttpPost]
-        public ActionResult Add(Usuario usuario)
+        public ActionResult Add()
         {
 
-            UsuarioService us = new UsuarioService();
-                us.AddUsuario(usuario);
-            return null;
-            //return Ok(Service.UsuarioService.AddUsuario(usuario));
+            return View();
         }
 
+        public ActionResult Save(Usuario usuario)
+        {
+            try
+            {
+                UsuarioService us = new UsuarioService();
+                us.AddUsuario(usuario);
+                return View("Add");
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
+            }
+            
+        }
         //[System.Web.Http.Route("Api/UsuarioUpDate")]
         //[System.Web.Http.HttpPut]
         public ActionResult UpDate(Usuario usuario)

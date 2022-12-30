@@ -56,8 +56,8 @@ namespace compras.BD
            ", Id_Usuario_Crear" +
            ", Fecha_Creacion" +
            ", Numero_Empleado)" +
-     "VALUES" +
-           "@Correo," +
+     "VALUES ( " +
+           "@Correo" +
       "     , @Nombre" +
       "     , @Apellido_Paterno" +
        "    , @Apellido_Materno" +

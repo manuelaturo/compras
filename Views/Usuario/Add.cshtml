@@ -4,96 +4,551 @@
     ViewBag.Title = "Add";
 }
 
-<h2>Add</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peña Verde</title>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Usuario</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Numero_Empleado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Numero_Empleado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Numero_Empleado, "", new { @class = "text-danger" })
-            </div>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->.
+    <link rel="stylesheet" href="../dist/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="~/dist/img/AdminLTELogo.png" alt="logo" height="60" width="120">
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Apellido_Paterno, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Apellido_Paterno, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Apellido_Paterno, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            </ul>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Apellido_Materno, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Apellido_Materno, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Apellido_Materno, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Curp, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Curp, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Curp, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index.html" class="brand-link">
+                <img src="~/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">ComprasPV</span>
+            </a>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fecha_Nacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fecha_Nacimiento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Fecha_Nacimiento, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Correo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Correo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    </div>
+                    <div class="info">
+                        <a class="d-block"> @Html.ActionLink("Cerrar sesión", "Logout", "Home")</a>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.perfil, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.perfil, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.perfil, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                        <li class="nav-item">
+                            <a class="d-block"> <p>  @Html.ActionLink("Usuarios", "get", "Usuario") </p> </a>
+
+                            </ li >
+                            @*<li class="nav-item">
+                                <a href="productos/productos.html" class="nav-link">
+                                    <p
+                                        Productos
+
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="kits/kits.html" class="nav-link">
+                                    <p>
+                                        Kits
+
+                                    </p>
+                                </a>
+                            </li>*@
+                            @*<li class="nav-item">
+                                <a href="ordenes/ordenes.html" class="nav-link">
+                                    <p>
+                                        Órdenes de compra
+
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="apertura/apertura.html" class="nav-link">
+                                    <p>
+                                        Apertura de sistema
+
+                                    </p>
+                                </a>
+                            </li>*@
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+
+                                <p>
+                                    Reportes
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="reportes/usuarios.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Reporte comedores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="reportes/productos.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Reporte eventos
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="reportes/ordencompra.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Reporte Salas
+                                        </p>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item">
+                                    <a href="reportes/ordenescompra.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Órdenes de compra</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="reportes/productoscotizar.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Productos por cotizar</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="reportes/sla.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>SLA's</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="reportes/validaorden.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Validación de órdenes</p>
+                                    </a>
+                                </li>*@
+                            </ul>
+                        </li>
+
+                        @*<li class="nav-item">
+                            <a href="#" class="nav-link">
+
+                                <p>
+                                    Previsualización
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="productos/vistaproductos.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Productos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="aprobaciones/vistaaprobaciones.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Aprobaciones</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="ordenes/vistaordenes.html" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Órdenes de compra</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>*@
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
             </div>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Usuarios</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Agregar Usuario</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Número de empleado</label>
+                                        <input type="text" class="form-control" id="numEmpleado" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Apellido Paterno</label>
+                                        <input type="text" class="form-control" id="aPaterno" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Apellido Materno</label>
+                                        <input type="text" class="form-control" id="aMaterno">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">CURP</label>
+                                        <input type="text" class="form-control" id="curp">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Fecha de nacimiento</label>
+                                        <div class="input-group date" id="fechaNacimiento" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#fechaNacimiento" />
+                                            <div class="input-group-append" data-target="#fechaNacimiento" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="mail" class="form-control" id="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Contraseña</label>
+                                        <input type="password" class="form-control" id="password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Perfil</label>
+                                        <select class="custom-select form-control-border" id="perfil" onChange="validaSupervisor(this.value);">
+                                            <option value="1">Solicitante</option>
+                                            <option value="2">Aprobador</option>
+                                            <option value="3">Administrador</option>
+
+                                        </select>
+                                    </div>
+
+
+
+                                    <div class="form-group" id="supervisorDiv">
+                                        <!--Llenar con lista de perfiles aprobadores -->
+                                        <label for="exampleInputEmail1">Supervisor</label>
+                                        <select class="custom-select form-control-border" id="supervisor">
+                                            <option value="1">Aprobador 1</option>
+                                            <option value="2">Aprobador 2</option>
+                                            <option value="3">Aprobador 3</option>
+
+                                        </select>
+                                    </div>
+                                    <script>
+                                        function validaSupervisor(a) {
+                                            if (a == 1) {
+                                                document.getElementById("supervisorDiv").style.display = "block";
+                                            } else {
+
+                                                document.getElementById("supervisorDiv").style.display = "none";
+                                            }
+                                        }</script>
+                                    <div class="form-group">
+
+                                        <label for="exampleInputEmail1">Empresa</label>
+                                        <select class="custom-select form-control-border" id="empresa">
+                                            <option value="1">Peña Verde</option>
+                                            <option value="2">General de Seguros</option>
+                                            <option value="3">General de Salud</option>
+                                            <option value="4">Reaseguradora Patria</option>
+                                            <option value="5">Servicios administrados</option>
+
+                                        </select>
+                                    </div>
+                                    <!-- valorar si se cambia por un select -->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Ubicación</label>
+                                        <input type="text" class="form-control" id="ubicacion" onKeyUp="this.value=this.value.toUpperCase();">
+                                    </div>
+
+                                    <br>
+
+                                    <div class="alert alert-warning alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                        <h5><i class="icon fas fa-exclamation-triangle"></i> Alerta</h5>
+                                        Recuerde que los usuarios se dan de alta como activos.
+                                    </div>
+
+                                    <button class="btn btn-primary btn-block" onclick="SaveUser()">Enviar</button>
+
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <div class="col-6">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Agregar Usuarios desde Excel</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+
+                                    <!--disponibilizar excel de ejemplo para descarga y llenado de plantilla-->
+                                    <button type="submit" class="btn btn-block btn-warning">Descagar plantilla</button>
+
+                                    <br><br>
+                                    <div class="form-group">
+                                        <!-- <label for="customFile">Custom File</label> -->
+
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Subir archivo</label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <button type="submit" class="btn btn-block btn-success">Cargar</button>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+
+            </section>
+            <!-- /.content -->
         </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Peña Verde</strong>
+            Uso confidencial.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
     </div>
-}
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="../plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    <!-- Bootstrap 4 -->
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../plugins/moment/moment.min.js"></script>
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.js"></script>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <!-- DataTables  & Plugins -->
+    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="../plugins/jszip/jszip.min.js"></script>
+    <script src="../plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- Toastr -->
+    <script src="../plugins/toastr/toastr.min.js"></script>
+    <script>$(function () {
+    $("#tablausuarios").DataTable({
+      responsive: true, lengthChange: true, autoWidth: false,
+    	buttons: [
+            {
+                extend: 'copy',
+                exportOptions: {
+                    columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+			 {
+                extend: 'csv',
+                exportOptions: {
+                   columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+                        {
+                extend: 'print',
+                exportOptions: {
+                     columns: [ 0,1,2,3,4,5 ]
+                }
+            },
+			            {
+                extend: 'colvis',
+                exportOptions: {
+                    columns: [ 0,1,2,3,4,5 ]
+                }
+            }
+        ]
+    }).buttons().container().appendTo('#tablausuarios_wrapper .col-md-6:eq(0)');
+
+   $('#fechaNacimiento').datetimepicker({
+        format: 'DD-MM-YYYY'
+    });
+});
+        function SaveUser() {
+            let numEmpleado = document.getElementById("numEmpleado").value;
+            let nombre = document.getElementById("nombre").value;
+            let aPaterno = document.getElementById("aPaterno").value;
+            let aMaterno = document.getElementById("aMaterno").value;
+            let curp = document.getElementById("curp").value;
+            let fechaNacimiento = document.getElementById("fechaNacimiento").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let perfil = document.getElementById("perfil").value;
+            let supervisor = document.getElementById("supervisor").value;
+            let empresa = document.getElementById("empresa").value;
+            let ubicacion = document.getElementById("ubicacion").value;
+
+            fetch(`/Usuario/Save`, {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    Numero_Empleado: numEmpleado,
+                    Nombre: nombre,
+                    Apellido_Paterno: aPaterno,
+                    Apellido_Materno: aMaterno,
+                    Curp: curp,
+                    Fecha_Nacimiento: fechaNacimiento,
+                    Correo: email,
+                    password: password,
+                    perfil: perfil,
+                    Rol: supervisor,
+                    Compania: empresa,
+                    ubicacion: ubicacion,
+                })
+            }).then(function (response) {
+                console.log(response.status)
+                if (response.status == 200) {
+                    console.log("exito")
+                    toastr.success('Registro agregado');
+                } else {
+                    if (response.status == 204) {
+                        toastr.warning('El evento ya esta registrado a esa hora')
+                    } else {
+                        console.log("error")
+                        toastr.error('Error al registrar Comedor');
+                    }
+                }
+            }).then(data => {
+                console.log("exito")
+            }).catch(function (error) {
+                console.log("error", error)
+                toastr.error('Error al registrar Sala');
+            });
+        }
+    </script>
+
+</body>
+</html>
+
