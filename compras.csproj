@@ -262,6 +262,7 @@
     <Content Include="Views\Usuario\get.cshtml" />
     <Content Include="Views\Usuario\Add.cshtml" />
     <Content Include="Views\Home\ReportesComedor.cshtml" />
+    <Content Include="Views\Home\ReportesEvento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

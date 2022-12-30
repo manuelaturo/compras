@@ -10,8 +10,9 @@ namespace compras.BD
         public string image { get; set; }
         public string name { get; set; }
         public string lastName { get; set; }
-        public int numEmploye { get; set; }
+        public int numEmployed { get; set; }
         public string comedor { get; set; }
         public DateTime date { get; set; }
+        public string empresa { get; set; }
     }
 }
