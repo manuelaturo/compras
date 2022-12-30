@@ -7,22 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace compras.Datos
+namespace compras.Datos1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Kit
+    public partial class Orden_Compra
     {
-        public int Id_Kit { get; set; }
-        public string Nombre { get; set; }
-        public string Descripcion { get; set; }
-        public string Categoria { get; set; }
+        public int Id_Compra { get; set; }
+        public int Folio { get; set; }
+        public int Usuario { get; set; }
         public int Estatus { get; set; }
-        public string Imagen { get; set; }
+        public decimal Costo { get; set; }
         public System.DateTime Fecha_Alta { get; set; }
-        public int Usuario_Alta { get; set; }
-        public Nullable<System.DateTime> Fecha_Actualizacion { get; set; }
-        public Nullable<int> Usuario_Actualizacion { get; set; }
     }
 }

@@ -7,18 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace compras.Datos
+namespace compras.Datos1
 {
     using System;
     
     public partial class getUsuarios_Result
     {
         public int Id_Usuario { get; set; }
+        public string Correo { get; set; }
         public string Nombre { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
+        public string Password { get; set; }
+        public int Perfil { get; set; }
         public System.DateTime Fecha_Nacimiento { get; set; }
         public string Curp { get; set; }
+        public int Id_Usuario_Crear { get; set; }
+        public System.DateTime Fecha_Creacion { get; set; }
+        public Nullable<int> Id_Usuario_Actualizar { get; set; }
+        public Nullable<System.DateTime> Fecha_Actualizar { get; set; }
         public int Numero_Empleado { get; set; }
+        public string ubicacion { get; set; }
+        public Nullable<int> status { get; set; }
+        public string Compañia { get; set; }
     }
 }

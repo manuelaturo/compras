@@ -7,19 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace compras.Datos
+namespace compras.Datos1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Invitado
+    public partial class Producto
     {
-        public int Id_Invitado { get; set; }
-        public int Numero_Empleado { get; set; }
-        public int Id_Comedor { get; set; }
-        public System.DateTime Fecha_Ingreso { get; set; }
-        public int Folio { get; set; }
-        public int Id_Usuario_Registo { get; set; }
+        public int Id_Producto { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public int Estatus { get; set; }
+        public string imagen { get; set; }
         public System.DateTime Fecha_Registro { get; set; }
+        public int Usuario_Registro { get; set; }
+        public Nullable<System.DateTime> Fecha_Actualizacion { get; set; }
+        public Nullable<int> Usuario_Actualizacion { get; set; }
     }
 }

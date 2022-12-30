@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace compras.Datos
+namespace compras.Datos1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Kit_Producto
+    public partial class Cat_Roles
     {
-        public int Id_Kit_Producto { get; set; }
-        public int Id_kit { get; set; }
-        public int Id_Producto { get; set; }
+        public int Id_Rol { get; set; }
+        public string Tipo { get; set; }
+        public string Descripcion { get; set; }
     }
 }

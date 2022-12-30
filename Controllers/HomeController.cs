@@ -15,27 +15,37 @@ namespace compras.Controllers
             return View();
         }
 
-        public ActionResult Autheticacion(string usuario, string password)
-        {
-            Service.AutenticacionService service = new Service.AutenticacionService();
-            bool response = service.checkUsuario(usuario, password);
-            if (response)
-            {
-                return View("ReportesComedor");
-            }
-            else
-            {
-                return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
-            }
 
-        }
         public ActionResult ForgotPassword()
         {
             return View();
         }
 
+        public ActionResult Autheticacion(string usuario, string password)
+
+        {
+            Service.AutenticacionService service = new Service.AutenticacionService();
+            bool response = service.checkUsuario(usuario, password);
+            if (response)
+            {
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Home/Index");
+            }
+           
+        }
+        public ActionResult About()
+
+        {
+            ReportService comedorService = new ReportService();
+            return View(comedorService.getGeneralReport());
+    }
         
         public ActionResult ReportesComedor()
+
         {
 
             return View();
@@ -45,11 +55,6 @@ namespace compras.Controllers
         {
             return View("Index");
         }
-        public ActionResult About()
-        {
-            ReportService comedorService = new ReportService();
-            return View(comedorService.getGeneralReport());
-        }
 
         public ActionResult Contact()
         {
@@ -57,5 +62,6 @@ namespace compras.Controllers
 
             return View();
         }
-    }
 }
+}
+

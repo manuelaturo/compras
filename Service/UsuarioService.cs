@@ -49,6 +49,8 @@ namespace compras.Service
                         //usuario.curp = usuarios.Curp;
                         //usuario.fechaNacimiento = usuarios.Fecha_Nacimiento;
                         //usuario.email = usuarios.Correo;
+                        usuario.ubicacion = usuarios.ubicacion;
+                        usuario.status = usuarios.status;
                         return usuario;
                     }
                     else
@@ -76,6 +78,7 @@ namespace compras.Service
                 //usuario.fechaNacimiento, usuario.email, usuario.password, usuario.perfil);
                 //us.AddUsuario(usuariosEntity);
                 return true;
+
             }
             catch (Exception x)
             {
@@ -88,7 +91,7 @@ namespace compras.Service
 
             try
             {
-                using (Datos.ComedorEntities context = new Datos.ComedorEntities())
+                using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
                 {
                     //var UpDate = context.UpDateEmpleado(usuario.email, usuario.nombre, usuario.APaterno, usuario.AMaterno, usuario.fechaNacimiento, usuario.curp, usuario.noEmpledo);
                     //if (UpDate == 0)
@@ -112,7 +115,7 @@ namespace compras.Service
 
             try
             {
-                using (Datos.ComedorEntities context = new Datos.ComedorEntities())
+                using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
                 {
                     var Delete = context.DeleteEmpleado(noEmpleado);
                     if (Delete == 0)
