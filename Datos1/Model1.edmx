@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ComedorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cat_Comedor">
+          <Key>
+            <PropertyRef Name="Id_Comedor" />
+          </Key>
+          <Property Name="Id_Comedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cat_Estatus">
+          <Key>
+            <PropertyRef Name="Id_Estatus" />
+          </Key>
+          <Property Name="Id_Estatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cat_Roles">
+          <Key>
+            <PropertyRef Name="Id_Rol" />
+          </Key>
+          <Property Name="Id_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invitado">
+          <Key>
+            <PropertyRef Name="Id_Invitado" />
+          </Key>
+          <Property Name="Id_Invitado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero_Empleado" Type="int" Nullable="false" />
+          <Property Name="Id_Comedor" Type="int" Nullable="false" />
+          <Property Name="Fecha_Ingreso" Type="date" Nullable="false" />
+          <Property Name="Folio" Type="int" Nullable="false" />
+          <Property Name="Id_Usuario_Registo" Type="int" Nullable="false" />
+          <Property Name="Fecha_Registro" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kit">
+          <Key>
+            <PropertyRef Name="Id_Kit" />
+          </Key>
+          <Property Name="Id_Kit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+          <Property Name="Imagen" Type="varchar(max)" Nullable="false" />
+          <Property Name="Fecha_Alta" Type="datetime" Nullable="false" />
+          <Property Name="Usuario_Alta" Type="int" Nullable="false" />
+          <Property Name="Fecha_Actualizacion" Type="datetime" />
+          <Property Name="Usuario_Actualizacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Kit_Producto">
+          <Key>
+            <PropertyRef Name="Id_Kit_Producto" />
+          </Key>
+          <Property Name="Id_Kit_Producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_kit" Type="int" Nullable="false" />
+          <Property Name="Id_Producto" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Comedor.dbo.Orden_Compra' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Orden_Compra">
+          <Key>
+            <PropertyRef Name="Id_Compra" />
+            <PropertyRef Name="Folio" />
+            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="Estatus" />
+            <PropertyRef Name="Costo" />
+            <PropertyRef Name="Fecha_Alta" />
+          </Key>
+          <Property Name="Id_Compra" Type="int" Nullable="false" />
+          <Property Name="Folio" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+          <Property Name="Costo" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Fecha_Alta" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orden_Compra_Producto">
+          <Key>
+            <PropertyRef Name="Id_Orden_Compra_Producto" />
+          </Key>
+          <Property Name="Id_Orden_Compra_Producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Orden_Compra" Type="int" Nullable="false" />
+          <Property Name="Id_Producto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id_Producto" />
+          </Key>
+          <Property Name="Id_Producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" Nullable="false" />
+          <Property Name="imagen" Type="varchar(max)" Nullable="false" />
+          <Property Name="Fecha_Registro" Type="datetime" Nullable="false" />
+          <Property Name="Usuario_Registro" Type="int" Nullable="false" />
+          <Property Name="Fecha_Actualizacion" Type="datetime" />
+          <Property Name="Usuario_Actualizacion" Type="int" />
+        </EntityType>
+        <EntityType Name="Reporte_Comedor">
+          <Key>
+            <PropertyRef Name="Id_Reporte_Comedor" />
+          </Key>
+          <Property Name="Id_Reporte_Comedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_Entrada" Type="datetime" Nullable="false" />
+          <Property Name="Numero_Empleado" Type="int" Nullable="false" />
+          <Property Name="Compania" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sede" Type="int" Nullable="false" />
+          <Property Name="Id_Usuario_Acceso" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido_Paterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido_Materno" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Perfil" Type="int" Nullable="false" />
+          <Property Name="Fecha_Nacimiento" Type="date" Nullable="false" />
+          <Property Name="Curp" Type="varchar" MaxLength="50" />
+          <Property Name="Id_Usuario_Crear" Type="int" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="date" Nullable="false" />
+          <Property Name="Id_Usuario_Actualizar" Type="int" />
+          <Property Name="Fecha_Actualizar" Type="date" />
+          <Property Name="Numero_Empleado" Type="int" Nullable="false" />
+          <Property Name="ubicacion" Type="varchar(max)" Nullable="false" />
+          <Property Name="status" Type="int" />
+          <Property Name="Compañia" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="AddEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido_Paterno" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido_Materno" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Perfil" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Nacimiento" Type="date" Mode="In" />
+          <Parameter Name="Curp" Type="varchar" Mode="In" />
+          <Parameter Name="Numero_Empleado" Type="int" Mode="In" />
+          <Parameter Name="ubicacion" Type="varchar(max)" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="Compañia" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Numero_Empleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getUsuariosbynoEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="noEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpDateEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido_Paterno" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido_Materno" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="Perfil" Type="int" Mode="In" />
+          <Parameter Name="Fecha_Nacimiento" Type="date" Mode="In" />
+          <Parameter Name="Curp" Type="varchar" Mode="In" />
+          <Parameter Name="Numero_Empleado" Type="int" Mode="In" />
+          <Parameter Name="ubicacion" Type="varchar" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="Compañia" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ComedorModelStoreContainer">
+          <EntitySet Name="Cat_Comedor" EntityType="Self.Cat_Comedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cat_Estatus" EntityType="Self.Cat_Estatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cat_Roles" EntityType="Self.Cat_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invitado" EntityType="Self.Invitado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kit" EntityType="Self.Kit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kit_Producto" EntityType="Self.Kit_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orden_Compra_Producto" EntityType="Self.Orden_Compra_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte_Comedor" EntityType="Self.Reporte_Comedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orden_Compra" EntityType="Self.Orden_Compra" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Orden_Compra].[Id_Compra] AS [Id_Compra], 
+    [Orden_Compra].[Folio] AS [Folio], 
+    [Orden_Compra].[Usuario] AS [Usuario], 
+    [Orden_Compra].[Estatus] AS [Estatus], 
+    [Orden_Compra].[Costo] AS [Costo], 
+    [Orden_Compra].[Fecha_Alta] AS [Fecha_Alta]
+    FROM [dbo].[Orden_Compra] AS [Orden_Compra]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComedorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cat_Comedor">
+          <Key>
+            <PropertyRef Name="Id_Comedor" />
+          </Key>
+          <Property Name="Id_Comedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cat_Estatus">
+          <Key>
+            <PropertyRef Name="Id_Estatus" />
+          </Key>
+          <Property Name="Id_Estatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cat_Roles">
+          <Key>
+            <PropertyRef Name="Id_Rol" />
+          </Key>
+          <Property Name="Id_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invitado">
+          <Key>
+            <PropertyRef Name="Id_Invitado" />
+          </Key>
+          <Property Name="Id_Invitado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="Id_Comedor" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Ingreso" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Folio" Type="Int32" Nullable="false" />
+          <Property Name="Id_Usuario_Registo" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Kit">
+          <Key>
+            <PropertyRef Name="Id_Kit" />
+          </Key>
+          <Property Name="Id_Kit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_Alta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario_Alta" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Actualizacion" Type="DateTime" Precision="3" />
+          <Property Name="Usuario_Actualizacion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Kit_Producto">
+          <Key>
+            <PropertyRef Name="Id_Kit_Producto" />
+          </Key>
+          <Property Name="Id_Kit_Producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_kit" Type="Int32" Nullable="false" />
+          <Property Name="Id_Producto" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orden_Compra_Producto">
+          <Key>
+            <PropertyRef Name="Id_Orden_Compra_Producto" />
+          </Key>
+          <Property Name="Id_Orden_Compra_Producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Orden_Compra" Type="Int32" Nullable="false" />
+          <Property Name="Id_Producto" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id_Producto" />
+          </Key>
+          <Property Name="Id_Producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_Registro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Usuario_Registro" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Actualizacion" Type="DateTime" Precision="3" />
+          <Property Name="Usuario_Actualizacion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Reporte_Comedor">
+          <Key>
+            <PropertyRef Name="Id_Reporte_Comedor" />
+          </Key>
+          <Property Name="Id_Reporte_Comedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Entrada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Numero_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="Compania" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sede" Type="Int32" Nullable="false" />
+          <Property Name="Id_Usuario_Acceso" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido_Paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido_Materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Perfil" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Curp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Usuario_Crear" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Creacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Id_Usuario_Actualizar" Type="Int32" />
+          <Property Name="Fecha_Actualizar" Type="DateTime" Precision="0" />
+          <Property Name="Numero_Empleado" Type="Int32" Nullable="false" />
+          <Property Name="ubicacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="Compañia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Orden_Compra">
+          <Key>
+            <PropertyRef Name="Id_Compra" />
+            <PropertyRef Name="Folio" />
+            <PropertyRef Name="Usuario" />
+            <PropertyRef Name="Estatus" />
+            <PropertyRef Name="Costo" />
+            <PropertyRef Name="Fecha_Alta" />
+          </Key>
+          <Property Name="Id_Compra" Type="Int32" Nullable="false" />
+          <Property Name="Folio" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" Nullable="false" />
+          <Property Name="Costo" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Fecha_Alta" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ComedorEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cat_Comedor" EntityType="Self.Cat_Comedor" />
+          <EntitySet Name="Cat_Estatus" EntityType="Self.Cat_Estatus" />
+          <EntitySet Name="Cat_Roles" EntityType="Self.Cat_Roles" />
+          <EntitySet Name="Invitado" EntityType="Self.Invitado" />
+          <EntitySet Name="Kit" EntityType="Self.Kit" />
+          <EntitySet Name="Kit_Producto" EntityType="Self.Kit_Producto" />
+          <EntitySet Name="Orden_Compra_Producto" EntityType="Self.Orden_Compra_Producto" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Reporte_Comedor" EntityType="Self.Reporte_Comedor" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Orden_Compra" EntityType="Self.Orden_Compra" />
+          <FunctionImport Name="AddEmpleado">
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido_Paterno" Mode="In" Type="String" />
+            <Parameter Name="Apellido_Materno" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Perfil" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Curp" Mode="In" Type="String" />
+            <Parameter Name="Numero_Empleado" Mode="In" Type="Int32" />
+            <Parameter Name="ubicacion" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="Compañia" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteEmpleado">
+            <Parameter Name="Numero_Empleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getUsuarios" ReturnType="Collection(ComedorModel.getUsuarios_Result)" />
+          <FunctionImport Name="getUsuariosbynoEmpleado" ReturnType="Collection(ComedorModel.getUsuariosbynoEmpleado_Result)">
+            <Parameter Name="noEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpDateEmpleado">
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido_Paterno" Mode="In" Type="String" />
+            <Parameter Name="Apellido_Materno" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Perfil" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha_Nacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Curp" Mode="In" Type="String" />
+            <Parameter Name="Numero_Empleado" Mode="In" Type="Int32" />
+            <Parameter Name="ubicacion" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="Compañia" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="getUsuarios_Result">
+          <Property Type="Int32" Name="Id_Usuario" Nullable="false" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Apellido_Paterno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Apellido_Materno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Perfil" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Nacimiento" Nullable="false" />
+          <Property Type="String" Name="Curp" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Usuario_Crear" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Creacion" Nullable="false" />
+          <Property Type="Int32" Name="Id_Usuario_Actualizar" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Actualizar" Nullable="true" />
+          <Property Type="Int32" Name="Numero_Empleado" Nullable="false" />
+          <Property Type="String" Name="ubicacion" Nullable="false" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+          <Property Type="String" Name="Compañia" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getUsuariosbynoEmpleado_Result">
+          <Property Type="Int32" Name="Id_Usuario" Nullable="false" />
+          <Property Type="String" Name="Correo" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Apellido_Paterno" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Apellido_Materno" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="Perfil" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Nacimiento" Nullable="false" />
+          <Property Type="String" Name="Curp" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Id_Usuario_Crear" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha_Creacion" Nullable="false" />
+          <Property Type="Int32" Name="Id_Usuario_Actualizar" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha_Actualizar" Nullable="true" />
+          <Property Type="Int32" Name="Numero_Empleado" Nullable="false" />
+          <Property Type="String" Name="ubicacion" Nullable="false" />
+          <Property Type="Int32" Name="status" Nullable="true" />
+          <Property Type="String" Name="Compañia" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ComedorModelStoreContainer" CdmEntityContainer="ComedorEntities1">
+          <EntitySetMapping Name="Cat_Comedor">
+            <EntityTypeMapping TypeName="ComedorModel.Cat_Comedor">
+              <MappingFragment StoreEntitySet="Cat_Comedor">
+                <ScalarProperty Name="Id_Comedor" ColumnName="Id_Comedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cat_Estatus">
+            <EntityTypeMapping TypeName="ComedorModel.Cat_Estatus">
+              <MappingFragment StoreEntitySet="Cat_Estatus">
+                <ScalarProperty Name="Id_Estatus" ColumnName="Id_Estatus" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cat_Roles">
+            <EntityTypeMapping TypeName="ComedorModel.Cat_Roles">
+              <MappingFragment StoreEntitySet="Cat_Roles">
+                <ScalarProperty Name="Id_Rol" ColumnName="Id_Rol" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invitado">
+            <EntityTypeMapping TypeName="ComedorModel.Invitado">
+              <MappingFragment StoreEntitySet="Invitado">
+                <ScalarProperty Name="Id_Invitado" ColumnName="Id_Invitado" />
+                <ScalarProperty Name="Numero_Empleado" ColumnName="Numero_Empleado" />
+                <ScalarProperty Name="Id_Comedor" ColumnName="Id_Comedor" />
+                <ScalarProperty Name="Fecha_Ingreso" ColumnName="Fecha_Ingreso" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="Id_Usuario_Registo" ColumnName="Id_Usuario_Registo" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kit">
+            <EntityTypeMapping TypeName="ComedorModel.Kit">
+              <MappingFragment StoreEntitySet="Kit">
+                <ScalarProperty Name="Id_Kit" ColumnName="Id_Kit" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Fecha_Alta" ColumnName="Fecha_Alta" />
+                <ScalarProperty Name="Usuario_Alta" ColumnName="Usuario_Alta" />
+                <ScalarProperty Name="Fecha_Actualizacion" ColumnName="Fecha_Actualizacion" />
+                <ScalarProperty Name="Usuario_Actualizacion" ColumnName="Usuario_Actualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kit_Producto">
+            <EntityTypeMapping TypeName="ComedorModel.Kit_Producto">
+              <MappingFragment StoreEntitySet="Kit_Producto">
+                <ScalarProperty Name="Id_Kit_Producto" ColumnName="Id_Kit_Producto" />
+                <ScalarProperty Name="Id_kit" ColumnName="Id_kit" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden_Compra_Producto">
+            <EntityTypeMapping TypeName="ComedorModel.Orden_Compra_Producto">
+              <MappingFragment StoreEntitySet="Orden_Compra_Producto">
+                <ScalarProperty Name="Id_Orden_Compra_Producto" ColumnName="Id_Orden_Compra_Producto" />
+                <ScalarProperty Name="Id_Orden_Compra" ColumnName="Id_Orden_Compra" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="ComedorModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="Fecha_Registro" ColumnName="Fecha_Registro" />
+                <ScalarProperty Name="Usuario_Registro" ColumnName="Usuario_Registro" />
+                <ScalarProperty Name="Fecha_Actualizacion" ColumnName="Fecha_Actualizacion" />
+                <ScalarProperty Name="Usuario_Actualizacion" ColumnName="Usuario_Actualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporte_Comedor">
+            <EntityTypeMapping TypeName="ComedorModel.Reporte_Comedor">
+              <MappingFragment StoreEntitySet="Reporte_Comedor">
+                <ScalarProperty Name="Id_Reporte_Comedor" ColumnName="Id_Reporte_Comedor" />
+                <ScalarProperty Name="Fecha_Entrada" ColumnName="Fecha_Entrada" />
+                <ScalarProperty Name="Numero_Empleado" ColumnName="Numero_Empleado" />
+                <ScalarProperty Name="Compania" ColumnName="Compania" />
+                <ScalarProperty Name="Sede" ColumnName="Sede" />
+                <ScalarProperty Name="Id_Usuario_Acceso" ColumnName="Id_Usuario_Acceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ComedorModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
+                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="Id_Usuario_Crear" ColumnName="Id_Usuario_Crear" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Id_Usuario_Actualizar" ColumnName="Id_Usuario_Actualizar" />
+                <ScalarProperty Name="Fecha_Actualizar" ColumnName="Fecha_Actualizar" />
+                <ScalarProperty Name="Numero_Empleado" ColumnName="Numero_Empleado" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orden_Compra">
+            <EntityTypeMapping TypeName="ComedorModel.Orden_Compra">
+              <MappingFragment StoreEntitySet="Orden_Compra">
+                <ScalarProperty Name="Id_Compra" ColumnName="Id_Compra" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Fecha_Alta" ColumnName="Fecha_Alta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddEmpleado" FunctionName="ComedorModel.Store.AddEmpleado" />
+          <FunctionImportMapping FunctionImportName="DeleteEmpleado" FunctionName="ComedorModel.Store.DeleteEmpleado" />
+          <FunctionImportMapping FunctionImportName="getUsuarios" FunctionName="ComedorModel.Store.getUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComedorModel.getUsuarios_Result">
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
+                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="Id_Usuario_Crear" ColumnName="Id_Usuario_Crear" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Id_Usuario_Actualizar" ColumnName="Id_Usuario_Actualizar" />
+                <ScalarProperty Name="Fecha_Actualizar" ColumnName="Fecha_Actualizar" />
+                <ScalarProperty Name="Numero_Empleado" ColumnName="Numero_Empleado" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getUsuariosbynoEmpleado" FunctionName="ComedorModel.Store.getUsuariosbynoEmpleado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ComedorModel.getUsuariosbynoEmpleado_Result">
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
+                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
+                <ScalarProperty Name="Fecha_Nacimiento" ColumnName="Fecha_Nacimiento" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="Id_Usuario_Crear" ColumnName="Id_Usuario_Crear" />
+                <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+                <ScalarProperty Name="Id_Usuario_Actualizar" ColumnName="Id_Usuario_Actualizar" />
+                <ScalarProperty Name="Fecha_Actualizar" ColumnName="Fecha_Actualizar" />
+                <ScalarProperty Name="Numero_Empleado" ColumnName="Numero_Empleado" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpDateEmpleado" FunctionName="ComedorModel.Store.UpDateEmpleado" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

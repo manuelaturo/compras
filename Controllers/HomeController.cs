@@ -13,6 +13,24 @@ namespace compras.Controllers
             return View();
         }
 
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+        public ActionResult ReportesComedor(string usuario, string password)
+        {
+            Service.AutenticacionService service = new Service.AutenticacionService();
+            bool response = service.checkUsuario(usuario, password);
+            if (response)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Home/Index");
+            }
+           
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -2,30 +2,120 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peña Verde | Log in</title>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <!-- Toastr -->
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="~/dist/img/logo.png" width="60%"></img>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Iniciar sesión</p>
+
+                
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" id="correo" name="correo">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            @*<button type="submit" class="btn btn-primary btn-block">Iniciar</button>*@
+                            <button               class="btn btn-primary btn-block" onclick="EnviarLoguin()">Enviar</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+
+                <p class="mb-1">
+                    <a> @Html.ActionLink("Olvidé mi contraseña", "ForgotPassword", "Home")</a>
+                </p>
+
+                <!-- /.login-card-body -->
+            </div>
+        </div>
+        <!-- /.login-box -->
+        <!-- jQuery -->
+        <script src="~/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/dist/js/adminlte.min.js"></script>
+        <!-- Toastr -->
+        <script src="~/plugins/toastr/toastr.min.js"></script>
+        <script>
+            function EnviarLoguin() {
+
+                let correo = document.getElementsByName("correo")[0].value;
+                let password = document.getElementsByName("password")[0].value;
+                console.log(correo);
+                console.log(password);
+                if (correo != null && correo != "") {
+                    if (password != null && password != "") {
+                        fetch(`/Home/ReportesComedor`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                correo: correo,
+                                password: password,
+                            })
+                        }).then(function (response) {
+                            if (response.ok) {
+                                console.log(response)
+                                return response.json();
+                            }
+                            return Promise.reject(response);
+                        }).then(data => {
+                            console.log("data", data)
+                            toastr.success('Registro agregado');
+                        }).catch(function (error) {
+
+                            toastr.error('Error al entrar');
+                        });
+                        
+                        } 
+                    else {
+                        toastr.warning('Indique Password');
+                    }
+                } else {
+                    toastr.warning('Indique un correo');
+                }
+            }
+        </script>
+</body >
+</html >
