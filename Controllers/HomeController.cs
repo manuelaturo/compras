@@ -35,55 +35,28 @@ namespace compras.Controllers
             return View();
         }
 
-        public ActionResult About2()
+        public ActionResult ReportesSala()
 
         {
             ReportService comedorService = new ReportService();
             return View(comedorService.getGeneralReportSala());
         }
-        public ActionResult About3()
+        public ActionResult ReportesEvento()
 
         {
             ReportService comedorService = new ReportService();
             return View(comedorService.getGeneralReportEvento());
         }
-        public ActionResult About()
 
-        {
-            ReportService comedorService = new ReportService();
-            return View(comedorService.getGeneralReportSala());
-        }
-        public ActionResult ReportesComedorcoustom(string initdate, string enddate)
 
-        {
-
-            ReportService reportService = new ReportService();
-            return View(reportService.getGeneralReportComedor(initdate, enddate));
-
-        }
-        public ActionResult ReportesEvento(string initdate, string enddate)
-
-        {
-
-            ReportService reportService = new ReportService();
-            return View(reportService.getGeneralReportEventos(initdate, enddate));
-
-        }
-
-        public ActionResult ReportesSala(string initdate, string enddate)
-
-        {
-
-            ReportService reportService = new ReportService();
-            return View(reportService.getGeneralReportSalas(initdate, enddate));
-
-        }
 
         public ActionResult ReportesComedor()
         {
 
-            return View();
-        }
+            ReportService comedorService = new ReportService();
+            return View(comedorService.getGeneralReport());
+        } 
+
         public ActionResult ComedorPrincipal()
         {
 
@@ -94,11 +67,7 @@ namespace compras.Controllers
         {
             return View("Index");
         }
-        public ActionResult About()
-        {
-            ReportService comedorService = new ReportService();
-            return View(comedorService.getGeneralReport());
-        }
+        
 
         public ActionResult Contact()
         {

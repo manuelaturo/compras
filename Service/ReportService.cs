@@ -92,40 +92,42 @@ namespace compras.Service
         {
             responseDAO.ForEach(x =>
             {
-                if (x.comedor.Equals("1"))
-                {
-                    x.comedor = "Comedor 1";
-                }else  if (x.comedor.Equals("2"))
+                if(x.comedor!= null) {  
+                    if (x.comedor.Equals("1"))
                     {
-                        x.comedor = "Comedor 2";
-                }
-                else if (x.comedor.Equals("3"))
-                {
-                    x.comedor = "Comedor 3";
-                }
-                else if (x.comedor.Equals("4"))
-                {
-                    x.comedor = "Evento 1";
-                }
-                else if (x.comedor.Equals("5"))
-                {
-                    x.comedor = "Evento 2";
-                }
-                else if (x.comedor.Equals("6"))
-                {
-                    x.comedor = "Evento 3";
-                }
-                else if (x.comedor.Equals("7"))
-                {
-                    x.comedor = "Sala 1";
-                }
-                else if (x.comedor.Equals("8"))
-                {
-                    x.comedor = "Sala 2";
-                }
-                else if (x.comedor.Equals("9"))
-                {
-                    x.comedor = "Sala 3";
+                        x.comedor = "Comedor 1";
+                    }else  if (x.comedor.Equals("2"))
+                        {
+                            x.comedor = "Comedor 2";
+                    }
+                    else if (x.comedor.Equals("3"))
+                    {
+                        x.comedor = "Comedor 3";
+                    }
+                    else if (x.comedor.Equals("4"))
+                    {
+                        x.comedor = "Evento 1";
+                    }
+                    else if (x.comedor.Equals("5"))
+                    {
+                        x.comedor = "Evento 2";
+                    }
+                    else if (x.comedor.Equals("6"))
+                    {
+                        x.comedor = "Evento 3";
+                    }
+                    else if (x.comedor.Equals("7"))
+                    {
+                        x.comedor = "Sala 1";
+                    }
+                    else if (x.comedor.Equals("8"))
+                    {
+                        x.comedor = "Sala 2";
+                    }
+                    else if (x.comedor.Equals("9"))
+                    {
+                        x.comedor = "Sala 3";
+                    }
                 }
             });
         }
