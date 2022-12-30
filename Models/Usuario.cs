@@ -7,6 +7,13 @@ namespace compras.Models
 {
     public class Usuario
     {
+        public int Numero_Empleado { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido_Paterno { get; set; }
+        public string Apellido_Materno { get; set; }
+        public string Curp { get; set; }
+        public DateTime Fecha_Nacimiento { get; set; }
+        public string Correo { get; set; }
         public int noEmpledo { get; set; }
         public string nombre { get; set; }
         public string APaterno { get; set; }

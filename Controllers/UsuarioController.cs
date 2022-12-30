@@ -15,8 +15,9 @@ namespace compras.Controllers
         //[System.Web.Http.HttpGet]
         public ActionResult get()
         {
-            Service.UsuarioService.GetUsuario();
-            return null;
+            List<Usuario> usuarios = new List<Usuario>();
+            usuarios = Service.UsuarioService.GetUsuario();
+            return View(usuarios);
         }
 
         //[System.Web.Http.Route("Api/UsuarioById/{Id}")]

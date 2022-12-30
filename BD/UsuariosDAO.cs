@@ -1,4 +1,5 @@
 ﻿using compras.BD.Entities;
+using compras.Models;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,30 @@ namespace compras.BD
 {
     public class UsuariosDAO
     {
-        private readonly string con = ConfigurationManager.ConnectionStrings["dapper"].ConnectionString;
+        private readonly string con = ConfigurationManager.ConnectionStrings["Comedor"].ConnectionString;
 
-        public bool AddComedor(UsuariosEntity us)
+        public  List<Usuario> GetUsuario()
+        {
+
+            try
+            {
+                List<Usuario> lista = new List<Usuario>();
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    lista = db.Query<Usuario>("SELECT * FROM Usuarios").ToList();
+                    db.Close();
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        public bool AddUsuario(UsuariosEntity us)
         {
             try
             {
