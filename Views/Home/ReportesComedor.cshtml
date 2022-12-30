@@ -70,7 +70,7 @@
 
                     </div>
                     <div class="info">
-                        <a href="logout.html" class="d-block">Cerrar sesión</a>
+                        <a class="d-block"> @Html.ActionLink("Cerrar sesión", "Logout", "Home")</a>
                     </div>
                 </div>
 
@@ -88,39 +88,39 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="productos/productos.html" class="nav-link">
-                                <p>
-                                    Productos
+                        @*<li class="nav-item">
+                                <a href="productos/productos.html" class="nav-link">
+                                    <p>
+                                        Productos
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="kits/kits.html" class="nav-link">
-                                <p>
-                                    Kits
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="kits/kits.html" class="nav-link">
+                                    <p>
+                                        Kits
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="ordenes/ordenes.html" class="nav-link">
-                                <p>
-                                    Órdenes de compra
+                                    </p>
+                                </a>
+                            </li>*@
+                        @*<li class="nav-item">
+                                <a href="ordenes/ordenes.html" class="nav-link">
+                                    <p>
+                                        Órdenes de compra
 
-                                </p>
-                            </a>
-                        </li>
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="apertura/apertura.html" class="nav-link">
-                                <p>
-                                    Apertura de sistema
+                            <li class="nav-item">
+                                <a href="apertura/apertura.html" class="nav-link">
+                                    <p>
+                                        Apertura de sistema
 
-                                </p>
-                            </a>
-                        </li>
+                                    </p>
+                                </a>
+                            </li>*@
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -134,78 +134,82 @@
                                 <li class="nav-item">
                                     <a href="reportes/usuarios.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Usuarios</p>
+                                        <p>Reporte comedores</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="reportes/productos.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Productos</p>
+                                        <p>
+                                            Reporte eventos
+                                        </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="reportes/ordencompra.html" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Órden de compra</p>
+                                        <p>
+                                            Reporte Salas
+                                        </p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="reportes/ordenescompra.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Órdenes de compra</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/productoscotizar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Productos por cotizar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/sla.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>SLA's</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/validaorden.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Validación de órdenes</p>
-                                    </a>
-                                </li>
+                                @*<li class="nav-item">
+                                        <a href="reportes/ordenescompra.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Órdenes de compra</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/productoscotizar.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Productos por cotizar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/sla.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>SLA's</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/validaorden.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Validación de órdenes</p>
+                                        </a>
+                                    </li>*@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                        @*<li class="nav-item">
+                                <a href="#" class="nav-link">
 
-                                <p>
-                                    Previsualización
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="productos/vistaproductos.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Productos</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="aprobaciones/vistaaprobaciones.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Aprobaciones</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="ordenes/vistaordenes.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Órdenes de compra</p>
-                                    </a>
-                                </li>
+                                    <p>
+                                        Previsualización
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="productos/vistaproductos.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Productos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="aprobaciones/vistaaprobaciones.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Aprobaciones</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="ordenes/vistaordenes.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Órdenes de compra</p>
+                                        </a>
+                                    </li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>*@
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -213,43 +217,141 @@
             <!-- /.sidebar -->
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Home</h1>
+                            <h1 class="m-0">Usuarios del comedor</h1>
                         </div><!-- /.col -->
-                        <div class="col-sm-6">
 
-                        </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
             <!-- Main content -->
             <section class="content">
+
                 <div class="container-fluid">
-                    <!-- Small boxes (Stat box) -->
+
+
                     <div class="row">
-                        <!-- ./col -->
+                        <div class="col-12">
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Reporte de usuarios</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            Desde:
+
+
+                                            <div class="form-group">
+
+                                                <div class="input-group date" id="fromDate" data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#fromDate" />
+                                                    <div class="input-group-append" data-target="#fromDate" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-sm-3">
+                                            Hasta:
+                                            <div class="form-group">
+
+                                                <div class="input-group date" id="toDate" data-target-input="nearest">
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#toDate" />
+                                                    <div class="input-group-append" data-target="#toDate" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.col -->
+
+                                        <div class="col-sm-3">
+                                            <br>
+                                            <button type="button" class="btn btn-info">Filtrar</button>
+
+                                        </div>
+                                    </div>
+                                    <table id="tablausuarios" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Foto</th>
+                                                <th>Número Empleado</th>
+                                                <th>Nombre</th>
+                                                <th>Apellidos</th>
+                                                <th>Empresa</th>
+                                                <th>Comedor</th>
+                                                <th>Días de acceso</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><img src="../dist/img/AdminLTELogo.png" width="88px;" height="125px;"></td>
+                                                <td>123</td>
+                                                <td>Erika</td>
+                                                <td>Flores</td>
+                                                <td>Seguros</td>
+                                                <td>Comedor 1</td>
+                                                <td>L M W J V</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../dist/img/AdminLTELogo.png" width="88px;" height="125px;"></td>
+
+                                                <td>234</td>
+                                                <td>Enrique</td>
+                                                <td>García</td>
+                                                <td>Financiera</td>
+                                                <td>Comedor 2</td>
+                                                <td>L J V</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><img src="../dist/img/AdminLTELogo.png" width="88px;" height="125px;"></td>
+
+                                                <td>345</td>
+                                                <td>Alan</td>
+                                                <td>Ortega</td>
+                                                <td>Seguros</td>
+                                                <td>Comedor 1</td>
+                                                <td>M W J </td>
+
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Foto</th>
+                                                <th>Número Empleado</th>
+                                                <th>Nombre</th>
+                                                <th>Apellidos</th>
+                                                <th>Empresa</th>
+                                                <th>Comedor</th>
+                                                <th>Fecha</th>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <!-- /.col -->
                     </div>
                     <!-- /.row -->
-                    <!-- Main row -->
-                    <div class="row">
-                        <!-- Left col -->
-                        <section class="col-lg-7 connectedSortable">
-                        </section>
-                        <!-- /.Left col -->
-                        <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                        <section class="col-lg-5 connectedSortable">
-                        </section>
-                        <!-- right col -->
-                    </div>
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
+                </div>
+
             </section>
             <!-- /.content -->
         </div>

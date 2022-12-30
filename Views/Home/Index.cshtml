@@ -18,7 +18,18 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
     <!-- Toastr -->
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
     <script src="~/plugins/toastr/toastr.min.js"></script>
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    @*Dentro de carpeta:*@
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -85,27 +96,31 @@
                 console.log(password);
                 if (correo != null && correo != "") {
                     if (password != null && password != "") {
-                        fetch(`/Home/ReportesComedor`, {
+                        fetch(`/Home/Autheticacion`, {
                             method: 'POST',
                             headers: {
                                 'Content-type': 'application/json',
                             },
                             body: JSON.stringify({
-                                correo: correo,
+                                usuario: correo,
                                 password: password,
                             })
                         }).then(function (response) {
-                            if (response.ok) {
-                                console.log(response)
-                                return response.json();
-                            }
-                            return Promise.reject(response);
-                        }).then(data => {
-                            console.log("data", data)
-                            toastr.success('Registro agregado');
-                        }).catch(function (error) {
+                            console.log(response.status)
+                            if (response.status == 200) {
+                                console.log("exito here")
+                                toastr.success('Registro agregado');
+                                window.location = "/Home/ReportesComedor?"
 
-                            toastr.error('Error al entrar');
+                            } else {
+                                console.log("error")
+                                toastr.error('Datos Incorrectos');
+                            }
+                        }).then(data => {
+                            console.log("exito")
+                        }).catch(function (error) {
+                            console.log("error", error)
+                            toastr.error('Error al registrar Comedor');
                         });
                         
                         } 

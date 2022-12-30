@@ -1,4 +1,9 @@
+
 ﻿using System;
+
+﻿using compras.BD;
+using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +14,7 @@ namespace compras.Service
     {
         public bool checkUsuario(string correo, string password)
         {
+
             bool response =false;
             try
             {
@@ -37,6 +43,10 @@ namespace compras.Service
 
                 throw;
             }
+
+            AutenticacionDAO dao = new AutenticacionDAO();
+           return dao.checkUsuario(correo, password);
+
         }
     }
 }

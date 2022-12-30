@@ -1,4 +1,6 @@
-﻿using compras.Models;
+﻿using compras.BD;
+using compras.BD.Entities;
+using compras.Models;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -98,11 +100,12 @@ namespace compras.Service
                 throw;
             }
         }
-        public static int AddUsuario(Usuario usuario)
+        public  bool AddUsuario(Usuario usuario)
         {
 
             try
             {
+
                 using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
                 {
                     var add = context.AddEmpleado(usuario.email, usuario.nombre, usuario.APaterno, usuario.AMaterno, usuario.Contraseña, usuario.Rol, usuario.fechaNacimiento, usuario.curp, usuario.noEmpledo, usuario.ubicacion, usuario.status, usuario.Compañia);
@@ -115,6 +118,15 @@ namespace compras.Service
                         return 0;
                     }
                 }
+
+                UsuariosDAO us = new UsuariosDAO();
+                UsuariosEntity usuariosEntity = new
+                UsuariosEntity(usuario.noEmpledo, usuario.nombre,
+                usuario.APaterno, usuario.AMaterno, usuario.curp,
+                usuario.fechaNacimiento, usuario.email, usuario.password, usuario.perfil);
+                us.AddComedor(usuariosEntity);
+                return true;
+
             }
             catch (Exception x)
             {

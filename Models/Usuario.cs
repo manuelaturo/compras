@@ -16,8 +16,13 @@ namespace compras.Models
         public string curp { get; set; }
         public DateTime fechaNacimiento { get; set; }
         public string email { get; set; }
+
         public string ubicacion { get; set; }
         public int? status { get; set; }
         public string Compañia { get; set; }
+
+        public string password { get; set; }
+        public int perfil { get; set; }
+
     }
 }
