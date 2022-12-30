@@ -29,36 +29,37 @@ namespace compras.Service
         }
         public static Usuario GetUsuarioBynoEmpleado(int noEmpleado)
         {
-
+            List<Usuario> usuarios1 = new List<Usuario>();
             try
             {
-                List<Usuario> usuarios1 = new List<Usuario>();
-                using (Datos.ComedorEntities context = new Datos.ComedorEntities())
-                {
-                    var usuarios = (from d in context.Usuarios
-                                    where d.Numero_Empleado == noEmpleado
-                                    select d).FirstOrDefault();
+                
+                //using (Datos.ComedorEntities context = new Datos.ComedorEntities())
+                //{
+                //    var usuarios = (from d in context.Usuarios
+                //                    where d.Numero_Empleado == noEmpleado
+                //                    select d).FirstOrDefault();
 
-                    if (usuarios != null)
-                    {
-                        Usuario usuario = new Usuario();
-                        //usuario.noEmpledo = usuarios.Numero_Empleado;
-                        //usuario.nombre = usuarios.Nombre;
-                        //usuario.APaterno = usuarios.Apellido_Paterno;
-                        //usuario.AMaterno = usuarios.Apellido_Materno;
-                        //usuario.curp = usuarios.Curp;
-                        //usuario.fechaNacimiento = usuarios.Fecha_Nacimiento;
-                        //usuario.email = usuarios.Correo;
-                        usuario.ubicacion = usuarios.ubicacion;
-                        usuario.status = usuarios.status;
-                        return usuario;
-                    }
-                    else
-                    {
-                        Usuario usuario = new Usuario();
-                        return usuario;
-                    }
-                }
+                //    if (usuarios != null)
+                //    {
+                //        Usuario usuario = new Usuario();
+                //        //usuario.noEmpledo = usuarios.Numero_Empleado;
+                //        //usuario.nombre = usuarios.Nombre;
+                //        //usuario.APaterno = usuarios.Apellido_Paterno;
+                //        //usuario.AMaterno = usuarios.Apellido_Materno;
+                //        //usuario.curp = usuarios.Curp;
+                //        //usuario.fechaNacimiento = usuarios.Fecha_Nacimiento;
+                //        //usuario.email = usuarios.Correo;
+                //        usuario.ubicacion = usuarios.ubicacion;
+                //        usuario.status = usuarios.status;
+                //        return usuario;
+                //    }
+                //    else
+                //    {
+                //        Usuario usuario = new Usuario();
+                //        return usuario;
+                //    }
+                //}
+                return new Usuario(); ;
             }
             catch (Exception x)
             {

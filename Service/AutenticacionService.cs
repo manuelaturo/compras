@@ -18,35 +18,14 @@ namespace compras.Service
             bool response =false;
             try
             {
-                using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
-                {
-                    //DynamicParameters par = new DynamicParameters();
-
-                    //var result =  context.QueryAsync<Usuario>(sql: "", param: par, commandType: CommandType.StoredProcedure);
-                    int idUsuario = (from d in context.Usuarios
-                     where d.Correo == correo && d.Password == password
-                                     select d.Id_Usuario).FirstOrDefault();
-
-                    if (idUsuario > 0)
-                    {
-                        response = true;
-                        return response;
-                    }
-                    else
-                    {
-                        return response;
-                    }
-                }
+                AutenticacionDAO dao = new AutenticacionDAO();
+                return dao.checkUsuario(correo, password);
             }
             catch (Exception x)
             {
 
                 throw;
             }
-
-            AutenticacionDAO dao = new AutenticacionDAO();
-           return dao.checkUsuario(correo, password);
-
         }
     }
 }
