@@ -55,6 +55,31 @@ namespace compras.Controllers
             ReportService comedorService = new ReportService();
             return View(comedorService.getGeneralReportSala());
         }
+        public ActionResult ReportesComedorcoustom(string initdate, string enddate)
+
+        {
+
+            ReportService reportService = new ReportService();
+            return View(reportService.getGeneralReportComedor(initdate, enddate));
+
+        }
+        public ActionResult ReportesEvento(string initdate, string enddate)
+
+        {
+
+            ReportService reportService = new ReportService();
+            return View(reportService.getGeneralReportEventos(initdate, enddate));
+
+        }
+
+        public ActionResult ReportesSala(string initdate, string enddate)
+
+        {
+
+            ReportService reportService = new ReportService();
+            return View(reportService.getGeneralReportSalas(initdate, enddate));
+
+        }
 
         public ActionResult ReportesComedor()
 
