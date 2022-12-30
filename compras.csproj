@@ -255,6 +255,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ForgotPassword.cshtml" />
     <Content Include="Views\Home\ReportesComedor.cshtml" />
+    <Content Include="Views\Usuario\get.cshtml" />
+    <Content Include="Views\Usuario\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

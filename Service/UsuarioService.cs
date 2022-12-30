@@ -17,36 +17,9 @@ namespace compras.Service
             List<Usuario> lista = new List<Usuario>();
             try
             {
-                using (Datos.ComedorEntities context = new Datos.ComedorEntities())
-                {
-                    //DynamicParameters par = new DynamicParameters();
-
-                    //var result =  context.QueryAsync<Usuario>(sql: "", param: par, commandType: CommandType.StoredProcedure);
-                    var usuarios = (from d in context.Usuarios
-
-                    select d).ToList();
-
-                    if (usuarios.Count > 0)
-                    {
-                    foreach (var obj in usuarios)
-                        {
-                            Usuario usuario = new Usuario();
-                            usuario.noEmpledo = obj.Numero_Empleado;
-                            usuario.nombre = obj.Nombre;
-                            usuario.APaterno = obj.Apellido_Paterno;
-                            usuario.AMaterno = obj.Apellido_Materno;
-                            usuario.curp = obj.Curp;
-                            usuario.fechaNacimiento = obj.Fecha_Nacimiento;
-                            usuario.email = obj.Correo;
-                            lista.Add(usuario);
-                        }
-                        return lista;
-                    }
-                    else
-                    {
-                        return lista;
-                    }
-                }
+                UsuariosDAO us = new UsuariosDAO();
+                lista = us.GetUsuario();
+                return lista;
             }
             catch (Exception x)
             {
@@ -59,6 +32,7 @@ namespace compras.Service
 
             try
             {
+                List<Usuario> usuarios1 = new List<Usuario>();
                 using (Datos.ComedorEntities context = new Datos.ComedorEntities())
                 {
                     var usuarios = (from d in context.Usuarios
@@ -68,13 +42,13 @@ namespace compras.Service
                     if (usuarios != null)
                     {
                         Usuario usuario = new Usuario();
-                        usuario.noEmpledo = usuarios.Numero_Empleado;
-                        usuario.nombre = usuarios.Nombre;
-                        usuario.APaterno = usuarios.Apellido_Paterno;
-                        usuario.AMaterno = usuarios.Apellido_Materno;
-                        usuario.curp = usuarios.Curp;
-                        usuario.fechaNacimiento = usuarios.Fecha_Nacimiento;
-                        usuario.email = usuarios.Correo;
+                        //usuario.noEmpledo = usuarios.Numero_Empleado;
+                        //usuario.nombre = usuarios.Nombre;
+                        //usuario.APaterno = usuarios.Apellido_Paterno;
+                        //usuario.AMaterno = usuarios.Apellido_Materno;
+                        //usuario.curp = usuarios.Curp;
+                        //usuario.fechaNacimiento = usuarios.Fecha_Nacimiento;
+                        //usuario.email = usuarios.Correo;
                         return usuario;
                     }
                     else
@@ -95,12 +69,12 @@ namespace compras.Service
 
             try
             {
-                UsuariosDAO us = new UsuariosDAO();
-                UsuariosEntity usuariosEntity = new
-                UsuariosEntity(usuario.noEmpledo, usuario.nombre,
-                usuario.APaterno, usuario.AMaterno, usuario.curp,
-                usuario.fechaNacimiento, usuario.email, usuario.password, usuario.perfil);
-                us.AddComedor(usuariosEntity);
+                //UsuariosDAO us = new UsuariosDAO();
+                //UsuariosEntity usuariosEntity = new
+                //UsuariosEntity(usuario.noEmpledo, usuario.nombre,
+                //usuario.APaterno, usuario.AMaterno, usuario.curp,
+                //usuario.fechaNacimiento, usuario.email, usuario.password, usuario.perfil);
+                //us.AddUsuario(usuariosEntity);
                 return true;
             }
             catch (Exception x)
@@ -116,15 +90,15 @@ namespace compras.Service
             {
                 using (Datos.ComedorEntities context = new Datos.ComedorEntities())
                 {
-                    var UpDate = context.UpDateEmpleado(usuario.email, usuario.nombre, usuario.APaterno, usuario.AMaterno, usuario.fechaNacimiento, usuario.curp, usuario.noEmpledo);
-                    if (UpDate == 0)
-                    {
-                        return 1;
-                    }
-                    else
-                    {
+                    //var UpDate = context.UpDateEmpleado(usuario.email, usuario.nombre, usuario.APaterno, usuario.AMaterno, usuario.fechaNacimiento, usuario.curp, usuario.noEmpledo);
+                    //if (UpDate == 0)
+                    //{
+                    //    return 1;
+                    //}
+                    //else
+                    //{
                         return 0;
-                    }
+                    //}
                 }
             }
             catch (Exception x)
