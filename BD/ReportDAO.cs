@@ -45,6 +45,63 @@ namespace compras.BD
             }
         }
 
+        public List<ReportComedor> GetReportsSalas()
+        {
+            try
+            {
+                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    catFamilyDescriptions = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName" +
+                    " from VisitasSalas s left" +
+                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado" 
+                   , commandType: CommandType.Text).ToList();
+                    db.Close();
+                    return catFamilyDescriptions;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<ReportComedor> GetReportsEvento()
+        {
+            try
+            {
+                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    catFamilyDescriptions = db.Query<ReportComedor>(" SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName" +
+                    " from VisitasEvento s left" +
+                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado"
+                   , commandType: CommandType.Text).ToList();
+                    db.Close();
+                    return catFamilyDescriptions;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
         public List<ReportComedor> GetReportsComedor()
         {
             try
