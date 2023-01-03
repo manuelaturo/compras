@@ -1,6 +1,6 @@
-﻿
+﻿@model List<compras.Models.Usuario>
 @{
-    ViewBag.Title = "ReportesComedor";
+    ViewBag.Title = "get";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -25,14 +25,15 @@
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
-
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -214,7 +215,6 @@
             <!-- /.sidebar -->
         </aside>
 
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -222,9 +222,11 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Usuarios del comedor</h1>
+                            <h1 class="m-0">Usuarios</h1>
                         </div><!-- /.col -->
-
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-block btn-success"> @Html.ActionLink("Agregar", "Add", "Usuario")</button>
+                        </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -233,112 +235,61 @@
             <section class="content">
 
                 <div class="container-fluid">
-
-
                     <div class="row">
                         <div class="col-12">
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Reporte de usuarios</h3>
+                                    <h3 class="card-title">Listado de usuarios</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                 
                                 <div class="card-body">
-                                    <div class="row">
-                                            <div class="col-sm-3">
-                                                Desde:
-
-
-                                                <div class="form-group">
-
-                                                    <div class="input-group date" id="fromDate" data-target-input="nearest">
-                                                        <input type="text" class="form-control datetimepicker-input" id="datesD" name="datesD" data-target="#fromDate" />
-                                                        <div class="input-group-append" data-target="#fromDate" data-toggle="datetimepicker">
-                                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                            </div>
-                                            <div class="col-sm-3">
-                                                Hasta:
-                                                <div class="form-group">
-
-                                                    <div class="input-group date" id="toDate" data-target-input="nearest">
-                                                        <input type="text" class="form-control datetimepicker-input" id="datesH" name="datesH" data-target="#toDate" />
-                                                        <div class="input-group-append" data-target="#toDate" data-toggle="datetimepicker">
-                                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- /.col -->
-
-                                            <div class="col-sm-3">
-                                                <br>
-                                                <button class="btn btn-primary btn-block" onclick="EviarFechas()">Filtro</button>
-                                                
-                                            </div>
-                                    </div>
                                     <table id="tablausuarios" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Foto</th>
+
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
-                                                <th>Empresa</th>
-                                                <th>Comedor</th>
-                                                <th>Días de acceso</th>
-
+                                                <th>Correo</th>
+                                                <th>Perfil</th>
+                                                <th>Supervisor</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach (var item in Model)
+                                            {
                                             <tr>
-                                                <td><img src="../dist/img/AdminLTELogo.png" width="88px;" height="125px;"></td>
-                                                <td>123</td>
-                                                <td>Erika</td>
-                                                <td>Flores</td>
-                                                <td>Seguros</td>
-                                                <td>Comedor 1</td>
-                                                <td>L M W J V</td>
+                                                <td> @Html.DisplayFor(modelItem => item.Numero_Empleado)</td>
+                                                <td> @Html.DisplayFor(modelItem => item.Nombre)</td>
+                                                <td> @Html.DisplayFor(modelItem => item.Apellido_Paterno)   @Html.DisplayFor(modelItem => item.Apellido_Materno)</td>
+                                                <td> @Html.DisplayFor(modelItem => item.Correo)</td>
+                                                <td>  @Html.DisplayFor(modelItem => item.perfil)</td>
+                                                <td> @Html.DisplayFor(modelItem => item.perfil)</td>
+                                                <td>
+                                                    <a class="btn  bg-warning" href="editarusuario.html">
 
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a class="btn  bg-danger" href="eliminar">
+
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td><img src="../dist/img/AdminLTELogo.png" width="88px;" height="125px;"></td>
-
-                                                <td>234</td>
-                                                <td>Enrique</td>
-                                                <td>García</td>
-                                                <td>Financiera</td>
-                                                <td>Comedor 2</td>
-                                                <td>L J V</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td><img src="../dist/img/AdminLTELogo.png" width="88px;" height="125px;"></td>
-
-                                                <td>345</td>
-                                                <td>Alan</td>
-                                                <td>Ortega</td>
-                                                <td>Seguros</td>
-                                                <td>Comedor 1</td>
-                                                <td>M W J </td>
-
-                                            </tr>
-                                        </tbody>
+                                            }
+                                               
+                                            </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Foto</th>
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
-                                                <th>Empresa</th>
-                                                <th>Comedor</th>
-                                                <th>Fecha</th>
-
+                                                <th>Correo</th>
+                                                <th>Perfil</th>
+                                                <th>Supervisor</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -381,20 +332,18 @@
     </script>
     <!-- Bootstrap 4 -->
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Select2 -->
-    <script src="../plugins/select2/js/select2.full.min.js"></script>
-
-    <!-- Bootstrap4 Duallistbox -->
-    <script src="../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-
-
-
+    <!-- ChartJS -->
+    <script src="../plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="../plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
     <script src="../plugins/moment/moment.min.js"></script>
-    <script src="../plugins/inputmask/jquery.inputmask.min.js"></script>
     <script src="../plugins/daterangepicker/daterangepicker.js"></script>
-
-
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
@@ -403,10 +352,6 @@
     <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.js"></script>
-
-    <script src="../dist/js/adminlte.min.js"></script>
-
-
 
     <!-- DataTables  & Plugins -->
     <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
@@ -421,21 +366,10 @@
     <script src="../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="../plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-
-
-
+    <!-- Toastr -->
+    <script src="../plugins/toastr/toastr.min.js"></script>
     <script>
         $(function () {
-            //Date picker
-            $('#fromDate').datetimepicker({
-                format: 'DD-MM-YYYY'
-            });
-
-            //Date picker
-            $('#toDate').datetimepicker({
-                format: 'DD-MM-YYYY'
-            });
-
             $("#tablausuarios").DataTable({
                 responsive: true, lengthChange: true, autoWidth: false,
                 buttons: [
@@ -478,57 +412,8 @@
                 ]
             }).buttons().container().appendTo('#tablausuarios_wrapper .col-md-6:eq(0)');
 
-
-
         });
-
-
-        function EviarFechas() {
-            
-            let Desde = document.getElementById("datesD").value;
-            let Hasta = document.getElementById("datesH").value;
-
-            console.log(Hasta)
-            console.log(Desde)
-            
-            if (Desde != "") {
-                if (Hasta != null && Hasta!= "") {
-                    fetch(`/Reportes/SearchComedorbyDate`, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    datesD: Desde,
-                                    datesH: Hasta
-                                })
-                            }).then(function (response) {
-                                console.log(response.status)
-                                if (response.status == 200) {
-                                    console.log("exito")
-                                    toastr.success('Registro agregado');
-
-                                } else {
-                                    console.log("error")
-                                    toastr.error('Error al registrar Comedor');
-                                }
-                            }).then(data => {
-                                console.log("exito")
-                            }).catch(function (error) {
-                                console.log("error", error)
-                                toastr.error('Error al registrar Comedor');
-                            });
-                } else {
-                    toastr.warning('Indique fin de rango de fecha');
-                }
-            } else {
-                toastr.warning('Indique Inicio de rango de fecha');
-            }
-        }
     </script>
-
-
-
 
 </body>
 </html>
