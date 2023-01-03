@@ -111,11 +111,11 @@ namespace compras.Service
                     var add = context.AddEmpleado(usuario.email, usuario.nombre, usuario.APaterno, usuario.AMaterno, usuario.Contraseña, usuario.Rol, usuario.fechaNacimiento, usuario.curp, usuario.noEmpledo, usuario.ubicacion, usuario.status, usuario.Compañia);
                     if (add == 0)
                     {
-                        return 1;
+                        return true;
                     }
                     else
                     {
-                        return 0;
+                        return false;
                     }
                 }
 
