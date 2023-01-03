@@ -72,6 +72,11 @@ namespace compras.Service
             try
             {
                 UsuariosDAO us = new UsuariosDAO();
+
+                if(usuario.Fecha_Nacimiento == default(DateTime))
+                {
+                    usuario.Fecha_Nacimiento = DateTime.Now; 
+                }
                 UsuariosEntity usuariosEntity = new
                 UsuariosEntity(usuario.Numero_Empleado, usuario.Nombre,
                 usuario.Apellido_Paterno, usuario.Apellido_Materno, usuario.Curp,
