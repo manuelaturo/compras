@@ -55,7 +55,7 @@ namespace compras.Controllers
         {
 
             ReportService comedorService = new ReportService();
-            return View(comedorService.getGeneralReportSala());
+            return View(comedorService.getGeneralReport());
         } 
 
         public ActionResult ComedorPrincipal()

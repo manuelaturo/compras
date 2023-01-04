@@ -16,10 +16,11 @@ namespace compras.Models
         public string compañia { get; set; }
         public DateTime date { get; set; }
         public string empresa { get; set; }
+        public string days { get; set; }
 
         public CoustomerReportComedorRS() { }
         public CoustomerReportComedorRS(string image, string name,
-            string lastName, int numEmploye, DateTime date, string compañia,int comedor) { 
+            string lastName, int numEmploye, DateTime date, string compañia,int comedor,string days) { 
             this.image = image;
             this.name = name;
             this.comedor = comedor.ToString();
@@ -28,6 +29,7 @@ namespace compras.Models
             this.date = date;
             this.empresa = compañia;
             this.compañia = compañia;
+            this.days = days;
         
         }
     }

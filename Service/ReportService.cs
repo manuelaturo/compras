@@ -141,7 +141,7 @@ namespace compras.Service
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
             comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
-             x.lastName, x.numEmployed, x.date,x.empresa, x.comedor));
+             x.lastName, x.numEmployed, x.date,x.empresa, x.comedor,x.days));
             return comedorRs;
         }
 
