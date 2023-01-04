@@ -177,6 +177,7 @@ namespace compras.BD
                 {
                     db.Open();
                     catFamilyDescriptions = db.Query<ReportComedor>("SELECT   s.idComedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia" +
+                    catFamilyDescriptions = db.Query<ReportComedor>("SELECT   s.idComedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia as Empresa" +
                     " FROM VisitasComedor s left join Usuarios u  on s.numEmployed = u.Numero_Empleado", commandType: CommandType.Text).ToList();
                     db.Close();
                     return catFamilyDescriptions;

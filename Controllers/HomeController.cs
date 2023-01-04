@@ -21,7 +21,8 @@ namespace compras.Controllers
             bool response = service.checkUsuario(usuario, password);
             if (response)
             {
-                return View("ReportesComedor");
+                //return View("ReportesComedor");
+                return new HttpStatusCodeResult((int)HttpStatusCode.OK);
             }
             else
             {

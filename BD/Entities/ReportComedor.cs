@@ -13,6 +13,9 @@ namespace compras.BD
         public int numEmploye { get; set; }
         public int comedor { get; set; }
         public string compañia { get; set; }
+        public int numEmployed { get; set; }
+        public string comedor { get; set; }
         public DateTime date { get; set; }
+        public string empresa { get; set; }
     }
 }
