@@ -71,23 +71,7 @@ namespace compras.Service
 
             try
             {
-<<<<<<< HEAD
 
-                using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
-                {
-                    var add = context.AddEmpleado(usuario.email, usuario.nombre, usuario.APaterno, usuario.AMaterno, usuario.Contraseña, usuario.Rol, usuario.fechaNacimiento, usuario.curp, usuario.noEmpledo, usuario.ubicacion, usuario.status, usuario.Compañia);
-                    if (add == 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-
-=======
->>>>>>> d200d085294e52df46ff040f6e24e84ec9f331ee
                 UsuariosDAO us = new UsuariosDAO();
 
                 if(usuario.Fecha_Nacimiento == default(DateTime))
@@ -97,7 +81,8 @@ namespace compras.Service
                 UsuariosEntity usuariosEntity = new
                 UsuariosEntity(usuario.Numero_Empleado, usuario.Nombre,
                 usuario.Apellido_Paterno, usuario.Apellido_Materno, usuario.Curp,
-                usuario.Fecha_Nacimiento, usuario.Correo, usuario.password, usuario.perfil);
+                usuario.Fecha_Nacimiento, usuario.Correo, usuario.password,
+                usuario.perfil,usuario.Compania);
                 us.AddUsuario(usuariosEntity);
                 return true;
             }

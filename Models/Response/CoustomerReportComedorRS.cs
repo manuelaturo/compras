@@ -19,7 +19,6 @@ namespace compras.Models
 
         public CoustomerReportComedorRS() { }
         public CoustomerReportComedorRS(string image, string name,
-            string lastName, int numEmploye, DateTime date, string empresa) {
             string lastName, int numEmploye, DateTime date, string compañia,int comedor) { 
             this.image = image;
             this.name = name;
@@ -27,7 +26,7 @@ namespace compras.Models
             this.lastName = lastName;
             this.numEmploye = numEmploye;
             this.date = date;
-            this.empresa = empresa;
+            this.empresa = compañia;
             this.compañia = compañia;
         
         }

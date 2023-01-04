@@ -18,12 +18,12 @@ namespace compras.BD
         {
             try
             {
-                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+                List<ReportComedor> report = new List<ReportComedor>();
 
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    catFamilyDescriptions = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName" +
+                    report = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName" +
                     " from VisitasSalas s left"+
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado"+
                    " union"+
@@ -31,7 +31,7 @@ namespace compras.BD
                     " from VisitasEvento s left" +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado", commandType: CommandType.Text).ToList();
                     db.Close();
-                  return catFamilyDescriptions;
+                  return report;
                 }
 
             }
@@ -49,17 +49,18 @@ namespace compras.BD
         {
             try
             {
-                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+                List<ReportComedor> report = new List<ReportComedor>();
 
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    catFamilyDescriptions = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia" +
+                    report = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
                     " from VisitasSalas s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado" 
+                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
+                    " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia"
                    , commandType: CommandType.Text).ToList();
                     db.Close();
-                    return catFamilyDescriptions;
+                    return report;
                 }
 
             }
@@ -77,7 +78,7 @@ namespace compras.BD
         {
             try
             {
-                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+                List<ReportComedor> report = new List<ReportComedor>();
 
                 using (var db = new SqlConnection(con))
                 {
@@ -86,12 +87,14 @@ namespace compras.BD
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
 
-                    catFamilyDescriptions = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName,u.Compañia" +
+                    report = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName,cc.nombre as Empresa" +
                     " from VisitasSalas s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado where s.dateInit  between @dateInit   and @dateEnd"
+                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado " +
+                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia"+
+                    "where s.dateInit  between @dateInit   and @dateEnd"
                    , queryParameters,commandType: CommandType.Text).ToList();
                     db.Close();
-                    return catFamilyDescriptions;
+                    return report;
                 }
 
             }
@@ -110,17 +113,18 @@ namespace compras.BD
         {
             try
             {
-                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+                List<ReportComedor> report = new List<ReportComedor>();
 
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    catFamilyDescriptions = db.Query<ReportComedor>(" SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia" +
+                    report = db.Query<ReportComedor>(" SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
                     " from VisitasEvento s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado"
+                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado " +
+                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia"
                    , commandType: CommandType.Text).ToList();
                     db.Close();
-                    return catFamilyDescriptions;
+                    return report;
                 }
 
             }
@@ -138,7 +142,7 @@ namespace compras.BD
         {
             try
             {
-                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+                List<ReportComedor> report = new List<ReportComedor>();
 
                 using (var db = new SqlConnection(con))
                 {
@@ -147,12 +151,14 @@ namespace compras.BD
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
 
-                    catFamilyDescriptions = db.Query<ReportComedor>(" SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia" +
+                    report = db.Query<ReportComedor>(" SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
                     " from VisitasEvento s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado where s.dateInit  between @dateInit   and @dateEnd"
+                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
+                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
+                    " where s.dateInit  between @dateInit   and @dateEnd"
                    , queryParameters,commandType: CommandType.Text).ToList();
                     db.Close();
-                    return catFamilyDescriptions;
+                    return report;
                 }
 
             }
@@ -171,16 +177,17 @@ namespace compras.BD
         {
             try
             {
-                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+                List<ReportComedor> report = new List<ReportComedor>();
 
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    catFamilyDescriptions = db.Query<ReportComedor>("SELECT   s.idComedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia" +
-                    catFamilyDescriptions = db.Query<ReportComedor>("SELECT   s.idComedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia as Empresa" +
-                    " FROM VisitasComedor s left join Usuarios u  on s.numEmployed = u.Numero_Empleado", commandType: CommandType.Text).ToList();
+                     report = db.Query<ReportComedor>("SELECT   s.idComedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, u.cc.nombre as Empresa" +
+                    " FROM VisitasComedor s left join Usuarios u " +
+                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
+                    " on s.numEmployed = u.Numero_Empleado", commandType: CommandType.Text).ToList();
                     db.Close();
-                    return catFamilyDescriptions;
+                    return report;
                 }
 
             }
@@ -197,7 +204,7 @@ namespace compras.BD
         {
             try
             {
-                List<ReportComedor> catFamilyDescriptions = new List<ReportComedor>();
+                List<ReportComedor> report = new List<ReportComedor>();
 
                 using (var db = new SqlConnection(con))
                 {
@@ -205,10 +212,10 @@ namespace compras.BD
                     var queryParameters = new DynamicParameters();
                     queryParameters.Add("@dateInit", dateInit);
                     queryParameters.Add("@dateEnd", dateEnd);
-                    catFamilyDescriptions = db.Query<ReportComedor>("SELECT   s.idComedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia" +
+                    report = db.Query<ReportComedor>("SELECT   s.idComedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, u.Compañia" +
                     " FROM VisitasComedor s left join Usuarios u  on s.numEmployed = u.Numero_Empleado where s.registerdate  between @dateInit   and @dateEnd", queryParameters, commandType: CommandType.Text).ToList();
                     db.Close();
-                    return catFamilyDescriptions;
+                    return report;
                 }
 
             }
