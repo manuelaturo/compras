@@ -8,7 +8,7 @@ namespace compras.BD.Entities
     public class UsuariosEntity
     {
 
-        public int noEmpledo { get; set; }
+        public string noEmpledo { get; set; }
         public string nombre { get; set; }
         public string APaterno { get; set; }
         public string AMaterno { get; set; }
@@ -23,7 +23,7 @@ namespace compras.BD.Entities
             string APaterno, string AMaterno, string curp, 
             DateTime fechaNacimiento, string email, string password, int perfil) {
 
-            this.noEmpledo = noEmpledo;
+            this.noEmpledo = noEmpledo.ToString();
             this.nombre = nombre;
             this.APaterno = APaterno;
             this.curp = curp;

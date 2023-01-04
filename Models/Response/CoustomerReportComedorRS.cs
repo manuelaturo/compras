@@ -13,16 +13,19 @@ namespace compras.Models
         public string lastName { get; set; }
         public int numEmploye { get; set; }
         public string comedor { get; set; }
+        public string compañia { get; set; }
         public DateTime date { get; set; }
 
         public CoustomerReportComedorRS() { }
         public CoustomerReportComedorRS(string image, string name,
-            string lastName, int numEmploye, DateTime date) {
+            string lastName, int numEmploye, DateTime date, string compañia,int comedor) { 
             this.image = image;
             this.name = name;
+            this.comedor = comedor.ToString();
             this.lastName = lastName;
             this.numEmploye = numEmploye;
             this.date = date;
+            this.compañia = compañia;
         
         }
     }
