@@ -486,23 +486,25 @@
                         console.log(response.status)
                         if (response.status == 200) {
                             console.log("exito")
-                            toastr.success('Registro Evento');
+                            console.log(response.url)
+                            window.location = response.url
+                            //toastr.success('Registro Evento');
 
                         } else {
                             console.log("error")
-                            toastr.error('Error al registrar Evento');
+                           // toastr.error('Error al registrar Evento');
                         }
                     }).then(data => {
                         console.log("exito")
                     }).catch(function (error) {
                         console.log("error", error)
-                        toastr.error('Error al registrar Evento');
+                   //     toastr.error('Error al registrar Evento');
                     });
                 } else {
-                    toastr.warning('Indique fin de rango de fecha');
+                 //   toastr.warning('Indique fin de rango de fecha');
                 }
             } else {
-                toastr.warning('Indique Inicio de rango de fecha');
+               // toastr.warning('Indique Inicio de rango de fecha');
             }
         }
     </script>

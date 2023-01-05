@@ -1,7 +1,9 @@
 ﻿@model List<compras.Models.CoustomerReportComedorRS>
+
 @{
-    ViewBag.Title = "ReportesEvento";
+    ViewBag.Title = "SearchSalarbyDate";
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +34,7 @@
     <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+
     <!-- Toastr -->
     <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
     <script src="~/plugins/toastr/toastr.min.js"></script>
@@ -225,7 +228,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Usuarios en eventos</h1>
+                            <h1 class="m-0">Usuarios de Salas</h1>
                         </div><!-- /.col -->
 
                     </div><!-- /.row -->
@@ -243,7 +246,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Reporte de usuarios </h3>
+                                    <h3 class="card-title">Reporte de usuarios</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -292,7 +295,7 @@
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
                                                 <th>Empresa</th>
-                                                <th>Evento</th>
+                                                <th>Sala</th>
                                                 <th>Fecha</th>
 
                                             </tr>
@@ -318,7 +321,7 @@
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
                                                 <th>Empresa</th>
-                                                <th>Evento</th>
+                                                <th>Sala</th>
                                                 <th>Fecha</th>
 
                                             </tr>
@@ -358,9 +361,7 @@
     <!-- jQuery UI 1.11.4 -->
     <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
+    <script>$.widget.bridge('uibutton', $.ui.button)</script>
     <!-- Bootstrap 4 -->
     <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Select2 -->
@@ -464,7 +465,6 @@
 
         });
 
-
         function EviarFechas() {
 
             let Desde = document.getElementById("datesD").value;
@@ -475,37 +475,38 @@
 
             if (Desde != "") {
                 if (Hasta != null && Hasta != "") {
-                    fetch(`/Reportes/SearchEventobyDate?datesD=${Desde}&datesH=${Hasta}`, {
+                    fetch(`/Reportes/SearchSalarbyDate?datesD=${Desde}&datesH=${Hasta}`, {
                         method: 'GET',
                         headers: {
                             'Content-type': 'application/json',
                         }
                     }).then(function (response) {
-                        console.log(response)
                         console.log(response.status)
                         if (response.status == 200) {
-                            console.log("exito")
                             console.log(response.url)
                             window.location = response.url
-                      //       toastr.success('Registro Evento');
+                            console.log("exito")
+                            toastr.success('Registro Sala');
 
                         } else {
                             console.log("error")
-                      //      toastr.error('Error al registrar Evento');
+                            toastr.error('Error al registrar Sala');
                         }
                     }).then(data => {
                         console.log("exito")
                     }).catch(function (error) {
-                       // console.log("error", error)
-                    //    toastr.error('Error al registrar Evento');
+                        console.log("error", error)
+                        toastr.error('Error al registrar Sala');
                     });
                 } else {
-                  //  toastr.warning('Indique fin de rango de fecha');
+                    toastr.warning('Indique fin de rango de fecha');
                 }
             } else {
-                //toastr.warning('Indique Inicio de rango de fecha');
+                toastr.warning('Indique Inicio de rango de fecha');
             }
         }
+
+
     </script>
 
 
@@ -513,6 +514,4 @@
 
 </body>
 </html>
-
-
 

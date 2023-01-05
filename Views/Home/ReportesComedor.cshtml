@@ -501,6 +501,9 @@
                                 console.log(response.status)
                                 if (response.status == 200) {
                                     console.log("exito")
+                                    console.log("exito")
+                                    console.log(response.url)
+                                    window.location = response.url
                                     toastr.success('Registro agregado');
 
                                 } else {

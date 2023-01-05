@@ -1,7 +1,9 @@
 ﻿@model List<compras.Models.CoustomerReportComedorRS>
+
 @{
-    ViewBag.Title = "ReportesEvento";
+    ViewBag.Title = "ReportesComedor";
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +34,7 @@
     <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+
     <!-- Toastr -->
     <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
     <script src="~/plugins/toastr/toastr.min.js"></script>
@@ -218,6 +221,7 @@
             <!-- /.sidebar -->
         </aside>
 
+
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -225,7 +229,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Usuarios en eventos</h1>
+                            <h1 class="m-0">Usuarios del comedor</h1>
                         </div><!-- /.col -->
 
                     </div><!-- /.row -->
@@ -243,9 +247,10 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Reporte de usuarios </h3>
+                                    <h3 class="card-title">Reporte de usuarios</h3>
                                 </div>
                                 <!-- /.card-header -->
+
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-sm-3">
@@ -287,38 +292,46 @@
                                     <table id="tablausuarios" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-
+                                                <th>Foto</th>
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
                                                 <th>Empresa</th>
-                                                <th>Evento</th>
-                                                <th>Fecha</th>
+                                                <th>Comedor</th>
+                                                <th>Días de acceso</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
+
+
                                             @foreach (var item in Model)
                                             {
                                                 <tr>
 
+                                                    <td><img src="@Html.DisplayFor(modelItem => item.image)" width="88px;" height="125px;"></td>
                                                     <td>@Html.DisplayFor(modelItem => item.numEmploye)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.name)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.lastName)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.empresa)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.comedor)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.date)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.days)</td>
+
+
 
                                                 </tr>
+
                                             }
+
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>Foto</th>
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
                                                 <th>Empresa</th>
-                                                <th>Evento</th>
+                                                <th>Comedor</th>
                                                 <th>Fecha</th>
 
                                             </tr>
@@ -475,35 +488,40 @@
 
             if (Desde != "") {
                 if (Hasta != null && Hasta != "") {
-                    fetch(`/Reportes/SearchEventobyDate?datesD=${Desde}&datesH=${Hasta}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-type': 'application/json',
-                        }
-                    }).then(function (response) {
-                        console.log(response)
-                        console.log(response.status)
-                        if (response.status == 200) {
-                            console.log("exito")
-                            console.log(response.url)
-                            window.location = response.url
-                      //       toastr.success('Registro Evento');
+                    const params = {
+                        datesD: Desde,
+                        datesH: Hasta
+                    };
+                    fetch(`/Reportes/SearchComedorbyDate?datesD=${Desde}&datesH=${Hasta}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-type': 'application/json',
+                                }
+                                //params : par
+                            }).then(function (response) {
+                                console.log(response.status)
+                                if (response.status == 200) {
+                                    console.log("exito")
+                                    console.log("exito")
+                                    console.log(response.url)
+                                    window.location = response.url
+                                    toastr.success('Registro agregado');
 
-                        } else {
-                            console.log("error")
-                      //      toastr.error('Error al registrar Evento');
-                        }
-                    }).then(data => {
-                        console.log("exito")
-                    }).catch(function (error) {
-                       // console.log("error", error)
-                    //    toastr.error('Error al registrar Evento');
-                    });
+                                } else {
+                                    console.log("error")
+                                    toastr.error('Error al registrar Comedor');
+                                }
+                            }).then(data => {
+                                console.log("exito")
+                            }).catch(function (error) {
+                                console.log("error", error)
+                                toastr.error('Error al registrar Comedor');
+                            });
                 } else {
-                  //  toastr.warning('Indique fin de rango de fecha');
+                    toastr.warning('Indique fin de rango de fecha');
                 }
             } else {
-                //toastr.warning('Indique Inicio de rango de fecha');
+                toastr.warning('Indique Inicio de rango de fecha');
             }
         }
     </script>
@@ -513,6 +531,3 @@
 
 </body>
 </html>
-
-
-

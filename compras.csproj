@@ -276,7 +276,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ForgotPassword.cshtml" />
@@ -287,6 +286,8 @@
     <Content Include="Views\Home\ReportesSala.cshtml" />
     <Content Include="Views\Usuario\CargadeUsuarios.xlsx" />
     <Content Include="Views\Reportes\SearchEventobyDate.cshtml" />
+    <Content Include="Views\Reportes\SearchSalarbyDate.cshtml" />
+    <Content Include="Views\Reportes\SearchComedorbyDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

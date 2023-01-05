@@ -16,15 +16,17 @@ namespace compras.Controllers
         }
         public ActionResult SearchComedorbyDate(string datesD, string datesH)
         {
+
             List<compras.Models.CoustomerReportComedorRS> reportComedorRs = new List<compras.Models.CoustomerReportComedorRS>();
             ReportService reportService = new ReportService();
-            return View("ReportesComedor", reportComedorRs);
+            reportComedorRs = reportService.getGeneralReportComedor(datesD, datesH);
+            return View(reportComedorRs);
         }
         public ActionResult SearchSalarbyDate(string datesD, string datesH)
         {
             List<compras.Models.CoustomerReportComedorRS> reportComedorRs = new List<compras.Models.CoustomerReportComedorRS>();
             ReportService reportService = new ReportService();
-            return View("ReportesSala", reportComedorRs);
+            return View(reportComedorRs);
         }
         public ActionResult SearchEventobyDate(string datesD, string datesH)
         {
