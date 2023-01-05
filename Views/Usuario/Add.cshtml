@@ -132,51 +132,43 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="reportes/usuarios.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Reporte comedores</p>
-                                    </a>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte comedores", "ReportesComedor", "Home") </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a href="reportes/productos.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Reporte eventos
-                                        </p>
-                                    </a>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte eventos", "ReportesEvento", "Home") </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a href="reportes/ordencompra.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            Reporte Salas
-                                        </p>
-                                    </a>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte Salas", "ReportesSala", "Home") </a>
                                 </li>
                                 @*<li class="nav-item">
-                                    <a href="reportes/ordenescompra.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Órdenes de compra</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/productoscotizar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Productos por cotizar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/sla.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>SLA's</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/validaorden.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Validación de órdenes</p>
-                                    </a>
-                                </li>*@
+            <a href="reportes/ordenescompra.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Órdenes de compra</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="reportes/productoscotizar.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Productos por cotizar</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="reportes/sla.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>SLA's</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="reportes/validaorden.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Validación de órdenes</p>
+            </a>
+        </li>*@
                             </ul>
                         </li>
 
@@ -360,19 +352,45 @@
                                 <div class="card-body">
 
                                     <!--disponibilizar excel de ejemplo para descarga y llenado de plantilla-->
-                                    <button type="submit" class="btn btn-block btn-warning">Descagar plantilla</button>
-                                    <a  download="CargadeUsuarios.xlsx" href="CargadeUsuarios.xlsx">Anchor text</a>
+                                    <a class="download-csv" target="_blank" href="GetPlantilla">Descargar Plantilla</a>
                                     <br><br>
-                                    <div class="form-group">
-                                        <!-- <label for="customFile">Custom File</label> -->
+                                    <!--<div class="form-group">
+    <!-- <label for="customFile">Custom File</label> -->
+                                    <!--<div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Subir archivo</label>
+        </div>
+    </div>
+    <br>-->
+                                    @*<button class="btn btn-block btn-success" onclick="UploadExcel2()">Cargar</button>*@
+                                    @*<button class="btn btn-block btn-success" OnClick="UploadExcel">Cargar</button>
 
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Subir archivo</label>
+        <input id="filMyFile" type="file" runat="server"></input>*@
+
+                                    @*<form id="form1" runat="server" method="post" action="@Url.Action("UploadExcel", "Usuario")" enctype="multipart/form-data">
+            <input type="file" id="myFile" name="myFile" />
+            <input type="submit" value="Create Account" />
+            <Button runat="server" ID="btnUpload" OnClick="btnUploadClick" Text="Upload" />
+        </form>*@
+
+
+                                    @using (Html.BeginForm("UploadExcel", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <div class="form-group">
+                                            <div  style="background-color:yellow">
+                                                @Html.TextBox("file", "", new { type = "file" }) <br />
+                                            </div>
+                                            <input class="btn btn-block btn-success" type="submit" value="Upload" />
+                                            <p style="background-color:cornflowerblue">  @ViewBag.Message   </p>   
                                         </div>
-                                    </div>
-                                    <br>
-                                    <button type="submit" class="btn btn-block btn-success">Cargar</button>
+                                    }
+
+
+
+                                    @*<form id="form1" runat="server" enctype="multipart/form-data">
+            <input type="file" id="myFile" name="myFile" />
+            <asp:Button runat="server" ID="btnUpload" OnClick="btnUploadClick" Text="Upload" />
+        </form>*@
 
                                 </div>
                                 <!-- /.card-body -->
@@ -494,6 +512,36 @@
         format: 'DD-MM-YYYY'
     });
 });
+        function Descarga() {
+            fetch(`/Usuario/GetPlantilla`, {
+                method: 'Get',
+                headers: {
+                    'AddHeader': 'content - disposition", "inline; filename= Plantilla.xlsx',
+
+                    'Content-type': 'text/csv',
+                },
+            }).then(function (response) {
+                console.log(response)
+                if (response.status == 200) {
+                    console.log("exito")
+                    toastr.success('Descarga de plantilla');
+                } else {
+                    if (response.status == 204) {
+                        toastr.warning('El evento ya esta registrado a esa hora')
+                    } else {
+                        console.log("error")
+                        toastr.error('Error al registrar Comedor');
+                    }
+                }
+            }).then(data => {
+                console.log("exito")
+            }).catch(function (error) {
+                console.log("error", error)
+                toastr.error('Error al registrar Sala');
+            });
+
+        }
+
         function SaveUser() {
             let numEmpleado = document.getElementById("numEmpleado").value;
             let nombre = document.getElementById("nombre").value;
@@ -547,6 +595,39 @@
                 toastr.error('Error al registrar Sala');
             });
         }
+
+        function UploadExcel2() {
+            console.log("entra")
+            console.log("entra")
+            let file = document.getElementById("filMyFile").value;
+            console.log(file)
+            getBase64(file);
+
+        }
+
+        function getBase64(file) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                console.log(reader.result);
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
+        }
+        //var url = "Usuario/GetPlantilla";
+
+        //$.ajax(
+        //    {
+        //        url: url,
+        //        contentType: 'application/json; charset=utf-8',
+        //        datatype: 'json',
+        //        type: "GET",
+        //        success: function () {
+
+        //            window.location = url;
+        //        }
+        //    });
     </script>
 
 </body>

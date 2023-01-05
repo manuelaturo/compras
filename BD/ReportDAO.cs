@@ -153,7 +153,7 @@ namespace compras.BD
 
                     report = db.Query<ReportComedor>(" SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
                     " from VisitasEvento s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
+                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado " +
                     "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
                     " where s.dateInit  between @dateInit   and @dateEnd"
                    , queryParameters,commandType: CommandType.Text).ToList();

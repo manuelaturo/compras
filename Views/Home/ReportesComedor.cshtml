@@ -34,6 +34,19 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
 
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    @*Dentro de carpeta:*@
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -130,50 +143,43 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <a> @Html.ActionLink("Reporte comedores", "ReportesComedor", "Home") </a>
-                                   
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte comedores", "ReportesComedor", "Home") </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a  class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            @Html.ActionLink("Reporte eventos", "ReportesEvento", "Home") 
-                                        </p>
-                                    </a>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte eventos", "ReportesEvento", "Home") </a>
                                 </li>
+
                                 <li class="nav-item">
-                                    <a  class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>
-                                            @Html.ActionLink("Reporte Salas", "ReportesSala", "Home")
-                                        </p>
-                                    </a>
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte Salas", "ReportesSala", "Home") </a>
                                 </li>
                                 @*<li class="nav-item">
-                                    <a href="reportes/ordenescompra.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Órdenes de compra</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/productoscotizar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Productos por cotizar</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/sla.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>SLA's</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="reportes/validaorden.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Validación de órdenes</p>
-                                    </a>
-                                </li>*@
+            <a href="reportes/ordenescompra.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Órdenes de compra</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="reportes/productoscotizar.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Productos por cotizar</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="reportes/sla.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>SLA's</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="reportes/validaorden.html" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Validación de órdenes</p>
+            </a>
+        </li>*@
                             </ul>
                         </li>
 
@@ -480,16 +486,17 @@
             console.log(Desde)
             
             if (Desde != "") {
-                if (Hasta != null && Hasta!= "") {
-                    fetch(`/Reportes/SearchComedorbyDate`, {
-                                method: 'POST',
+                if (Hasta != null && Hasta != "") {
+                    const params = {
+                        datesD: Desde,
+                        datesH: Hasta
+                    };
+                    fetch(`/Reportes/SearchComedorbyDate?datesD=${Desde}&datesH=${Hasta}`, {
+                                method: 'GET',
                                 headers: {
                                     'Content-type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    datesD: Desde,
-                                    datesH: Hasta
-                                })
+                                }
+                                //params : par
                             }).then(function (response) {
                                 console.log(response.status)
                                 if (response.status == 200) {
