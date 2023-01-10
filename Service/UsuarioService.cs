@@ -71,11 +71,11 @@ namespace compras.Service
 
             try
             {
-<<<<<<< HEAD
+
 
                 using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
                 {
-                    var add = context.AddEmpleado(usuario.email, usuario.nombre, usuario.APaterno, usuario.AMaterno, usuario.Contraseña, usuario.Rol, usuario.fechaNacimiento, usuario.curp, usuario.noEmpledo, usuario.ubicacion, usuario.status, usuario.Compañia);
+                    var add = context.AddEmpleado(usuario.Correo, usuario.Nombre, usuario.Apellido_Paterno, usuario.Apellido_Materno, usuario.password, usuario.Rol, usuario.Fecha_Nacimiento, usuario.Curp, usuario.Numero_Empleado, usuario.ubicacion, usuario.status, usuario.Compania);
                     if (add == 0)
                     {
                         return true;
@@ -86,8 +86,7 @@ namespace compras.Service
                     }
                 }
 
-=======
->>>>>>> d200d085294e52df46ff040f6e24e84ec9f331ee
+
                 UsuariosDAO us = new UsuariosDAO();
 
                 if(usuario.Fecha_Nacimiento == default(DateTime))
