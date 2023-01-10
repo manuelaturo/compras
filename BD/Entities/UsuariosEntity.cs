@@ -16,12 +16,13 @@ namespace compras.BD.Entities
         public DateTime fechaNacimiento { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+        public string compañia { get; set; }
         public int perfil { get; set; }
 
         public UsuariosEntity() { }
         public UsuariosEntity(int noEmpledo, string nombre, 
             string APaterno, string AMaterno, string curp, 
-            DateTime fechaNacimiento, string email, string password, int perfil) {
+            DateTime fechaNacimiento, string email, string password, int perfil, string compañia) {
 
             this.noEmpledo = noEmpledo;
             this.nombre = nombre;
@@ -32,6 +33,7 @@ namespace compras.BD.Entities
             this.AMaterno = AMaterno;
             this.password = password;
             this.perfil =perfil;
+            this.compañia = compañia;
         
         }
     }

@@ -1,4 +1,4 @@
-﻿@model compras.Models.CoustomerReportComedorRS
+﻿@model List<compras.Models.CoustomerReportComedorRS>
 
 @{
     ViewBag.Title = "ReportesSala";
@@ -34,13 +34,26 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
 
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+    @*Dentro de carpeta:*@
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
+
+    <script src="~/plugins/toastr/toastr.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="../dist/img/AdminLTELogo.png" alt="logo" height="60" width="120">
+            <img class="animation__shake" src="~/dist/img/AdminLTELogo.png" alt="logo" height="60" width="120">
         </div>
 
         <!-- Navbar -->
@@ -59,61 +72,147 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="../index.html" class="brand-link">
-                <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">SalasPV</span>
+            <a href="index.html" class="brand-link">
+                <img src="~/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">ComprasPV</span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+
+                    </div>
+                    <div class="info">
+                        <a class="d-block"> @Html.ActionLink("Cerrar sesión", "Logout", "Home")</a>
+                    </div>
+                </div>
+
+
+
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="../captura.html" class="nav-link ">
-                                <p>
-                                    Ingreso
+                            <a class="d-block"> <p>  @Html.ActionLink("Usuarios", "get", "Usuario") </p> </a>
 
-                                </p>
-                            </a>
-                        </li>
+                            </ li >
+                            @*<li class="nav-item">
+                                    <a href="productos/productos.html" class="nav-link">
+                                        <p
+                                            Productos
+
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="kits/kits.html" class="nav-link">
+                                        <p>
+                                            Kits
+
+                                        </p>
+                                    </a>
+                                </li>*@
+                            @*<li class="nav-item">
+                                    <a href="ordenes/ordenes.html" class="nav-link">
+                                        <p>
+                                            Órdenes de compra
+
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="apertura/apertura.html" class="nav-link">
+                                        <p>
+                                            Apertura de sistema
+
+                                        </p>
+                                    </a>
+                                </li>*@
+
                         <li class="nav-item">
-                            <a href="../invitado.html" class="nav-link">
-                                <p>
-                                    Invitados
+                            <a href="#" class="nav-link">
 
+                                <p>
+                                    Reportes
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte comedores", "ReportesComedor", "Home") </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte eventos", "ReportesEvento", "Home") </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <a> @Html.ActionLink("Reporte Salas", "ReportesSala", "Home") </a>
+                                </li>
+                                @*<li class="nav-item">
+                                        <a href="reportes/ordenescompra.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Órdenes de compra</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/productoscotizar.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Productos por cotizar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/sla.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>SLA's</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/validaorden.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Validación de órdenes</p>
+                                        </a>
+                                    </li>*@
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="reporteComedor.html" class="nav-link">
-                                <p>
-                                    Reporte comedores
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="reporteEvento.html" class="nav-link">
-                                <p>
-                                    Reporte eventos
+                        @*<li class="nav-item">
+                                <a href="#" class="nav-link">
 
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="reporteSalas.html" class="nav-link">
-                                <p>
-                                    Reporte salas
-                                </p>
-                            </a>
-                        </li>
+                                    <p>
+                                        Previsualización
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="productos/vistaproductos.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Productos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="aprobaciones/vistaaprobaciones.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Aprobaciones</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="ordenes/vistaordenes.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Órdenes de compra</p>
+                                        </a>
+                                    </li>
 
-
-
-
+                                </ul>
+                            </li>*@
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -158,7 +257,7 @@
                                             <div class="form-group">
 
                                                 <div class="input-group date" id="fromDate" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input" data-target="#fromDate" />
+                                                    <input type="text" class="form-control datetimepicker-input" id="datesD" name="datesD" data-target="#fromDate" />
                                                     <div class="input-group-append" data-target="#fromDate" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                     </div>
@@ -173,7 +272,7 @@
                                             <div class="form-group">
 
                                                 <div class="input-group date" id="toDate" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input" data-target="#toDate" />
+                                                    <input type="text" class="form-control datetimepicker-input" id="datesH" name="datesH" data-target="#toDate" />
                                                     <div class="input-group-append" data-target="#toDate" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                     </div>
@@ -183,7 +282,7 @@
 
                                         <div class="col-sm-3">
                                             <br>
-                                            <button type="button" class="btn btn-info">Filtrar</button>
+                                            <button class="btn btn-primary btn-block" onclick="EviarFechas()">Filtro</button>
 
                                         </div>
                                     </div>
@@ -201,15 +300,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td> @Html.DisplayNameFor(model => model.numEmploye)</td>
-                                                <td> @Html.DisplayNameFor(model => model.name)</td>
-                                                <td> @Html.DisplayNameFor(model => model.lastName)</td>
-                                                <td> @Html.DisplayNameFor(model => model.empresa)</td>
-                                                <td> @Html.DisplayNameFor(model => model.comedor)</td>
-                                                <td> @Html.DisplayNameFor(model => model.date)</td>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
 
-                                            </tr>
+                                                    <td>@Html.DisplayFor(modelItem => item.numEmploye)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.name)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.lastName)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.empresa)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.comedor)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.date)</td>
+
+                                                </tr>
+                                            }
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -303,62 +406,107 @@
 
 
 
-    <script>$(function () {
-    //Date picker
-    $('#fromDate').datetimepicker({
-        format: 'DD-MM-YYYY'
+    <script>
+    $(function () {
+            //Date picker
+            $('#fromDate').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+
+            //Date picker
+            $('#toDate').datetimepicker({
+                format: 'DD-MM-YYYY'
+            });
+
+            $("#tablausuarios").DataTable({
+                responsive: true, lengthChange: true, autoWidth: false,
+                buttons: [
+                    {
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'colvis',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    }
+                ]
+            }).buttons().container().appendTo('#tablausuarios_wrapper .col-md-6:eq(0)');
+
+
+
     });
 
-   //Date picker
-    $('#toDate').datetimepicker({
-        format: 'DD-MM-YYYY'
-    });
+        function EviarFechas() {
 
-    $("#tablausuarios").DataTable({
-      responsive: true, lengthChange: true, autoWidth: false,
-    	buttons: [
-            {
-                extend: 'copy',
-                exportOptions: {
-                    columns: [ 0,1,2,3,4,5 ]
+            let Desde = document.getElementById("datesD").value;
+            let Hasta = document.getElementById("datesH").value;
+
+            console.log(Hasta)
+            console.log(Desde)
+
+            if (Desde != "") {
+                if (Hasta != null && Hasta != "") {
+                    fetch(`/Reportes/SearchSalarbyDate?datesD=${Desde}&datesH=${Hasta}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-type': 'application/json',
+                        }
+                    }).then(function (response) {
+                        console.log(response.status)
+                        if (response.status == 200) {
+                            console.log("exito")
+                            console.log(response.url)
+                            window.location = response.url
+                            toastr.success('Registro Sala');
+
+                        } else {
+                            console.log("error")
+                            toastr.error('Error al registrar Sala');
+                        }
+                    }).then(data => {
+                        console.log("exito")
+                    }).catch(function (error) {
+                        console.log("error", error)
+                        toastr.error('Error al registrar Sala');
+                    });
+                } else {
+                    toastr.warning('Indique fin de rango de fecha');
                 }
-            },
-			 {
-                extend: 'csv',
-                exportOptions: {
-                   columns: [ 0,1,2,3,4,5 ]
-                }
-            },
-            {
-                extend: 'excel',
-                exportOptions: {
-                    columns: [ 0,1,2,3,4,5 ]
-                }
-            },
-            {
-                extend: 'pdf',
-                exportOptions: {
-                    columns: [ 0,1,2,3,4,5 ]
-                }
-            },
-                        {
-                extend: 'print',
-                exportOptions: {
-                     columns: [ 0,1,2,3,4,5 ]
-                }
-            },
-			            {
-                extend: 'colvis',
-                exportOptions: {
-                    columns: [ 0,1,2,3,4,5 ]
-                }
+            } else {
+                toastr.warning('Indique Inicio de rango de fecha');
             }
-        ]
-    }).buttons().container().appendTo('#tablausuarios_wrapper .col-md-6:eq(0)');
+        }
 
 
-
-  });</script>
+    </script>
 
 
 

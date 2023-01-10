@@ -56,7 +56,8 @@ namespace compras.BD
            ", Curp" +
            ", Id_Usuario_Crear" +
            ", Fecha_Creacion" +
-           ", Numero_Empleado)" +
+           ", Numero_Empleado" +
+           ", Compañia)" +
      "VALUES ( " +
            "@email" +
       "     , @Nombre" +
@@ -68,7 +69,8 @@ namespace compras.BD
            ", @curp" +
            ", @usr" +
            ", @insertdate" +
-           ", @noEmpledo)",
+           ", @noEmpledo" +
+           ",@Compañia)",
                         new
                         {
                             us.email,
@@ -81,7 +83,8 @@ namespace compras.BD
                             us.curp,
                             usr,
                             insertdate,
-                            us.noEmpledo
+                            us.noEmpledo,
+                            us.compañia
                         });
                     db.Close();
                     return true;

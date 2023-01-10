@@ -17,8 +17,9 @@ namespace compras.Service
             List<ReportComedor> responseDAO = new List<ReportComedor>();
             ReportDAO report = new ReportDAO();
             responseDAO = report.GetReportsSalas();
-            replaceNameComedor(responseDAO);
+            
             response = assemblerRs(responseDAO);
+            replaceNameComedor(response);
             return response;
         }
         public List<CoustomerReportComedorRS> getGeneralReportEvento()
@@ -28,8 +29,9 @@ namespace compras.Service
             List<ReportComedor> responseDAO = new List<ReportComedor>();
             ReportDAO report = new ReportDAO();
             responseDAO = report.GetReportsEvento();
-            replaceNameComedor(responseDAO);
+            
             response = assemblerRs(responseDAO);
+            replaceNameComedor(response);
             return response;
         }
 
@@ -41,8 +43,9 @@ namespace compras.Service
             ReportDAO report = new ReportDAO();
             responseDAO = report.GetReportsComedor();
             //responseDAO.AddRange(report.GetReportsComedor());
-            replaceNameComedor(responseDAO);
+            
             response = assemblerRs(responseDAO);
+            replaceNameComedor(response);
             return response;
         }
 
@@ -56,8 +59,9 @@ namespace compras.Service
             ReportDAO report = new ReportDAO();
             responseDAO = report.GetReportsComedor(dateInit, dateEnd);
             //responseDAO.AddRange(report.GetReportsComedor());
-            replaceNameComedor(responseDAO);
+           
             response = assemblerRs(responseDAO);
+            replaceNameComedor(response);
             return response;
         }
         public List<CoustomerReportComedorRS> getGeneralReportSalas(string initDate, string endDate)
@@ -70,8 +74,9 @@ namespace compras.Service
             ReportDAO report = new ReportDAO();
             responseDAO = report.GetReportsSalas (dateInit, dateEnd);
             //responseDAO.AddRange(report.GetReportsComedor());
-            replaceNameComedor(responseDAO);
+           
             response = assemblerRs(responseDAO);
+            replaceNameComedor(response);
             return response;
         }
         public List<CoustomerReportComedorRS> getGeneralReportEventos(string initDate, string endDate)
@@ -84,11 +89,12 @@ namespace compras.Service
             ReportDAO report = new ReportDAO();
             responseDAO = report.GetReportsEvento(dateInit, dateEnd);
             //responseDAO.AddRange(report.GetReportsComedor());
-            replaceNameComedor(responseDAO);
+           
             response = assemblerRs(responseDAO);
+            replaceNameComedor(response);
             return response;
         }
-        public void replaceNameComedor(List<ReportComedor> responseDAO)
+        public void replaceNameComedor(List<CoustomerReportComedorRS> responseDAO)
         {
             responseDAO.ForEach(x =>
             {
@@ -135,8 +141,7 @@ namespace compras.Service
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
             comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
-             x.lastName, x.numEmployed, x.date, x.empresa
-                ));
+             x.lastName, x.numEmployed, x.date,x.empresa, x.comedor,x.days));
             return comedorRs;
         }
 
