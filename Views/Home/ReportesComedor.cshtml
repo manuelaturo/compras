@@ -34,19 +34,6 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
 
-    <!-- Toastr -->
-    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-    <script src="~/plugins/toastr/toastr.min.js"></script>
-    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-
-    <script src="~/plugins/toastr/toastr.min.js"></script>
-    @*Dentro de carpeta:*@
-
-    <!-- Toastr -->
-    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-
-    <script src="~/plugins/toastr/toastr.min.js"></script>
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -145,17 +132,37 @@
                                 <li class="nav-item">
                                     <i class="far fa-circle nav-icon"></i>
                                     <a> @Html.ActionLink("Reporte comedores", "ReportesComedor", "Home") </a>
+
                                 </li>
 
                                 <li class="nav-item">
                                     <i class="far fa-circle nav-icon"></i>
                                     <a> @Html.ActionLink("Reporte eventos", "ReportesEvento", "Home") </a>
+
                                 </li>
+
 
                                 <li class="nav-item">
                                     <i class="far fa-circle nav-icon"></i>
                                     <a> @Html.ActionLink("Reporte Salas", "ReportesSala", "Home") </a>
+
                                 </li>
+                                <!--li class="nav-item">
+        <a  class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+                @Html.ActionLink("Reporte eventos", "ReportesEvento", "Home")
+            </p>
+        </a>
+    </!--li>
+    <li class="nav-item">
+        <a  class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>
+                @Html.ActionLink("Reporte Salas", "ReportesSala", "Home")
+            </p>
+        </a>
+    </li-->
                                 @*<li class="nav-item">
             <a href="reportes/ordenescompra.html" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
@@ -314,7 +321,7 @@
                                                         <td>@Html.DisplayFor(modelItem => item.lastName)</td>
                                                         <td>@Html.DisplayFor(modelItem => item.empresa)</td>
                                                         <td>@Html.DisplayFor(modelItem => item.comedor)</td>
-                                                        <td>@Html.DisplayFor(modelItem => item.days)</td>
+                                                        <td>@Html.DisplayFor(modelItem => item.date)</td>
 
 
 
@@ -486,24 +493,20 @@
             console.log(Desde)
             
             if (Desde != "") {
-                if (Hasta != null && Hasta != "") {
-                    const params = {
-                        datesD: Desde,
-                        datesH: Hasta
-                    };
-                    fetch(`/Reportes/SearchComedorbyDate?datesD=${Desde}&datesH=${Hasta}`, {
-                                method: 'GET',
+                if (Hasta != null && Hasta!= "") {
+                    fetch(`/Reportes/SearchComedorbyDate`, {
+                                method: 'POST',
                                 headers: {
                                     'Content-type': 'application/json',
-                                }
-                                //params : par
+                                },
+                                body: JSON.stringify({
+                                    datesD: Desde,
+                                    datesH: Hasta
+                                })
                             }).then(function (response) {
                                 console.log(response.status)
                                 if (response.status == 200) {
                                     console.log("exito")
-                                    console.log("exito")
-                                    console.log(response.url)
-                                    window.location = response.url
                                     toastr.success('Registro agregado');
 
                                 } else {
