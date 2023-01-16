@@ -93,10 +93,11 @@ namespace compras.Service
                 {
                     usuario.Fecha_Nacimiento = DateTime.Now; 
                 }
-                UsuariosEntity usuariosEntity = new
+                UsuariosEntity usuariosEntity = new 
                 UsuariosEntity(usuario.Numero_Empleado, usuario.Nombre,
                 usuario.Apellido_Paterno, usuario.Apellido_Materno, usuario.Curp,
-                usuario.Fecha_Nacimiento, usuario.Correo, usuario.password, usuario.perfil);
+                usuario.Fecha_Nacimiento, usuario.Correo, usuario.password, usuario.perfil, 
+                usuario.Compania);
                 us.AddUsuario(usuariosEntity);
                 return true;
             }

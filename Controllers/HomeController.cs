@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 ﻿using log4net;
-=======
 ﻿using compras.Service;
->>>>>>> af67e865c0809399853f3bba102b31b54cd2d9bc
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +11,10 @@ namespace compras.Controllers
 {
     public class HomeController : Controller
     {
-<<<<<<< HEAD
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public ActionResult Index()
-=======
         public ActionResult Index(string usuario, string password)
->>>>>>> af67e865c0809399853f3bba102b31b54cd2d9bc
+
         {
             log.Info("inicio compras");
             return View();

@@ -222,8 +222,8 @@
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
+            </div><!-- /.content-header -->
+
             <!-- Main content -->
             <section class="content">
 
@@ -349,51 +349,59 @@
                                     <h3 class="card-title">Agregar Usuarios desde Excel</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body">
+                                <div-- class="card-body">
 
                                     <!--disponibilizar excel de ejemplo para descarga y llenado de plantilla-->
                                     <a class="download-csv" target="_blank" href="GetPlantilla">Descargar Plantilla</a>
                                     <br><br>
-                                    <!--<div class="form-group">
-    <!-- <label for="customFile">Custom File</label> -->
-                                    <!--<div class="custom-file">
-            <input type="file" class="custom-file-input" id="customFile">
-            <label class="custom-file-label" for="customFile">Subir archivo</label>
-        </div>
-    </div>
-    <br>-->
+                                    <!--div class="form-group"-->
+                                    <!--label for="customFile">Custom File</label-->
+                                    <!--div class="custom-file">
+                                <!--input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Subir archivo</label>
+                            </-div-->
+                                    <!--/div-->
                                     @*<button class="btn btn-block btn-success" onclick="UploadExcel2()">Cargar</button>*@
                                     @*<button class="btn btn-block btn-success" OnClick="UploadExcel">Cargar</button>
 
-        <input id="filMyFile" type="file" runat="server"></input>*@
+                                <input id="filMyFile" type="file" runat="server"></input>*@
 
                                     @*<form id="form1" runat="server" method="post" action="@Url.Action("UploadExcel", "Usuario")" enctype="multipart/form-data">
-            <input type="file" id="myFile" name="myFile" />
-            <input type="submit" value="Create Account" />
-            <Button runat="server" ID="btnUpload" OnClick="btnUploadClick" Text="Upload" />
-        </form>*@
+                                    <input type="file" id="myFile" name="myFile" />
+                                    <input type="submit" value="Create Account" />
+                                    <Button runat="server" ID="btnUpload" OnClick="btnUploadClick" Text="Upload" />
+                                </form>*@
+
+                                    <div>
+
+                                        @using (Html.BeginForm("UploadExcel", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data", style = "color:back;" }))
+
+                                        {
+
+                                            <div class="custom-file">
 
 
-                                    @using (Html.BeginForm("UploadExcel", "Usuario", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                    {
-                                        <div class="form-group">
-                                            <div  style="background-color:yellow">
-                                                @Html.TextBox("file", "", new { type = "file" }) <br />
+                                                @Html.TextBox("file", "", new { type = "file", style = "width: inherit; border-style: solid; border-radius: 4px; backround-color:red; color:rgb(195,192,195)"})
+
+
                                             </div>
-                                            <input class="btn btn-block btn-success" type="submit" value="Upload" />
-                                            <p style="background-color:cornflowerblue">  @ViewBag.Message   </p>   
-                                        </div>
-                                    }
+                                            <br><br>
+                                            <input class="btn btn-block btn-success" type="submit" value="Subir" />
+                                            <p style="background-color:cornflowerblue">@ViewBag.Message   </p>
+
+                                        }
+                                    </div>
+
 
 
 
                                     @*<form id="form1" runat="server" enctype="multipart/form-data">
-            <input type="file" id="myFile" name="myFile" />
-            <asp:Button runat="server" ID="btnUpload" OnClick="btnUploadClick" Text="Upload" />
-        </form>*@
+                                    <input type="file" id="myFile" name="myFile" />
+                                    <asp:Button runat="server" ID="btnUpload" OnClick="btnUploadClick" Text="Upload" />
+                                </form>*@
 
-                                </div>
-                                <!-- /.card-body -->
+                                    </!--div>
+                                    <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
                         </div>
