@@ -54,10 +54,12 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    report = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
-                    " from VisitasSalas s left" +
+                    report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
+                    " ,cs.Description, csr.Description from VisitasSalas s left" +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
-                    " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia"
+                    " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
+                    " inner join Cat_Sala cs on s.IdSala = cs.idCatSala "+
+                    "inner join Cat_Servicios csr on s.services = csr.Id_Servicios_Eventos"
                    , commandType: CommandType.Text).ToList();
                     db.Close();
                     return report;
@@ -87,10 +89,12 @@ namespace compras.BD
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
 
-                    report = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName,cc.nombre as Empresa" +
-                    " from VisitasSalas s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado " +
-                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia "+
+                    report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
+                    " ,cs.Description, csr.Description from VisitasSalas s left" +
+                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
+                    " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
+                    "s inner join Cat_Sala cs on s.IdSala = cs.idCatSala " +
+                    "inner join Cat_Servicios csr on s.services = csr.Id_Servicios_Eventos "+
                     "where s.dateInit  between @dateInit   and @dateEnd"
                    , queryParameters,commandType: CommandType.Text).ToList();
                     db.Close();
@@ -182,10 +186,11 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                     report = db.Query<ReportComedor>("SELECT   s.idComedor as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
-                    " FROM VisitasComedor s left join Usuarios u " +
+                     report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
+                    ",s.comments  FROM VisitasComedor s left join Usuarios u " +
                     "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
-                    " on s.numEmployed = u.Numero_Empleado", commandType: CommandType.Text).ToList();
+                    " on s.numEmployed = u.Numero_Empleado " +
+                    "inner join Cat_Comedor ccom on s.idComedor = ccom.Id_Comedor", commandType: CommandType.Text).ToList();
                     db.Close();
                     return report;
                 }
@@ -212,9 +217,11 @@ namespace compras.BD
                     var queryParameters = new DynamicParameters();
                     queryParameters.Add("@dateInit", dateInit);
                     queryParameters.Add("@dateEnd", dateEnd);
-                    report = db.Query<ReportComedor>("SELECT   s.idComedor as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName,cc.nombre as Empresa" +
-                    " FROM VisitasComedor s left join Usuarios u  on s.numEmployed = u.Numero_Empleado " +
+                    report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
+                    ",s.comments  FROM VisitasComedor s left join Usuarios u " +
                     "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
+                    " on s.numEmployed = u.Numero_Empleado " +
+                    "inner join Cat_Comedor ccom on s.idComedor = ccom.Id_Comedor " +
                     " where s.registerdate  between @dateInit   and @dateEnd", queryParameters, commandType: CommandType.Text).ToList();
                     db.Close();
                     return report;
