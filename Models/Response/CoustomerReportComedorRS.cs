@@ -19,6 +19,7 @@ namespace compras.Models
         public string days { get; set; }
         public string comments { get; set; }
         public string service { get; set; }
+        public List<string> serviceEvent { get; set; }
 
         public CoustomerReportComedorRS() { }
         public CoustomerReportComedorRS(string image, string name,

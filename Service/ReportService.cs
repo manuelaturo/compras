@@ -1,6 +1,7 @@
 ﻿using compras.BD;
 using compras.Models;
 using compras.Models.Request;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace compras.Service
 {
     public class ReportService
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public List<CoustomerReportComedorRS> getGeneralReportSala()
         {
 
@@ -51,49 +53,77 @@ namespace compras.Service
 
         public List<CoustomerReportComedorRS> getGeneralReportComedor(string initDate, string endDate)
         {
-            var dateInit = DateTime.Parse(initDate);
-            var dateEnd = DateTime.Parse(endDate);
+            try
+            {
+                var dateInit = DateTime.Parse(initDate);
+                var dateEnd = DateTime.Parse(endDate);
 
-            List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
-            List<ReportComedor> responseDAO = new List<ReportComedor>();
-            ReportDAO report = new ReportDAO();
-            responseDAO = report.GetReportsComedor(dateInit, dateEnd);
-            //responseDAO.AddRange(report.GetReportsComedor());
-           
-            response = assemblerRs(responseDAO);
+                List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
+                List<ReportComedor> responseDAO = new List<ReportComedor>();
+                ReportDAO report = new ReportDAO();
+                responseDAO = report.GetReportsComedor(dateInit, dateEnd);
+                //responseDAO.AddRange(report.t());
 
-            return response;
+                response = assemblerRs(responseDAO);
+
+                return response;
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+                throw;                
+            }
+            
         }
         public List<CoustomerReportComedorRS> getGeneralReportSalas(string initDate, string endDate)
         {
-            var dateInit = DateTime.Parse(initDate);
-            var dateEnd = DateTime.Parse(endDate);
+            try
+            {
+                var dateInit = DateTime.Parse(initDate);
+                var dateEnd = DateTime.Parse(endDate);
 
-            List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
-            List<ReportComedor> responseDAO = new List<ReportComedor>();
-            ReportDAO report = new ReportDAO();
-            responseDAO = report.GetReportsSalas (dateInit, dateEnd);
-            //responseDAO.AddRange(report.GetReportsComedor());
+                List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
+                List<ReportComedor> responseDAO = new List<ReportComedor>();
+                ReportDAO report = new ReportDAO();
+                responseDAO = report.GetReportsSalas(dateInit, dateEnd);
+                //responseDAO.AddRange(report.GetReportsComedor());
+
+                response = assemblerSalaRs(responseDAO);
+
+                return response;
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+                throw;
+            }
            
-            response = assemblerSalaRs(responseDAO);
-
-            return response;
         }
         public List<CoustomerReportComedorRS> getGeneralReportEventos(string initDate, string endDate)
         {
-            var dateInit = DateTime.Parse(initDate);
-            var dateEnd = DateTime.Parse(endDate);
+            try
+            {
+                var dateInit = DateTime.Parse(initDate);
+                var dateEnd = DateTime.Parse(endDate);
 
-            List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
-            List<ReportComedor> responseDAO = new List<ReportComedor>();
-            ReportDAO report = new ReportDAO();
-            responseDAO = report.GetReportsEvento(dateInit, dateEnd);
-            //responseDAO.AddRange(report.GetReportsComedor());
-           
-            response = assemblerRs(responseDAO);
-            replaceNameComedor(response);
-            return response;
+                List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
+                List<ReportComedor> responseDAO = new List<ReportComedor>();
+                ReportDAO report = new ReportDAO();
+                responseDAO = report.GetReportsEvento(dateInit, dateEnd);
+                //responseDAO.AddRange(report.GetReportsComedor());
+
+                response = assemblerRs(responseDAO);
+                replaceNameComedor(response);
+                return response;
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.Message);
+                throw;
+            }
         }
+            
+        
         public void replaceNameComedor(List<CoustomerReportComedorRS> responseDAO)
         {
             responseDAO.ForEach(x =>

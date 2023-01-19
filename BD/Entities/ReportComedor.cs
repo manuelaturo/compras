@@ -18,6 +18,10 @@ namespace compras.BD
         public  string days { get; set; }
         public  string comments { get; set; }
         public  string service { get; set; }
-
+        public string eventName { get; set; }
+        public string locale { get; set; }
+        public string logistic { get; set; }
+        public string gestion { get; set; }
+        
     }
 }
