@@ -26,6 +26,7 @@ namespace compras.Controllers
         {
             List<compras.Models.CoustomerReportComedorRS> reportComedorRs = new List<compras.Models.CoustomerReportComedorRS>();
             ReportService reportService = new ReportService();
+            reportService.getGeneralReportSalas(datesD, datesH);
             return View(reportComedorRs);
         }
         public ActionResult SearchEventobyDate(string datesD, string datesH)
