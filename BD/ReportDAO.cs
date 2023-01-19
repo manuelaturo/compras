@@ -93,7 +93,7 @@ namespace compras.BD
                     " ,cs.Description, csr.Description from VisitasSalas s left" +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
                     " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
-                    "s inner join Cat_Sala cs on s.IdSala = cs.idCatSala " +
+                    " inner join Cat_Sala cs on s.IdSala = cs.idCatSala " +
                     "inner join Cat_Servicios csr on s.services = csr.Id_Servicios_Eventos "+
                     "where s.dateInit  between @dateInit   and @dateEnd"
                    , queryParameters,commandType: CommandType.Text).ToList();
