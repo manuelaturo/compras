@@ -73,18 +73,7 @@ namespace compras.Service
             {
 
 
-                using (Datos1.ComedorEntities1 context = new Datos1.ComedorEntities1())
-                {
-                    var add = context.AddEmpleado(usuario.Correo, usuario.Nombre, usuario.Apellido_Paterno, usuario.Apellido_Materno, usuario.password, usuario.Rol, usuario.Fecha_Nacimiento, usuario.Curp, usuario.Numero_Empleado, usuario.ubicacion, usuario.status, usuario.Compania);
-                    if (add == 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
+               
 
 
                 UsuariosDAO us = new UsuariosDAO();

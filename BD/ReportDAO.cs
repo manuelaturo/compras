@@ -23,13 +23,10 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    report = db.Query<ReportComedor>("SELECT s.IdSala as comedor, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName" +
-                    " from VisitasSalas s left"+
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado"+
-                   " union"+
-                   " SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName,u.Compañia" +
-                    " from VisitasEvento s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado", commandType: CommandType.Text).ToList();
+                    report = db.Query<ReportComedor>(" SELECT e. idVisitasEvento as idEvent, e.eventName, e.numEmployed, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName," +
+                    " e.dateInit as date,  e.DateEnd as dateEnd, e.numberPeople, l.Name as locate, e.logistics FROM VisitasEvento e" +
+                    " left join Usuarios u  on e.numEmployed = u.Numero_Empleado" +
+                   " left join Cat_Locale l on e.locale  = l.Id_Locale", commandType: CommandType.Text).ToList();
                     db.Close();
                   return report;
                 }
@@ -122,10 +119,11 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    report = db.Query<ReportComedor>(" SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
-                    " from VisitasEvento s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado " +
-                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia"
+                    report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName, " +
+                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management FROM VisitasEvento e " +
+                    " left join Usuarios u  on e.numEmployed = u.Numero_Empleado " +
+                    " left join Cat_Locale l on e.locale  = l.Id_Locale" +
+                    " left join Cat_Managements cm on e.management = cm.Id_Management"
                    , commandType: CommandType.Text).ToList();
                     db.Close();
                     return report;
@@ -142,6 +140,35 @@ namespace compras.BD
             }
         }
 
+        public List<string> GetServicesEvento(int idEvent)
+        {
+            try
+            {
+                List<string> report = new List<string>(); 
+                
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@idEvent", idEvent);
+                    report = db.Query<string>(" select cs.Description from Services_Event se " +
+                    " INNER JOIN Cat_Servicios cs  on cs.Id_Servicios_Eventos = se.service " +
+                    " where se.event= @idEvent "
+                   , queryParameters, commandType: CommandType.Text).ToList();
+                    db.Close();
+                    return report;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         public List<ReportComedor> GetReportsEvento(DateTime initDate, DateTime endDate)
         {
             try

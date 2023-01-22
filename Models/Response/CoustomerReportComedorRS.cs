@@ -20,7 +20,12 @@ namespace compras.Models
         public string comments { get; set; }
         public string service { get; set; }
         public List<string> serviceEvent { get; set; }
-
+        public string eventName { get; set; }
+        public DateTime dateEnd { get; set; }
+        public int numberPeople { get; set; }
+        public string locate { get; set; }
+        public string logistics { get; set; }
+        public string management { get; set; }
         public CoustomerReportComedorRS() { }
         public CoustomerReportComedorRS(string image, string name,
             string lastName, int numEmploye, DateTime date, string compañia, string comedor,
@@ -35,7 +40,6 @@ namespace compras.Models
             this.compañia = compañia;
             this.days = days;
             this.comments = comments;
-
 
         }
         public CoustomerReportComedorRS(string image, string name,
@@ -53,6 +57,28 @@ namespace compras.Models
             this.days = days;
             this.comments = comments;
             this.service = service;
+
+
+        }
+
+        public CoustomerReportComedorRS(string eventName, int numEmploye, string name,
+           string lastName,  DateTime date,  DateTime dateEnd, int numberPeople, string locate, string logistics, string management,
+           string days, string comments, List<string> service)
+        {
+            this.name = name;
+            this.numEmploye = numEmploye;
+            this.comedor = comedor;
+            this.lastName = lastName;
+            this.dateEnd = dateEnd;
+            this.date = date;
+            this.numberPeople = numberPeople;
+            this.locate = locate;
+            this.logistics = logistics;
+            this.management = management;
+            this.days = days;
+            this.comments = comments;
+            this.eventName = eventName;
+            this.serviceEvent = service;
 
 
         }

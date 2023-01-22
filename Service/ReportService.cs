@@ -20,7 +20,7 @@ namespace compras.Service
             ReportDAO report = new ReportDAO();
             responseDAO = report.GetReportsSalas();
             
-            response = assemblerRs(responseDAO);
+            response = assemblerRs(responseDAO, null);
   
             return response;
         }
@@ -29,10 +29,15 @@ namespace compras.Service
 
             List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
             List<ReportComedor> responseDAO = new List<ReportComedor>();
+            List<string> serviceEvent = new List<string>();
             ReportDAO report = new ReportDAO();
             responseDAO = report.GetReportsEvento();
-            
-            response = assemblerRs(responseDAO);
+            for(int i=0; i < responseDAO.Count; i++)
+            {
+                serviceEvent = report.GetServicesEvento(responseDAO[i].idVisitasEvento);
+                response = assemblerEventRs(responseDAO, serviceEvent);
+            }
+           
           
             return response;
         }
@@ -46,7 +51,7 @@ namespace compras.Service
             responseDAO = report.GetReportsComedor();
             //responseDAO.AddRange(report.GetReportsComedor());
             
-            response = assemblerRs(responseDAO);
+            response = assemblerRs(responseDAO, null);
 
             return response;
         }
@@ -64,7 +69,7 @@ namespace compras.Service
                 responseDAO = report.GetReportsComedor(dateInit, dateEnd);
                 //responseDAO.AddRange(report.t());
 
-                response = assemblerRs(responseDAO);
+                response = assemblerRs(responseDAO, null);
 
                 return response;
             }
@@ -112,7 +117,7 @@ namespace compras.Service
                 responseDAO = report.GetReportsEvento(dateInit, dateEnd);
                 //responseDAO.AddRange(report.GetReportsComedor());
 
-                response = assemblerRs(responseDAO);
+                response = assemblerRs(responseDAO, null);
                 replaceNameComedor(response);
                 return response;
             }
@@ -167,11 +172,19 @@ namespace compras.Service
                 }
             });
         }
-        public List<CoustomerReportComedorRS> assemblerRs(List<ReportComedor> responseDAO)
+        public List<CoustomerReportComedorRS> assemblerRs(List<ReportComedor> responseDAO , List<string> services)
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
             comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
              x.lastName, x.numEmployed, x.date,x.empresa, x.comedor,x.days,x.comments,x.service));
+            return comedorRs;
+        }
+        public List<CoustomerReportComedorRS> assemblerEventRs(List<ReportComedor> responseDAO, List<string> services)
+        {
+            List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
+            comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.eventName, x.numEmployed, x.name,
+           x.lastName, x.date,x.dateEnd, x.numberPeople, x.locate,x.logistics, x.management,
+          x.days, x.comments, services));
             return comedorRs;
         }
         public List<CoustomerReportComedorRS> assemblerSalaRs(List<ReportComedor> responseDAO)

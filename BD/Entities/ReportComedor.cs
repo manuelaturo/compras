@@ -21,7 +21,13 @@ namespace compras.BD
         public string eventName { get; set; }
         public string locale { get; set; }
         public string logistic { get; set; }
-        public string gestion { get; set; }
-        
+        public string gestion { get; set; } 
+        public int idVisitasEvento { get; set; }
+        public DateTime dateEnd { get; set; }
+        public int numberPeople { get; set; }
+        public string locate { get; set; }
+        public string logistics { get; set; }
+        public string management { get; set; }
+       
     }
 }
