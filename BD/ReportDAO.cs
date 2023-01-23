@@ -120,10 +120,11 @@ namespace compras.BD
                 {
                     db.Open();
                     report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, u.nombre as name, u.Apellido_Paterno + u.Apellido_Materno as lastName, " +
-                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management FROM VisitasEvento e " +
+                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management, cc.Nombre as compañia FROM VisitasEvento e " +
                     " left join Usuarios u  on e.numEmployed = u.Numero_Empleado " +
                     " left join Cat_Locale l on e.locale  = l.Id_Locale" +
-                    " left join Cat_Managements cm on e.management = cm.Id_Management"
+                    " left join Cat_Managements cm on e.management = cm.Id_Management" +
+                    " left join Cat_Compañias cc on u.Compañia = cc.idCompañia"
                    , commandType: CommandType.Text).ToList();
                     db.Close();
                     return report;

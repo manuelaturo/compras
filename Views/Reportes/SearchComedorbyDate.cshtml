@@ -1,7 +1,7 @@
 ﻿@model List<compras.Models.CoustomerReportComedorRS>
 
 @{
-    ViewBag.Title = "ReportesComedor";
+    ViewBag.Title = "SearchComedorbyDate";
 }
 
 <!DOCTYPE html>
@@ -27,30 +27,20 @@
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
-
     <!-- Toastr -->
-    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-    <script src="~/plugins/toastr/toastr.min.js"></script>
-    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-
-    <script src="~/plugins/toastr/toastr.min.js"></script>
-    @*Dentro de carpeta:*@
-
-    <!-- Toastr -->
-    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-
-    <script src="~/plugins/toastr/toastr.min.js"></script>
+    <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
+
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
@@ -220,18 +210,18 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Usuarios del comedor</h1>
+                        <div class="col-sm-12">
+                            <h1 class="m-0">Comedor</h1>
                         </div><!-- /.col -->
+                        <div class="col-sm-12">
 
+                        </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
@@ -299,7 +289,7 @@
                                                 <th>Empresa</th>
                                                 <th>Comedor</th>
                                                 <th>Días de acceso</th>
-
+                                                <th>Comentario</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -316,9 +306,7 @@
                                                     <td>@Html.DisplayFor(modelItem => item.empresa)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.comedor)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.days)</td>
-
-
-
+                                                    <td>@Html.DisplayFor(modelItem => item.comments)</td>
                                                 </tr>
 
                                             }
@@ -333,7 +321,7 @@
                                                 <th>Empresa</th>
                                                 <th>Comedor</th>
                                                 <th>Fecha</th>
-
+                                                <th>Comentario</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -399,7 +387,6 @@
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.js"></script>
 
-    <script src="../dist/js/adminlte.min.js"></script>
 
 
 
@@ -488,35 +475,31 @@
 
             if (Desde != "") {
                 if (Hasta != null && Hasta != "") {
-                    const params = {
-                        datesD: Desde,
-                        datesH: Hasta
-                    };
-                    fetch(`/Reportes/SearchComedorbyDate?datesD=${Desde}&datesH=${Hasta}`, {
-                                method: 'GET',
-                                headers: {
-                                    'Content-type': 'application/json',
-                                }
-                                //params : par
-                            }).then(function (response) {
-                                console.log(response.status)
-                                if (response.status == 200) {
-                                    console.log("exito")
-                                    console.log("exito")
-                                    console.log(response.url)
-                                    window.location = response.url
-                                    toastr.success('Registro agregado');
+                    fetch(`/Reportes/SearchComedorbyDate`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            datesD: Desde,
+                            datesH: Hasta
+                        })
+                    }).then(function (response) {
+                        console.log(response.status)
+                        if (response.status == 200) {
+                            console.log("exito")
+                            toastr.success('Registro agregado');
 
-                                } else {
-                                    console.log("error")
-                                    toastr.error('Error al registrar Comedor');
-                                }
-                            }).then(data => {
-                                console.log("exito")
-                            }).catch(function (error) {
-                                console.log("error", error)
-                                toastr.error('Error al registrar Comedor');
-                            });
+                        } else {
+                            console.log("error")
+                            toastr.error('Error al registrar Comedor');
+                        }
+                    }).then(data => {
+                        console.log("exito")
+                    }).catch(function (error) {
+                        console.log("error", error)
+                        toastr.error('Error al registrar Comedor');
+                    });
                 } else {
                     toastr.warning('Indique fin de rango de fecha');
                 }
@@ -525,9 +508,6 @@
             }
         }
     </script>
-
-
-
 
 </body>
 </html>

@@ -289,12 +289,16 @@
                                         <thead>
                                             <tr>
 
+                                                <th>Evento</th>
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
-                                                <th>Apellidos</th>
                                                 <th>Empresa</th>
-                                                <th>Evento</th>
                                                 <th>Fecha</th>
+                                                <th>Personas</th>
+                                                <th>Lugar</th>
+                                                <th>Contacto Logistica</th>
+                                                <th>Gestión</th>
+                                                <th>Servicios</th>
 
                                             </tr>
                                         </thead>
@@ -303,25 +307,37 @@
                                             {
                                                 <tr>
 
+                                                    <td>@Html.DisplayFor(modelItem => item.eventName)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.numEmploye)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.name)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.lastName)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.empresa)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.comedor)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.date)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.name) @Html.DisplayFor(modelItem => item.lastName)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.compañia)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.date) - @Html.DisplayFor(modelItem => item.dateEnd)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.numberPeople)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.locate)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.logistics)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.management)</td>
+                                                    <td>
+                                                        @foreach (var service in item.serviceEvent)
+                                                        {
+                                                            <p>@Html.DisplayFor(modelItem => service)</p>
+                                                        }
+                                                    </td>
 
                                                 </tr>
                                             }
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>Evento</th>
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
-                                                <th>Apellidos</th>
                                                 <th>Empresa</th>
-                                                <th>Evento</th>
                                                 <th>Fecha</th>
-
+                                                <th>Personas</th>
+                                                <th>Lugar</th>
+                                                <th>Contacto Logistica</th>
+                                                <th>Gestión</th>
+                                                <th>Servicios</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -386,8 +402,6 @@
     <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.js"></script>
-
-    <script src="../dist/js/adminlte.min.js"></script>
 
 
 
@@ -488,23 +502,23 @@
                             console.log("exito")
                             console.log(response.url)
                             window.location = response.url
-                            //toastr.success('Registro Evento');
+                            //       toastr.success('Registro Evento');
 
                         } else {
                             console.log("error")
-                           // toastr.error('Error al registrar Evento');
+                            //      toastr.error('Error al registrar Evento');
                         }
                     }).then(data => {
                         console.log("exito")
                     }).catch(function (error) {
-                        console.log("error", error)
-                   //     toastr.error('Error al registrar Evento');
+                        // console.log("error", error)
+                        //    toastr.error('Error al registrar Evento');
                     });
                 } else {
-                 //   toastr.warning('Indique fin de rango de fecha');
+                    //  toastr.warning('Indique fin de rango de fecha');
                 }
             } else {
-               // toastr.warning('Indique Inicio de rango de fecha');
+                //toastr.warning('Indique Inicio de rango de fecha');
             }
         }
     </script>
@@ -514,3 +528,6 @@
 
 </body>
 </html>
+
+
+

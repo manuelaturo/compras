@@ -63,7 +63,7 @@ namespace compras.Models
 
         public CoustomerReportComedorRS(string eventName, int numEmploye, string name,
            string lastName,  DateTime date,  DateTime dateEnd, int numberPeople, string locate, string logistics, string management,
-           string days, string comments, List<string> service)
+           string days, string comments, List<string> service, string compañia)
         {
             this.name = name;
             this.numEmploye = numEmploye;
@@ -79,7 +79,7 @@ namespace compras.Models
             this.comments = comments;
             this.eventName = eventName;
             this.serviceEvent = service;
-
+            this.compañia = compañia;
 
         }
     }

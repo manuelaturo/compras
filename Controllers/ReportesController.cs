@@ -1,4 +1,5 @@
 ﻿using compras.Service;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,15 @@ namespace compras.Controllers
     public class ReportesController : Controller
     {
         // GET: Reportes
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult SearchComedorbyDate(string datesD, string datesH)
         {
-
+            log.Info("date datesD: " + datesD);
+            log.Info("date datesH: " + datesH);
             List<compras.Models.CoustomerReportComedorRS> reportComedorRs = new List<compras.Models.CoustomerReportComedorRS>();
             ReportService reportService = new ReportService();
             reportComedorRs = reportService.getGeneralReportComedor(datesD, datesH);

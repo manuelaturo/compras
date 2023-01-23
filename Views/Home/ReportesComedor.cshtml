@@ -216,7 +216,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-12">
-                            <h1 class="m-0">Usuarios</h1>
+                            <h1 class="m-0">Comedor</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-12">
 
@@ -288,7 +288,7 @@
                                                 <th>Empresa</th>
                                                 <th>Comedor</th>
                                                 <th>Días de acceso</th>
-
+                                                <th>Comentario</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -305,9 +305,7 @@
                                                     <td>@Html.DisplayFor(modelItem => item.empresa)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.comedor)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.days)</td>
-
-
-
+                                                    <td>@Html.DisplayFor(modelItem => item.comments)</td>
                                                 </tr>
 
                                             }
@@ -322,7 +320,7 @@
                                                 <th>Empresa</th>
                                                 <th>Comedor</th>
                                                 <th>Fecha</th>
-
+                                                <th>Comentario</th>
                                             </tr>
                                         </tfoot>
                                     </table>

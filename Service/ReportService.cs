@@ -35,9 +35,8 @@ namespace compras.Service
             for(int i=0; i < responseDAO.Count; i++)
             {
                 serviceEvent = report.GetServicesEvento(responseDAO[i].idVisitasEvento);
-                response = assemblerEventRs(responseDAO, serviceEvent);
+                response.Add(assemblerEventRs(responseDAO[i], serviceEvent));
             }
-           
           
             return response;
         }
@@ -60,8 +59,8 @@ namespace compras.Service
         {
             try
             {
-                var dateInit = DateTime.Parse(initDate);
-                var dateEnd = DateTime.Parse(endDate);
+                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateEnd =  DateTime.ParseExact(endDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
 
                 List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
                 List<ReportComedor> responseDAO = new List<ReportComedor>();
@@ -84,8 +83,8 @@ namespace compras.Service
         {
             try
             {
-                var dateInit = DateTime.Parse(initDate);
-                var dateEnd = DateTime.Parse(endDate);
+                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
 
                 List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
                 List<ReportComedor> responseDAO = new List<ReportComedor>();
@@ -108,8 +107,8 @@ namespace compras.Service
         {
             try
             {
-                var dateInit = DateTime.Parse(initDate);
-                var dateEnd = DateTime.Parse(endDate);
+                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
 
                 List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
                 List<ReportComedor> responseDAO = new List<ReportComedor>();
@@ -179,12 +178,12 @@ namespace compras.Service
              x.lastName, x.numEmployed, x.date,x.empresa, x.comedor,x.days,x.comments,x.service));
             return comedorRs;
         }
-        public List<CoustomerReportComedorRS> assemblerEventRs(List<ReportComedor> responseDAO, List<string> services)
+        public CoustomerReportComedorRS assemblerEventRs(ReportComedor responseDAO, List<string> services)
         {
-            List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
-            comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.eventName, x.numEmployed, x.name,
-           x.lastName, x.date,x.dateEnd, x.numberPeople, x.locate,x.logistics, x.management,
-          x.days, x.comments, services));
+            CoustomerReportComedorRS comedorRs = new CoustomerReportComedorRS(responseDAO.eventName, responseDAO.numEmployed, responseDAO.name,
+            responseDAO.lastName, responseDAO.date, responseDAO.dateEnd, responseDAO.numberPeople, responseDAO.locate, responseDAO.logistics, responseDAO.management,
+            responseDAO.days, responseDAO.comments, services, responseDAO.compañia);
+
             return comedorRs;
         }
         public List<CoustomerReportComedorRS> assemblerSalaRs(List<ReportComedor> responseDAO)

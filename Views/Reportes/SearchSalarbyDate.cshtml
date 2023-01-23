@@ -297,7 +297,7 @@
                                                 <th>Empresa</th>
                                                 <th>Sala</th>
                                                 <th>Fecha</th>
-
+                                                <th>Servicios</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -311,7 +311,7 @@
                                                     <td>@Html.DisplayFor(modelItem => item.empresa)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.comedor)</td>
                                                     <td>@Html.DisplayFor(modelItem => item.date)</td>
-
+                                                    <td>@Html.DisplayFor(modelItem => item.service)</td>
                                                 </tr>
                                             }
                                         </tbody>
@@ -323,7 +323,7 @@
                                                 <th>Empresa</th>
                                                 <th>Sala</th>
                                                 <th>Fecha</th>
-
+                                                <th>Servicios</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -386,8 +386,6 @@
     <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../dist/js/adminlte.js"></script>
-
-    <script src="../dist/js/adminlte.min.js"></script>
 
 
 
@@ -483,9 +481,9 @@
                     }).then(function (response) {
                         console.log(response.status)
                         if (response.status == 200) {
+                            console.log("exito")
                             console.log(response.url)
                             window.location = response.url
-                            console.log("exito")
                             toastr.success('Registro Sala');
 
                         } else {
@@ -509,9 +507,5 @@
 
     </script>
 
-
-
-
 </body>
 </html>
-
