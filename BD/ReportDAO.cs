@@ -51,8 +51,8 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
-                    " ,cs.Description, csr.Description from VisitasSalas s left" +
+                    report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno +' '+ u.Apellido_Materno as lastName, cc.nombre as Empresa" +
+                    " ,cs.Description, csr.Description, s.correo as email,s.NombreEvento as eventName from VisitasSalas s left" +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
                     " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
                     " inner join Cat_Sala cs on s.IdSala = cs.idCatSala "+
@@ -86,8 +86,8 @@ namespace compras.BD
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
 
-                    report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
-                    " ,cs.Description, csr.Description from VisitasSalas s left" +
+                    report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date, u.nombre as name,u.Apellido_Paterno + ' ' + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
+                    " ,cs.Description, csr.Description,s.correo as email,s.NombreEvento as eventName from VisitasSalas s  left" +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
                     " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
                     " inner join Cat_Sala cs on s.IdSala = cs.idCatSala " +

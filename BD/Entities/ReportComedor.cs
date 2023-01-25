@@ -28,6 +28,7 @@ namespace compras.BD
         public string locate { get; set; }
         public string logistics { get; set; }
         public string management { get; set; }
+        public string email { get; set; }
        
     }
 }
