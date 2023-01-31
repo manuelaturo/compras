@@ -1,4 +1,5 @@
 ﻿using compras.Models.Request;
+using compras.Models.Response;
 using compras.Service;
 using log4net;
 using System;
@@ -20,12 +21,11 @@ namespace compras.Controllers
             log.Info("inicio compras");
             return View();
         }
-        public ActionResult CreateComedor(ProductsRQ product)
+        public ActionResult CreateProduct(ProductsRQ product)
         {
             try
             {
 
-                log.Info("inicio CreateComedor");
                 ProductService comedorService = new ProductService();
 
                 if (comedorService.addProduct(product))
@@ -42,5 +42,41 @@ namespace compras.Controllers
             }
 
         }
+        public ActionResult UpdateComedor(ProductsRQ product)
+        {
+            try
+            {
+
+                ProductService comedorService = new ProductService();
+
+                if (comedorService.addProduct(product))
+                {
+                    return RedirectToAction("Index");
+                }
+
+                return new HttpStatusCodeResult((int)HttpStatusCode.NoContent);
+
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
+            }
+
+        }
+        public ActionResult GetProdcuts()
+        {
+            try
+            {
+                List<ProductsRS> rs = new List<ProductsRS>();
+                ProductService productService = new ProductService();
+                rs = productService.GetProducts();
+                return View(rs);
+            }
+            catch (Exception ex)
+            {
+                return new HttpStatusCodeResult((int)HttpStatusCode.InternalServerError);
+            }
+        }
+
     }
 }

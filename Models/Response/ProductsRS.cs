@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace compras.BD.Entities
+namespace compras.Models.Response
 {
-    public class ProductEntity
+    public class ProductsRS
     {
         public int idProduct { get; set; }
         public string nameProduct { get; set; }
@@ -21,25 +21,9 @@ namespace compras.BD.Entities
         public DateTime updaeDate { get; set; }
         public DateTime addDate { get; set; }
 
-        public ProductEntity()
-        {
-        }
-
-        public ProductEntity(string nameProduct, string decription, string category,
-         string keyProduct,int item,string folio, string typeimage,string image, int addUser)
-        {
-            this.nameProduct = nameProduct;
-            this.decription = decription;
-            this.category = category;
-            this.keyProduct = keyProduct;
-            this.item = item;
-            this.folio = folio;
-            this.typeimage = typeimage;
-            this.image = image;
-            this.addUser = addUser;
-        }
-        public ProductEntity(int idProduct, string nameProduct, string decription, string category,
-         string keyProduct, int item, string folio, string typeimage, string image, int addUser)
+        public ProductsRS() { }
+        public ProductsRS(int idProduct, string nameProduct, string decription, string category,
+        string keyProduct, int item, string folio, string typeimage, string image, int addUser)
         {
             this.idProduct = idProduct;
             this.nameProduct = nameProduct;
@@ -52,7 +36,7 @@ namespace compras.BD.Entities
             this.image = image;
             this.addUser = addUser;
         }
+
     }
 
- 
 }

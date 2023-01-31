@@ -5,9 +5,10 @@ using System.Web;
 
 namespace compras.Models.Request
 {
-    public class ProductsRQ
+    public class UpdateProdcuts
     {
-        public string nameProduct { get; set; }
+        public int idProduct { get; set; }
+        public string namePrduct { get; set; }
         public string decription { get; set; }
         public string category { get; set; }
         public string keyProduct { get; set; }
@@ -16,6 +17,6 @@ namespace compras.Models.Request
         public string folio { get; set; }
         public string typeimage { get; set; }
         public string image { get; set; }
-        public List<int> users{ get; set; }
+        public List<int> users { get; set; }
     }
 }
