@@ -173,7 +173,9 @@
     </Compile>
     <Compile Include="Models\Request\CoustomerReportComedorRQ.cs" />
     <Compile Include="Models\Request\ProductsRQ.cs" />
+    <Compile Include="Models\Request\UpdateProdcuts.cs" />
     <Compile Include="Models\Response\CoustomerReportComedorRS.cs" />
+    <Compile Include="Models\Response\ProductsRS.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AutenticacionService.cs" />
