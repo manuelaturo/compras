@@ -214,7 +214,7 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                     report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
+                     report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image,s.Name,s.LastName,s.company, cc.nombre as Empresa" +
                     ",s.comments  FROM VisitasComedor s left join Usuarios u " +
                     "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
                     " on s.numEmployed = u.Numero_Empleado " +
@@ -245,7 +245,7 @@ namespace compras.BD
                     var queryParameters = new DynamicParameters();
                     queryParameters.Add("@dateInit", dateInit);
                     queryParameters.Add("@dateEnd", dateEnd);
-                    report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image, u.nombre as name,u.Apellido_Paterno + u.Apellido_Materno as lastName, cc.nombre as Empresa" +
+                    report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image, s.Name,s.LastName,s.company, cc.nombre as Empresa" +
                     ",s.comments  FROM VisitasComedor s left join Usuarios u " +
                     "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
                     " on s.numEmployed = u.Numero_Empleado " +
