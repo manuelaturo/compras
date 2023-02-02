@@ -29,6 +29,8 @@ namespace compras.BD
         public string logistics { get; set; }
         public string management { get; set; }
         public string email { get; set; }
+        public string placeEvent { get; set; }
+        public string meetType { get; set; }
         
        
     }
