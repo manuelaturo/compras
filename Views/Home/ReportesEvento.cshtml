@@ -304,25 +304,26 @@
                                         <tbody>
                                             @foreach (var item in Model)
                                             {
-                                                <tr>
+                                            <tr>
+                                               
 
-                                                    <td>@Html.DisplayFor(modelItem => item.eventName)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.numEmploye)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.name) @Html.DisplayFor(modelItem => item.lastName)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.compañia)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.date) - @Html.DisplayFor(modelItem => item.dateEnd)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.numberPeople)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.locate)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.logistics)</td>
-                                                    <td>@Html.DisplayFor(modelItem => item.management)</td>
-                                                    <td>
-                                                        @foreach (var service in item.serviceEvent)
-                                                        {
-                                                            <p>@Html.DisplayFor(modelItem => service)</p>
-                                                        }
-                                                    </td>
+                                                <td> <a> @Html.ActionLink(item.eventName, "Index", "EventosDetails", new { id = 1 }, null) </a></td>
+                                                <td>@Html.DisplayFor(modelItem => item.numEmploye)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.name) @Html.DisplayFor(modelItem => item.lastName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.compañia)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.date) - @Html.DisplayFor(modelItem => item.dateEnd)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.numberPeople)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.locate)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.logistics)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.management)</td>
+                                                <td>
+                                                    @foreach (var service in item.serviceEvent)
+                                                    {
+                                                        <p>@Html.DisplayFor(modelItem => service)</p>
+                                                    }
+                                                </td>
 
-                                                </tr>
+                                            </tr>
                                             }
                                         </tbody>
                                         <tfoot>
