@@ -16,7 +16,7 @@ namespace compras.BD
        public DateTime date { get; set; }
        public string empresa { get; set; }
         public  string days { get; set; }
-        public  string comments { get; set; }
+        public  string comennts { get; set; }
         public  string service { get; set; }
         public string eventName { get; set; }
         public string locale { get; set; }
@@ -29,6 +29,9 @@ namespace compras.BD
         public string logistics { get; set; }
         public string management { get; set; }
         public string email { get; set; }
+        public string placeEvent { get; set; }
+        public string meetType { get; set; }
+        
        
     }
 }
