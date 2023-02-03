@@ -7,6 +7,7 @@ namespace compras.BD
 {
     public class ReportComedor
     {
+        public int id { get; set; }
         public string image { get; set; }
         public string autorizationName { get; set; }
         public string name { get; set; }
