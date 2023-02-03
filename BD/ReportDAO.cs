@@ -124,7 +124,8 @@ namespace compras.BD
                 {
                     db.Open();
                     report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, e.Name,e.LastName,e.placeEvent, " +
-                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management,e.comennts ,cc.Nombre as compañia FROM VisitasEvento e " +
+                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management,e.comennts as comments ,cc.Nombre as compañia," +
+                    "e.autorizationName,e.numberPeople FROM VisitasEvento e " +
                     " left join Usuarios u  on e.numEmployed = u.Numero_Empleado " +
                     " left join Cat_Locale l on e.locale  = l.Id_Locale" +
                     " left join Cat_Managements cm on e.management = cm.Id_Management" +
@@ -187,10 +188,13 @@ namespace compras.BD
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
 
-                    report = db.Query<ReportComedor>(" SELECT s.IdEvento as comedor, s.numEmployed, s.dateInit as date, s.Name,s.LastName, cc.nombre as Empresa,s.placeEvent" +
-                    " from VisitasEvento s left" +
-                    " join Usuarios u  on s.numEmployed = u.Numero_Empleado " +
-                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
+                    report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, e.Name,e.LastName,e.placeEvent, " +
+                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management,e.comennts as comments ,cc.Nombre as compañia," +
+                    "e.autorizationName,e.numberPeople FROM VisitasEvento e " +
+                    " left join Usuarios u  on e.numEmployed = u.Numero_Empleado " +
+                    " left join Cat_Locale l on e.locale  = l.Id_Locale" +
+                    " left join Cat_Managements cm on e.management = cm.Id_Management" +
+                    " left join Cat_Compañias cc on u.Compañia = cc.idCompañia"+
                     " where s.dateInit  between @dateInit   and @dateEnd"
                    , queryParameters,commandType: CommandType.Text).ToList();
                     db.Close();

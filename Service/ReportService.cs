@@ -182,7 +182,7 @@ namespace compras.Service
         {
             CoustomerReportComedorRS comedorRs = new CoustomerReportComedorRS(responseDAO.eventName, responseDAO.numEmployed, responseDAO.name,
             responseDAO.lastName, responseDAO.date, responseDAO.dateEnd, responseDAO.numberPeople, responseDAO.locate, responseDAO.logistics, responseDAO.management,
-            responseDAO.days, responseDAO.comments, services, getCompany(responseDAO.numEmployed, responseDAO.compañia), responseDAO.placeEvent);
+            responseDAO.days, responseDAO.comments, services, getCompany(responseDAO.numEmployed, responseDAO.compañia), responseDAO.placeEvent,responseDAO.autorizationName);
 
             return comedorRs;
         }
