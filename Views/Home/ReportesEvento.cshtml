@@ -307,9 +307,9 @@
                                             <tr>
                                                
 
-                                                <td> <a> @Html.ActionLink(item.eventName, "Index", "EventosDetails", new { id = 1 }, null) </a></td>
+                                                <td> <a> @Html.ActionLink(item.eventName, "Index", "EventosDetails", new { id = item.idVisitasEvento }, null) </a></td>
                                                 <td>@Html.DisplayFor(modelItem => item.numEmploye)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.name) @Html.DisplayFor(modelItem => item.lastName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.name) </td>
                                                 <td>@Html.DisplayFor(modelItem => item.compañia)</td>
                                                 <td>@Html.DisplayFor(modelItem => item.date) - @Html.DisplayFor(modelItem => item.dateEnd)</td>
                                                 <td>@Html.DisplayFor(modelItem => item.numberPeople)</td>
@@ -490,7 +490,7 @@
 
             if (Desde != "") {
                 if (Hasta != null && Hasta != "") {
-                    fetch(`/Reportes/SearchEventobyDate?datesD=${Desde}&datesH=${Hasta}`, {
+                    fetch(`/compras/Reportes/SearchEventobyDate?datesD=${Desde}&datesH=${Hasta}`, {
                         method: 'GET',
                         headers: {
                             'Content-type': 'application/json',

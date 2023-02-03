@@ -231,6 +231,7 @@
     <Content Include="Views\Reportes\SearchSalarbyDate.cshtml" />
     <Content Include="Views\Reportes\SearchComedorbyDate.cshtml" />
     <Content Include="Views\EventosDetails\Index.cshtml" />
+    <Content Include="Views\EventosDetails\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

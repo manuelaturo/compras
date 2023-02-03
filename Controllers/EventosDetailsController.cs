@@ -1,4 +1,5 @@
-﻿using System;
+﻿using compras.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace compras.Controllers
         // GET: EventosDetails
         public ActionResult Index(int id)
         {
-            return View();
+            ReportService service = new ReportService();
+
+            return View(service.getDetailsEvent(id));
         }
 
         // GET: EventosDetails/Details/5

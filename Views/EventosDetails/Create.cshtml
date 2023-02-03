@@ -1,0 +1,106 @@
+﻿@model compras.Models.Request.UpdateProdcuts
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div>
+        <h4>UpdateProdcuts</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.idProduct)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.idProduct)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.namePrduct)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.namePrduct)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.decription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.decription)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.category)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.category)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.keyProduct)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.keyProduct)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.item)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.item)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.addUser)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.addUser)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.folio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.folio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.typeimage)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.typeimage)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.image)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.image)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

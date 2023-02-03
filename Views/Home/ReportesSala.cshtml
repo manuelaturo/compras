@@ -290,7 +290,7 @@
                                     <table id="tablausuarios" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-
+                                                <th>Folio</th>
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
                                                 <th>Empresa</th>
@@ -325,6 +325,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
+                                                <th>Folio</th>
                                                 <th>Número Empleado</th>
                                                 <th>Nombre</th>
                                                 <th>Empresa</th>
@@ -485,7 +486,7 @@
 
             if (Desde != "") {
                 if (Hasta != null && Hasta != "") {
-                    fetch(`/Reportes/SearchSalarbyDate?datesD=${Desde}&datesH=${Hasta}`, {
+                    fetch(`/compras/Reportes/SearchSalarbyDate?datesD=${Desde}&datesH=${Hasta}`, {
                         method: 'GET',
                         headers: {
                             'Content-type': 'application/json',
