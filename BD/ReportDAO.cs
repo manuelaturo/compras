@@ -52,7 +52,7 @@ namespace compras.BD
                 {
                     db.Open();
                     report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date,s.Name,s.LastName, cc.nombre as Empresa" +
-                    " ,cs.Description, csr.Description,s.correo as email,s.NombreEvento as eventName,mt.name as meetType from VisitasSalas s  left" +
+                    " ,cs.Description, csr.Description,s.correo as email,s.NombreEvento as eventName,s.comments,mt.name as meetType from VisitasSalas s  left" +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
                     " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
                     " inner join Cat_Sala cs on s.IdSala = cs.idCatSala " +
@@ -121,8 +121,8 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, s.Name,s.LastName,e.placeEvent " +
-                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management, cc.Nombre as compañia FROM VisitasEvento e " +
+                    report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, e.Name,e.LastName,e.placeEvent, " +
+                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management,e.comennts ,cc.Nombre as compañia FROM VisitasEvento e " +
                     " left join Usuarios u  on e.numEmployed = u.Numero_Empleado " +
                     " left join Cat_Locale l on e.locale  = l.Id_Locale" +
                     " left join Cat_Managements cm on e.management = cm.Id_Management" +
