@@ -175,14 +175,14 @@ namespace compras.Service
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
             comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
-             x.lastName, x.numEmployed, x.date, x.empresa, x.comedor, x.days, x.comments, x.service, x.email, x.eventName, x.meetType, x.nameSalaDetail));
+             x.lastName, x.numEmployed, x.date, getCompany(x.numEmployed, x.empresa), x.comedor, x.days, x.comments, x.service, x.email, x.eventName, x.meetType, x.nameSalaDetail));
             return comedorRs;
         }
         public CoustomerReportComedorRS assemblerEventRs(ReportComedor responseDAO, List<string> services)
         {
             CoustomerReportComedorRS comedorRs = new CoustomerReportComedorRS(responseDAO.eventName, responseDAO.numEmployed, responseDAO.name,
             responseDAO.lastName, responseDAO.date, responseDAO.dateEnd, responseDAO.numberPeople, responseDAO.locate, responseDAO.logistics, responseDAO.management,
-            responseDAO.days, responseDAO.comments, services, responseDAO.compañia, responseDAO.placeEvent);
+            responseDAO.days, responseDAO.comments, services, getCompany(responseDAO.numEmployed, responseDAO.compañia), responseDAO.placeEvent);
 
             return comedorRs;
         }
@@ -190,8 +190,44 @@ namespace compras.Service
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
             comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
-             x.lastName, x.numEmployed, x.date, x.empresa, x.comedor, x.days, x.comments, x.service,x.email,x.eventName,x.meetType,x.nameSalaDetail));
+             x.lastName, x.numEmployed, x.date, getCompany(x.numEmployed, x.empresa), x.comedor, x.days, x.comments, x.service,x.email,x.eventName,x.meetType,x.nameSalaDetail));
             return comedorRs;
+        }
+
+        private string getCompany(int numEmployed, string company)
+        {
+            if (company == null)
+            {
+                string empresa;
+                if (numEmployed!= null && numEmployed.ToString().Length > 2)
+                {
+                     empresa = numEmployed.ToString().Substring(0, 2);
+                }
+                else
+                {
+                    return "Sin empresa";
+                }
+               
+
+
+                switch ((empresa))
+                {
+                    case "20":
+                        return "Peña Verde";
+                    case "30":
+                        return "General de Seguros";
+                    case "31":
+                        return  "General de Seguros";
+                    case "40":
+                        return  "Servicios Administrados Peña Verde";
+
+                    case "60":
+                        return "Call Center";
+                    default:
+                        return  "Sin empresa";
+                }
+            }
+            return company;
         }
 
 
