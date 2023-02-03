@@ -175,7 +175,8 @@ namespace compras.Service
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
             comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
-             x.lastName, x.numEmployed, x.date, getCompany(x.numEmployed, x.empresa), x.comedor, x.days, x.comments, x.service, x.email, x.eventName, x.meetType, x.nameSalaDetail));
+             x.lastName, x.numEmployed, x.date, getCompany(x.numEmployed, x.empresa), x.comedor, x.days, x.comments, 
+             x.service, x.email, x.eventName, x.meetType, x.nameSalaDetail,x.dateEnd,x.numberPeople));
             return comedorRs;
         }
         public CoustomerReportComedorRS assemblerEventRs(ReportComedor responseDAO, List<string> services)
@@ -190,7 +191,8 @@ namespace compras.Service
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
             comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
-             x.lastName, x.numEmployed, x.date, getCompany(x.numEmployed, x.empresa), x.comedor, x.days, x.comments, x.service,x.email,x.eventName,x.meetType,x.nameSalaDetail));
+             x.lastName, x.numEmployed, x.date, getCompany(x.numEmployed, x.empresa), x.comedor,
+             x.days, x.comments, x.service,x.email,x.eventName,x.meetType,x.nameSalaDetail,x.dateEnd,x.numberPeople));
             return comedorRs;
         }
 

@@ -49,7 +49,8 @@ namespace compras.Models
         }
         public CoustomerReportComedorRS(string image, string name,
            string lastName, int numEmploye, DateTime date, string compañia, string comedor,
-           string days, string comments,string service,string email,string eventName,string meetType,string nameSalaDetail)
+           string days, string comments,string service,string email,string eventName,
+           string meetType,string nameSalaDetail, DateTime dateEnd,int numberPeople)
         {
             this.image = image;
             this.name = name;
@@ -66,6 +67,8 @@ namespace compras.Models
             this.email = email;
             this.meetType = meetType;
             this.nameSalaDetail = nameSalaDetail;
+            this.dateEnd = dateEnd;
+            this.numberPeople = numberPeople;
 
         }
 
