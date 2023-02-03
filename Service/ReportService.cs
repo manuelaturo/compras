@@ -174,7 +174,7 @@ namespace compras.Service
         public List<CoustomerReportComedorRS> assemblerRs(List<ReportComedor> responseDAO, List<string> services)
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
-            comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
+            comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.id,x.image, x.name,
              x.lastName, x.numEmployed, x.date, getCompany(x.numEmployed, x.empresa), x.comedor, x.days, x.comments, 
              x.service, x.email, x.eventName, x.meetType, x.nameSalaDetail,x.dateEnd,x.numberPeople));
             return comedorRs;
@@ -190,7 +190,7 @@ namespace compras.Service
         public List<CoustomerReportComedorRS> assemblerSalaRs(List<ReportComedor> responseDAO)
         {
             List<CoustomerReportComedorRS> comedorRs = new List<CoustomerReportComedorRS>();
-            comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.image, x.name,
+            comedorRs = responseDAO.ConvertAll(x => new CoustomerReportComedorRS(x.id,x.image, x.name,
              x.lastName, x.numEmployed, x.date, getCompany(x.numEmployed, x.empresa), x.comedor,
              x.days, x.comments, x.service,x.email,x.eventName,x.meetType,x.nameSalaDetail,x.dateEnd,x.numberPeople));
             return comedorRs;

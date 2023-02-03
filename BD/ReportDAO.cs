@@ -51,7 +51,7 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date,s.dateEnd, s.Name,s.numberPeople,s.LastName, cc.nombre as Empresa" +
+                    report = db.Query<ReportComedor>("SELECT idVisitasSalas as id, cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date,s.dateEnd, s.Name,s.numberPeople,s.LastName, cc.nombre as Empresa" +
                     " ,cs.Description, csr.Description,s.correo as email,s.NombreEvento as eventName,s.comments,mt.name as meetType,csd.NombreSalaDetail as nameSalaDetail  from VisitasSalas s  left" +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
                     " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
@@ -88,7 +88,7 @@ namespace compras.BD
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
 
-                    report = db.Query<ReportComedor>("SELECT cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date,s.dateEnd, s.Name,s.numberPeople,s.LastName, cc.nombre as Empresa" +
+                    report = db.Query<ReportComedor>("SELECT s.idVisitasSalas as id, cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date,s.dateEnd, s.Name,s.numberPeople,s.LastName, cc.nombre as Empresa" +
                     " ,cs.Description, csr.Description,s.correo as email,s.NombreEvento as eventName,s.comments,mt.name as meetType,csd.NombreSalaDetail as nameSalaDetail  from VisitasSalas s  left" +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado" +
                     " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
@@ -123,7 +123,7 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, e.Name,e.LastName,e.placeEvent, " +
+                    report = db.Query<ReportComedor>(" SELECT idVisitasEvento as id, e.idVisitasEvento, e.eventName, e.numEmployed, e.Name,e.LastName,e.placeEvent, " +
                     " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management,e.comennts as comments ,cc.Nombre as compañia," +
                     "e.autorizationName,e.numberPeople FROM VisitasEvento e " +
                     " left join Usuarios u  on e.numEmployed = u.Numero_Empleado " +
@@ -188,7 +188,7 @@ namespace compras.BD
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
 
-                    report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, e.Name,e.LastName,e.placeEvent, " +
+                    report = db.Query<ReportComedor>(" SELECT s.idVisitasEvento as id, e.idVisitasEvento, e.eventName, e.numEmployed, e.Name,e.LastName,e.placeEvent, " +
                     " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management,e.comennts as comments ,cc.Nombre as compañia," +
                     "e.autorizationName,e.numberPeople FROM VisitasEvento e " +
                     " left join Usuarios u  on e.numEmployed = u.Numero_Empleado " +
@@ -222,7 +222,7 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                     report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image,s.Name,s.LastName, cc.nombre as Empresa" +
+                     report = db.Query<ReportComedor>("SELECT s.idVisitaComedor as id , ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image,s.Name,s.LastName, cc.nombre as Empresa" +
                     ",s.comments   FROM VisitasComedor s left join Usuarios u " +
                     " on s.numEmployed = u.Numero_Empleado " +
                     "left join  Cat_Compañias cc on s.company = cc.idCompañia " +
@@ -253,7 +253,7 @@ namespace compras.BD
                     var queryParameters = new DynamicParameters();
                     queryParameters.Add("@dateInit", dateInit);
                     queryParameters.Add("@dateEnd", dateEnd);
-                    report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image,s.Name,s.LastName, cc.nombre as Empresa" +
+                    report = db.Query<ReportComedor>("SELECT  s. idVisitaComedor as id, ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image,s.Name,s.LastName, cc.nombre as Empresa" +
                     ",s.comments  FROM VisitasComedor s left join Usuarios u " +
                     " on s.numEmployed = u.Numero_Empleado " +
                     "left join  Cat_Compañias cc on s.company = cc.idCompañia " +

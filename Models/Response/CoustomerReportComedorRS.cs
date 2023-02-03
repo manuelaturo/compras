@@ -7,6 +7,7 @@ namespace compras.Models
 {
     public class CoustomerReportComedorRS
     {
+        public int id { get; set; }
         public string image { get; set; }
 
         public string name { get; set; }
@@ -47,11 +48,12 @@ namespace compras.Models
             this.comments = comments;
 
         }
-        public CoustomerReportComedorRS(string image, string name,
+        public CoustomerReportComedorRS(int id,string image, string name,
            string lastName, int numEmploye, DateTime date, string compañia, string comedor,
            string days, string comments,string service,string email,string eventName,
            string meetType,string nameSalaDetail, DateTime dateEnd,int numberPeople)
         {
+            this.id = id;
             this.image = image;
             this.name = name;
             this.comedor = comedor;
