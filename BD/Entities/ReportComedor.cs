@@ -31,6 +31,7 @@ namespace compras.BD
         public string email { get; set; }
         public string placeEvent { get; set; }
         public string meetType { get; set; }
+        public string nameSalaDetail { get; set; }
         
        
     }

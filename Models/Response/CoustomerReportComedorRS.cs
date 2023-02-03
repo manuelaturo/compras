@@ -29,6 +29,7 @@ namespace compras.Models
         public string email { get; set; }
         public string placeEvent { get; set; }
         public string meetType { get; set; }
+        public string nameSalaDetail { get; set; }
         public CoustomerReportComedorRS() { }
         public CoustomerReportComedorRS(string image, string name,
             string lastName, int numEmploye, DateTime date, string compañia, string comedor,
@@ -47,7 +48,7 @@ namespace compras.Models
         }
         public CoustomerReportComedorRS(string image, string name,
            string lastName, int numEmploye, DateTime date, string compañia, string comedor,
-           string days, string comments,string service,string email,string eventName,string meetType)
+           string days, string comments,string service,string email,string eventName,string meetType,string nameSalaDetail)
         {
             this.image = image;
             this.name = name;
@@ -63,6 +64,7 @@ namespace compras.Models
             this.eventName = eventName;
             this.email = email;
             this.meetType = meetType;
+            this.nameSalaDetail = nameSalaDetail;
 
         }
 
