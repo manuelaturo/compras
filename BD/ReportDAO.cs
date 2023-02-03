@@ -216,10 +216,10 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                     report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image,s.Name,s.LastName,s.company, cc.nombre as Empresa" +
+                     report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image,s.Name,s.LastName, cc.nombre as Empresa" +
                     ",s.comments  FROM VisitasComedor s left join Usuarios u " +
-                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
                     " on s.numEmployed = u.Numero_Empleado " +
+                    "left join  Cat_Compañias cc on s.company = cc.idCompañia " +
                     "inner join Cat_Comedor ccom on s.idComedor = ccom.Id_Comedor", commandType: CommandType.Text).ToList();
                     db.Close();
                     return report;
@@ -247,11 +247,11 @@ namespace compras.BD
                     var queryParameters = new DynamicParameters();
                     queryParameters.Add("@dateInit", dateInit);
                     queryParameters.Add("@dateEnd", dateEnd);
-                    report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image, s.Name,s.LastName,s.company, cc.nombre as Empresa" +
+                    report = db.Query<ReportComedor>("SELECT   ccom.Nombre as comedor,s.numEmployed,s.days,s.registerdate AS date,s.image,s.Name,s.LastName, cc.nombre as Empresa" +
                     ",s.comments  FROM VisitasComedor s left join Usuarios u " +
-                    "left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia" +
                     " on s.numEmployed = u.Numero_Empleado " +
-                    "inner join Cat_Comedor ccom on s.idComedor = ccom.Id_Comedor " +
+                    "left join  Cat_Compañias cc on s.company = cc.idCompañia " +
+                    "inner join Cat_Comedor ccom on s.idComedor = ccom.Id_Comedor"+
                     " where s.registerdate  between @dateInit   and @dateEnd", queryParameters, commandType: CommandType.Text).ToList();
                     db.Close();
                     return report;
