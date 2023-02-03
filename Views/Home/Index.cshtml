@@ -96,7 +96,7 @@
                 console.log(password);
                 if (correo != null && correo != "") {
                     if (password != null && password != "") {
-                        fetch(`/Home/Autheticacion`, {
+                        fetch(`/compras/Home/Autheticacion`, {
                             method: 'POST',
                             headers: {
                                 'Content-type': 'application/json',
@@ -110,7 +110,7 @@
                             if (response.status == 200) {
                                 console.log("exito here")
                                 toastr.success('Registro agregado');
-                              window.location = "/Home/ReportesComedor?"
+                                window.location = "/compras/Home/ReportesComedor?"
 
                             } else {
                                 console.log("error")
