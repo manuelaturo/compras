@@ -235,7 +235,7 @@ namespace compras.Service
                 switch ((empresa))
                 {
                     case "20":
-                        return "Peña Verde";
+                        return "Reaseguradora Patria";
                     case "30":
                         return "General de Seguros";
                     case "31":
