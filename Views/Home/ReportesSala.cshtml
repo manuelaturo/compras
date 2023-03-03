@@ -283,7 +283,10 @@
 
                                         <div class="col-sm-3">
                                             <br>
-                                            <button class="btn btn-primary btn-block" onclick="EviarFechas()">Filtro</button>
+                                            <button class="btn btn-primary btn-block" onclick="EviarFechas()">Filtro</button> 
+                                            <button class="btn btn-primary btn-block" onclick="EviarFechasHOY()">Consultar lo del día</button>
+
+                                            
 
                                         </div>
                                     </div>
@@ -334,7 +337,7 @@
                                                 <th>Capacidad</th>
                                                 <th>Correo</th>
                                                 <th>Nombre del Evento</th>
-                                                <th>Tipo de reuniónth>
+                                                <th>Tipo de reunión</th>
                                                 <th>Fecha</th>
                                                 <th>Servicios</th>
                                             </tr>
@@ -517,7 +520,55 @@
             }
         }
 
+        function EviarFechasHoy() {
+            console.log("entra")
+            var now = new Date();
+            var month = (now.getMonth() + 1);
+            var day = now.getDate();
+            if (month < 10)
+                month = "0" + month;
+            if (day < 10)
+                day = "0" + day;
+            var today = day + '-' + month + '-' + now.getFullYear();
 
+            let Desde = today;
+            let Hasta = today;
+
+            console.log(Hasta)
+            console.log(Desde)
+
+            if (Desde != "") {
+                if (Hasta != null && Hasta != "") {
+                    fetch(`/compras/Reportes/SearchSalarbyDate?datesD=${Desde}&datesH=${Hasta}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-type': 'application/json',
+                        }
+                    }).then(function (response) {
+                        console.log(response.status)
+                        if (response.status == 200) {
+                            console.log("exito")
+                            console.log(response.url)
+                            window.location = response.url
+                            toastr.success('Registro Sala');
+
+                        } else {
+                            console.log("error")
+                            toastr.error('Error al registrar Sala');
+                        }
+                    }).then(data => {
+                        console.log("exito")
+                    }).catch(function (error) {
+                        console.log("error", error)
+                        toastr.error('Error al registrar Sala');
+                    });
+                } else {
+                    toastr.warning('Indique fin de rango de fecha');
+                }
+            } else {
+                toastr.warning('Indique Inicio de rango de fecha');
+            }
+        }
     </script>
 
 
