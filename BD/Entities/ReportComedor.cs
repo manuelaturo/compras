@@ -34,7 +34,10 @@ namespace compras.BD
         public string placeEvent { get; set; }
         public string meetType { get; set; }
         public string nameSalaDetail { get; set; }
-        
-       
+        public string accommodation { get; set; }
+        public string costs { get; set; }
+
+
+
     }
 }

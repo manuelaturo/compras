@@ -14,6 +14,72 @@ namespace compras.BD
 
         private readonly string con = ConfigurationManager.ConnectionStrings["Comedor"].ConnectionString;
 
+        public ReportComedor GetReportsEventosbyId(int idEvent)
+        {
+            try
+            {
+                ReportComedor report = new ReportComedor();
+                var queryParameters = new DynamicParameters();
+                queryParameters.Add("@idEvent", idEvent);
+
+                using (var db = new SqlConnection(con))
+                {
+                    
+                    db.Open();
+                    
+                    report = db.Query<ReportComedor>(" SELECT e.idVisitasEvento, e.eventName, e.numEmployed, e.Name,e.LastName,e.placeEvent, " +
+                    " e.dateInit as date, e.dateEnd, e.numberPeople, l.Name as locate, e.logistics,  cm.Name as management,e.comennts as comments ,cc.Nombre as compañia," +
+                    "e.autorizationName,e.numberPeople, e.accommodation, e.costs FROM VisitasEvento e " +
+                    " left join Usuarios u  on e.numEmployed = u.Numero_Empleado " +
+                    " left join Cat_Locale l on e.locale  = l.Id_Locale" +
+                    " left join Cat_Managements cm on e.management = cm.Id_Management" +
+                    " left join Cat_Compañias cc on u.Compañia = cc.idCompañia  Where e.idVisitasEvento = @idEvent"
+                   , queryParameters, commandType: CommandType.Text).First();
+                    db.Close();
+                    return report;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<string> GetServicesEvento(int idEvent)
+        {
+            try
+            {
+                List<string> report = new List<string>();
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@idEvent", idEvent);
+                    report = db.Query<string>(" select cs.Description from Services_Event se " +
+                    " INNER JOIN Cat_Servicios cs  on cs.Id_Servicios_Eventos = se.service " +
+                    " where se.event= @idEvent "
+                   , queryParameters, commandType: CommandType.Text).ToList();
+                    db.Close();
+                    return report;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public List<ReportComedor> GetReportsEventoAndSalas()
         {
             try
@@ -146,35 +212,6 @@ namespace compras.BD
             }
         }
 
-        public List<string> GetServicesEvento(int idEvent)
-        {
-            try
-            {
-                List<string> report = new List<string>(); 
-                
-                using (var db = new SqlConnection(con))
-                {
-                    db.Open();
-                    var queryParameters = new DynamicParameters();
-                    queryParameters.Add("@idEvent", idEvent);
-                    report = db.Query<string>(" select cs.Description from Services_Event se " +
-                    " INNER JOIN Cat_Servicios cs  on cs.Id_Servicios_Eventos = se.service " +
-                    " where se.event= @idEvent "
-                   , queryParameters, commandType: CommandType.Text).ToList();
-                    db.Close();
-                    return report;
-                }
-
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
         public List<ReportComedor> GetReportsEvento(DateTime initDate, DateTime endDate)
         {
             try

@@ -277,7 +277,7 @@
                                                                 Evento #NombreDelEvento
                                                                 <br>
                                                                 Fecha del evento:
-                                                                <small class="float-right">Fecha de creación:  #fechacreacion<br></small>
+                                                                <small class="float-right">Fecha de creación:   @Model.date<br></small>
 
                                                             </h4>
                                                         </div>
@@ -286,24 +286,26 @@
                                                     <!-- info row -->
                                                     <div class="row invoice-info">
                                                         <div class="col-sm-4 invoice-col">
-                                                            Número de Empleado: XXXXX<br>
-                                                            Nombre: XXXXX<br>
-                                                            Empresa: XXXXX<br>
-                                                            Persona que autoriza: XXXXX<br>
-                                                            Número de personas: XXXXX<br>
-                                                            Lugar del evento: XXXXX<br>
-                                                            Acomodo: XXXXX<br>
-                                                            Centro de costos: XXXXX<br>
-                                                            Contacto para logística: XXXXX<br>
+                                                            Número de Empleado:  @Model.numEmploye<br>
+                                                            Nombre:   @Model.name<br>
+                                                            Empresa:  @Model.compañia<br>
+                                                            Persona que autoriza:   @Model.autorizationName<br>
+                                                            Número de personas:   @Model.numberPeople<br>
+                                                            Lugar del evento:   @Model.locate<br>
+                                                            Acomodo:   @Model.accommodation<br>
+                                                            Centro de costos:  @Model.costs<br>
+                                                            Contacto para logística:  @Model.logistics<br>
                                                             Servicios:
                                                             <br>
                                                             <ul>
-                                                                <li>servicio 1</li>
-                                                                <li>servicio 2</li>
+                                                                @foreach (var service in Model.serviceEvent)
+                                                                {
+                                                                    <li>@Html.DisplayFor(modelItem => service)</li>
+                                                                }
                                                             </ul>
                                                             <br>
                                                             Comentarios: <br>
-                                                            xxxxxx
+                                                            @Model.comments
                                                             <br><br>
 
                                                         </div>

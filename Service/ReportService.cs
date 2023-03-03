@@ -24,6 +24,18 @@ namespace compras.Service
   
             return response;
         }
+
+        public CoustomerReportComedorRS getDetailsEvent(int idEvent)
+        {
+            CoustomerReportComedorRS response = new CoustomerReportComedorRS();
+            ReportComedor responseDAO = new ReportComedor();
+            List<string> serviceEvent = new List<string>();
+            ReportDAO report = new ReportDAO();
+            responseDAO = report.GetReportsEventosbyId(idEvent);
+            serviceEvent = report.GetServicesEvento(responseDAO.idVisitasEvento);
+            response = assemblerEventRsId(responseDAO, serviceEvent);
+            return response;
+        }
         public List<CoustomerReportComedorRS> getGeneralReportEvento()
         {
 
@@ -183,7 +195,15 @@ namespace compras.Service
         {
             CoustomerReportComedorRS comedorRs = new CoustomerReportComedorRS(responseDAO.eventName, responseDAO.numEmployed, responseDAO.name,
             responseDAO.lastName, responseDAO.date, responseDAO.dateEnd, responseDAO.numberPeople, responseDAO.locate, responseDAO.logistics, responseDAO.management,
-            responseDAO.days, responseDAO.comments, services, getCompany(responseDAO.numEmployed, responseDAO.compañia), responseDAO.placeEvent,responseDAO.autorizationName);
+            responseDAO.days, responseDAO.comments, services, getCompany(responseDAO.numEmployed, responseDAO.compañia), responseDAO.placeEvent,responseDAO.autorizationName, responseDAO.idVisitasEvento);
+
+            return comedorRs;
+        }
+        public CoustomerReportComedorRS assemblerEventRsId(ReportComedor responseDAO, List<string> services)
+        {
+            CoustomerReportComedorRS comedorRs = new CoustomerReportComedorRS(responseDAO.eventName, responseDAO.numEmployed, responseDAO.name,
+            responseDAO.lastName, responseDAO.date, responseDAO.dateEnd, responseDAO.numberPeople, responseDAO.locate, responseDAO.logistics, responseDAO.management,
+            responseDAO.days, responseDAO.comments, services, getCompany(responseDAO.numEmployed, responseDAO.compañia), responseDAO.placeEvent, responseDAO.autorizationName, responseDAO.accommodation, responseDAO.costs);
 
             return comedorRs;
         }
@@ -215,7 +235,7 @@ namespace compras.Service
                 switch ((empresa))
                 {
                     case "20":
-                        return "Peña Verde";
+                        return "Reaseguradora Patria";
                     case "30":
                         return "General de Seguros";
                     case "31":

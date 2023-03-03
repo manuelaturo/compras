@@ -32,6 +32,9 @@ namespace compras.Models
         public string meetType { get; set; }
         public string nameSalaDetail { get; set; }
         public string autorizationName { get; set; }
+        public string accommodation { get; set; }
+        public string costs { get; set; }
+        public int idVisitasEvento { get; set; }
         public CoustomerReportComedorRS() { }
         public CoustomerReportComedorRS(string image, string name,
             string lastName, int numEmploye, DateTime date, string compañia, string comedor,
@@ -76,7 +79,7 @@ namespace compras.Models
 
         public CoustomerReportComedorRS(string eventName, int numEmploye, string name,
            string lastName,  DateTime date,  DateTime dateEnd, int numberPeople, string locate, string logistics, string management,
-           string days, string comments, List<string> service, string compañia,string placeEvent,string autorizationName)
+           string days, string comments, List<string> service, string compañia,string placeEvent,string autorizationName, int idVisitasEvento)
         {
             this.name = name;
             this.numEmploye = numEmploye;
@@ -95,6 +98,32 @@ namespace compras.Models
             this.compañia = compañia;
             this.placeEvent = placeEvent;
             this.autorizationName = autorizationName;
+            this.idVisitasEvento = idVisitasEvento;
+        }
+
+        public CoustomerReportComedorRS(string eventName, int numEmploye, string name,
+           string lastName, DateTime date, DateTime dateEnd, int numberPeople, string locate, string logistics, string management,
+           string days, string comments, List<string> service, string compañia, string placeEvent, string autorizationName, string accommodation, string costs)
+        {
+            this.name = name;
+            this.numEmploye = numEmploye;
+            this.comedor = comedor;
+            this.lastName = lastName;
+            this.dateEnd = dateEnd;
+            this.date = date;
+            this.numberPeople = numberPeople;
+            this.locate = locate;
+            this.logistics = logistics;
+            this.management = management;
+            this.days = days;
+            this.comments = comments;
+            this.eventName = eventName;
+            this.serviceEvent = service;
+            this.compañia = compañia;
+            this.placeEvent = placeEvent;
+            this.autorizationName = autorizationName;
+            this.accommodation = accommodation;
+            this.costs = costs;
         }
     }
 }
