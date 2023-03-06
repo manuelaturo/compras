@@ -1,5 +1,5 @@
-﻿using compras.BD.Entities;
-using Dapper;
+﻿using Dapper;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,23 +10,54 @@ using System.Web;
 
 namespace compras.BD
 {
-    public class GuideDAO
+    public class MenuDAO
     {
         private readonly string con = ConfigurationManager.ConnectionStrings["Comedor"].ConnectionString;
-
-        public List<GuidesEntity> GetGuides()
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        public bool addMenu(string Description, int Day)
         {
             try
             {
-                List<GuidesEntity> guides = new List<GuidesEntity>();
+
 
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    guides = db.Query<GuidesEntity>(" SELECT g.Id_Guide, g.numEmpployed, g.Name, g.conpany, g.destination, g.description, g.size, g.kg, g.ledgerAccount, " +
-                        "g.costCenter, g.guide, cg.type as guideType, cg.price FROM Guides g INNER JOIN Cat_Guide cg ON g.guide = cg.Id_Guide_Type", commandType: CommandType.Text).ToList();
+                    db.Execute("INSERT INTO Menu (Description, Day) " +
+                            " values (@Description, @Day)",
+                            new
+                            {
+                                Description,
+                                Day
+                            });
                     db.Close();
-                    return guides;
+                    return true;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                log.Info("error " + e);
+                throw e;
+            }
+            catch (Exception e)
+            {
+                log.Info("error " + e);
+                throw e;
+            }
+        }
+        public bool updateMenu(string menu, int day)
+        {
+            try
+            {
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    var queryParameters = new DynamicParameters();
+                     db.Execute("update Menu set Description = @menu   where day = @day", new { menu, day = day });
+                    db.Close();
+                    return true;
                 }
 
             }
@@ -39,45 +70,21 @@ namespace compras.BD
                 throw e;
             }
         }
-
-        public List<CatGuidesEntity> GetIdGuides()
+        public string getMenu(int day)
         {
             try
             {
-                List<CatGuidesEntity> guides = new List<CatGuidesEntity>();
+                string guidesPrice = string.Empty;
 
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    guides = db.Query<CatGuidesEntity>(" SELECT  Id_Guide_Type, price, type  FROM Cat_Guide", commandType: CommandType.Text).ToList();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@day", day);
+                    guidesPrice = db.Query<string>("SELECT Description FROM Menu WHERE Day  = @day", queryParameters,
+                        commandType: CommandType.Text).FirstOrDefault();
                     db.Close();
-                    return guides;
-                }
-
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public int Getcount (int guide)
-        {
-            try
-            {
-                int guides = 0;
-
-                using (var db = new SqlConnection(con))
-                {
-                    db.Open();
-                    guides = db.Query<int>(" select count(guide) from Guides where guide=@guide ",
-                        new { guide = guide}).FirstOrDefault();
-                    db.Close();
-                    return guides;
+                    return guidesPrice;
                 }
 
             }

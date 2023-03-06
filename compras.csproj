@@ -156,17 +156,20 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BD\AutenticacionDAO.cs" />
+    <Compile Include="BD\Entities\CatGuidesEntity.cs" />
     <Compile Include="BD\Entities\GuidesEntity.cs" />
     <Compile Include="BD\Entities\ProductEntity.cs" />
     <Compile Include="BD\Entities\ReportComedor.cs" />
     <Compile Include="BD\Entities\UsuariosEntity.cs" />
     <Compile Include="BD\GuideDAO.cs" />
+    <Compile Include="BD\MenuDAO.cs" />
     <Compile Include="BD\ProductDAO.cs" />
     <Compile Include="BD\ReportDAO.cs" />
     <Compile Include="BD\UsuariosDAO.cs" />
     <Compile Include="Controllers\EventosDetailsController.cs" />
     <Compile Include="Controllers\GuidesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductRQ.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
@@ -175,16 +178,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\guidesTotal.cs" />
     <Compile Include="Models\Request\CoustomerReportComedorRQ.cs" />
     <Compile Include="Models\Request\ProductsRQ.cs" />
     <Compile Include="Models\Request\UpdateProdcuts.cs" />
     <Compile Include="Models\Response\CoustomerReportComedorRS.cs" />
+    <Compile Include="Models\Response\GuideResult.cs" />
     <Compile Include="Models\Response\GuidesRS.cs" />
     <Compile Include="Models\Response\ProductsRS.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AutenticacionService.cs" />
     <Compile Include="Service\GuideService.cs" />
+    <Compile Include="Service\MenuService.cs" />
     <Compile Include="Service\ProductService.cs" />
     <Compile Include="Service\ReportService.cs" />
     <Compile Include="Service\UsuarioService.cs" />
@@ -3002,6 +3008,8 @@
     <Content Include="Views\EventosDetails\Create.cshtml" />
     <Content Include="UploadedFiles\Plantilla.xlsx" />
     <Content Include="UploadedFiles\Timesheets Report-19-23Dic-2022.xlsx" />
+    <Content Include="Views\Guides\GetGuides.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

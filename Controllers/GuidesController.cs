@@ -16,7 +16,9 @@ namespace compras.Controllers
         {
 
             GuideService service = new GuideService();
-            return View(service.getGuides());
+            var result = service.getGuides();
+           
+            return View(result) ;
         }
 
     }
