@@ -14,6 +14,36 @@ namespace compras.BD
     {
         private readonly string con = ConfigurationManager.ConnectionStrings["Comedor"].ConnectionString;
 
+       
+        public List<GuidesEntity> GetGuides(DateTime initDate, DateTime endDate)
+        {
+            try
+            {
+                List<GuidesEntity> guides = new List<GuidesEntity>();
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@dateInit", initDate);
+                    queryParameters.Add("@dateEnd", endDate);
+
+                    guides = db.Query<GuidesEntity>(" SELECT g.Id_Guide, g.numEmpployed, g.Name, g.conpany, g.destination, g.description, g.size, g.kg, g.ledgerAccount, " +
+                        "g.costCenter, g.guide, cg.type as guideType, cg.price FROM Guides g INNER JOIN Cat_Guide cg ON g.guide = cg.Id_Guide_Type where registerDate between @dateInit and @dateEnd", commandType: CommandType.Text).ToList();
+                    db.Close();
+                    return guides;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         public List<GuidesEntity> GetGuides()
         {
             try
@@ -75,7 +105,7 @@ namespace compras.BD
                 {
                     db.Open();
                     guides = db.Query<int>(" select count(guide) from Guides where guide=@guide ",
-                        new { guide = guide}).FirstOrDefault();
+                        new { guide = guide}).FirstOrDefault();              
                     db.Close();
                     return guides;
                 }
