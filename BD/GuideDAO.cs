@@ -105,7 +105,11 @@ namespace compras.BD
                 {
                     db.Open();
                     guides = db.Query<int>(" select count(guide) from Guides where guide=@guide ",
+<<<<<<< HEAD
                         new { guide = guide}).FirstOrDefault();              
+=======
+                        new { guide = guide}).FirstOrDefault();
+>>>>>>> fbf83bd (Se mofican rutas del menu)
                     db.Close();
                     return guides;
                 }
