@@ -45,6 +45,7 @@ namespace compras.Service
                 throw e;
             }
         } 
+        
         private List<GuidesRS> assemblerGuides(List<GuidesEntity> guides)
         {
             return guides.ConvertAll(x => new GuidesRS(x.numEmpployed, x.Name, x.conpany, x.destination, x.description,
