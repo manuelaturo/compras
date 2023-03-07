@@ -17,10 +17,13 @@ namespace compras.Models.Response
         public string ledgerAccount { get; set; }
         public string costCenter { get; set; }
         public int guide { get; set; }
+        public string guideType { get; set; }
+      
+
 
         public GuidesRS() { }
         public GuidesRS(int numEmpployed, string Name, string conpany, string destination, string description,
-         string size, string kg, string ledgerAccount, string costCenter, int guide) {
+         string size, string kg, string ledgerAccount, string costCenter, int guide, string guideType) {
 
             this.numEmpployed = numEmpployed;
             this.Name = Name;
@@ -32,6 +35,7 @@ namespace compras.Models.Response
             this.ledgerAccount = ledgerAccount;
             this.costCenter = costCenter;
             this.guide = guide;
+            this.guideType = guideType;
         }
     }
 }

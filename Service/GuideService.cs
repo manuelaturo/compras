@@ -1,5 +1,6 @@
 ﻿using compras.BD;
 using compras.BD.Entities;
+using compras.Models;
 using compras.Models.Response;
 using System;
 using System.Collections.Generic;
@@ -10,37 +11,44 @@ namespace compras.Service
 {
     public class GuideService
     {
-        public List<GuidesRS> getGuides()
+        public GuideResult getGuides()
         {
             try
             {
+                GuideResult response = new GuideResult();
                 GuideDAO dao = new GuideDAO();
-                return  assemblerGuides (dao.GetGuides());
+                var result = dao.GetIdGuides();
+                decimal costTotal = 0;
+
+                List<guidesTotal> guidesTotals = new List<guidesTotal>();
+
+                foreach (var item in result)
+                {
+                    guidesTotal guidesTotal = new guidesTotal();
+                    var idGuide = item.Id_Guide_Type;
+                    var count = dao.Getcount(idGuide);
+                    var total = count * item.price;
+                    guidesTotal.guide = item.type;
+                    guidesTotal.price = item.price;
+                    guidesTotal.count = count;
+                    costTotal = costTotal + total;
+                    guidesTotals.Add(guidesTotal);
+                }
+
+                response.guidesRs = assemblerGuides(dao.GetGuides());
+                response.totalCost = costTotal;
+                response.guidesTotals = guidesTotals;
+
+                return response;
             } catch (Exception e)
             {
                 throw e;
             }
-        }
-        public List<GuidesRS> getGuides(string initDate, string endDate)
-        {
-            try
-            {
-                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
-                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
-
-
-                GuideDAO dao = new GuideDAO();
-                return assemblerGuides(dao.GetGuides(dateInit, dateEnd));
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
+        } 
         private List<GuidesRS> assemblerGuides(List<GuidesEntity> guides)
         {
             return guides.ConvertAll(x => new GuidesRS(x.numEmpployed, x.Name, x.conpany, x.destination, x.description,
-         x.size, x.kg, x.ledgerAccount, x.costCenter, x.guide));
+         x.size, x.kg, x.ledgerAccount, x.costCenter, x.guide, x.guideType));
         }
     }
 }
