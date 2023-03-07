@@ -20,7 +20,23 @@ namespace compras.Service
             {
                 throw e;
             }
-        } 
+        }
+        public List<GuidesRS> getGuides(string initDate, string endDate)
+        {
+            try
+            {
+                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+
+
+                GuideDAO dao = new GuideDAO();
+                return assemblerGuides(dao.GetGuides(dateInit, dateEnd));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         private List<GuidesRS> assemblerGuides(List<GuidesEntity> guides)
         {
             return guides.ConvertAll(x => new GuidesRS(x.numEmpployed, x.Name, x.conpany, x.destination, x.description,

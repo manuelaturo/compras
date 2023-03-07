@@ -18,6 +18,11 @@ namespace compras.Controllers
             GuideService service = new GuideService();
             return View(service.getGuides());
         }
+        public ActionResult GetGuidesBydate(string dateinit, string dateend)
+        {
 
+            GuideService service = new GuideService();
+            return View(service.getGuides(dateinit, dateend));
+        }
     }
 }
