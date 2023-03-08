@@ -17,6 +17,6 @@ namespace compras.BD.Entities
         public string ledgerAccount { get; set; }
         public string costCenter { get; set; }
         public int guide { get; set; }
-        public int guideType { get; set; }
+        public string guideType { get; set; }
     }
 }
