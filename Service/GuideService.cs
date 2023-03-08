@@ -47,8 +47,7 @@ namespace compras.Service
             }
         }
 
-<<<<<<< HEAD
-=======
+
         public GuideResult getGuides(string dateinit, string dateend)
         {
             try
@@ -89,7 +88,6 @@ namespace compras.Service
             }
         }
 
->>>>>>> 4a68c6b1854144891b516842f9bbd1c102fb1c89
         private List<GuidesRS> assemblerGuides(List<GuidesEntity> guides)
         {
             return guides.ConvertAll(x => new GuidesRS(x.numEmpployed, x.Name, x.conpany, x.destination, x.description,
