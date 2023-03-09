@@ -33,6 +33,26 @@ namespace compras.BD
                 throw;
             }
         }
+           public  List<UsuariosEntity> GetUsuariosByquestions(string table)
+        {
+
+            try
+            {
+                List<UsuariosEntity> lista = new List<UsuariosEntity>();
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    lista = db.Query<UsuariosEntity>("SELECT Correo as email ,Nombre +' '+ Apellido_Paterno + ' ' + Apellido_Materno as nombre" +
+                        " FROM Usuarios where Numero_Empleado in (select  distinct numEmployed from "+ table +")").ToList();
+                    db.Close();
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
         public bool AddUsuario(UsuariosEntity us)

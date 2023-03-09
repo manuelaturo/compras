@@ -14,6 +14,39 @@ namespace compras.BD
     {
         private readonly string con = ConfigurationManager.ConnectionStrings["Comedor"].ConnectionString;
 
+        public bool UpdateQuestions(QuetionsEntity quiz)
+        {
+            try
+            {
+                DateTime registerDate = DateTime.Now;
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    _ = db.Execute("UPDATE Questions  " +
+                        " SET question = @question , module = @module " +
+                        " WHERE idQuestions = @idQuestions",
+                        new
+                        {
+                            quiz.question,
+                            quiz.module,
+                           quiz.idQuestions
+                        });
+                    db.Close();
+                    return true;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public bool AddQuestions(QuetionsEntity quiz)
         {
             try
