@@ -513,13 +513,13 @@
 
                         } else {
                             console.log("error")
-                            toastr.error('Error al registrar Comedor');
+                            toastr.error('Error al traer reporte Comedor');
                         }
                     }).then(data => {
                         console.log("exito")
                     }).catch(function (error) {
                         console.log("error", error)
-                        toastr.error('Error al registrar Comedor');
+                        toastr.error('Error al traer reporte Comedor');
                     });
                 } else {
                     toastr.warning('Indique fin de rango de fecha');
