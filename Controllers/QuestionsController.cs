@@ -35,7 +35,7 @@ namespace compras.Controllers
         {
 
             QuestionsService service = new QuestionsService();
-            var result = service.AddQuestions(quesions);
+            var result = service.UpdateQuestions(quesions);
 
             return View(result);
         }

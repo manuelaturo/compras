@@ -79,11 +79,7 @@ namespace compras.Service
             usuarios.ForEach(
             x =>
             {
-                body = @"<style>
-                            h1{color:dodgerblue;}
-                            h2{color:darkorange;}
-                            </style>
-                            <h1>Este Estimado " + x.nombre+ "</h1></br>" +
+                body = @"<h1>Este Estimado " + x.nombre+ "</h1></br>" +
                                 "<h2>Pedimos tu apoyo para ayudarnos a mejorar nuestro servicio," +
                     " dedicando 5 minutos de tu tiempo a contestar la siguiente encuesta:</h2>"+
                     " <h2>link</h2>";
@@ -94,7 +90,7 @@ namespace compras.Service
         public void sendEmail(string to, string asunto, string body)
         {
             string msge = "Error al enviar este correo. Por favor verifique los datos o intente más tarde.";
-            string from = "manu.bambino@hotmail.com";
+            string from = "pv.encuestas@cloudtech.com.mx";
             string displayName = "Nombre Para Mostrar";
             try
             {
@@ -108,7 +104,7 @@ namespace compras.Service
 
 
                 SmtpClient client = new SmtpClient("smtp.office365.com", 587); //Aquí debes sustituir tu servidor SMTP y el puerto
-                client.Credentials = new NetworkCredential(from, "man120");
+                client.Credentials = new NetworkCredential(from, "Compras.1");
                 client.EnableSsl = true;//En caso de que tu servidor de correo no utilice cifrado SSL,poner en false
 
 

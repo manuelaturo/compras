@@ -17,7 +17,10 @@ namespace compras.Controllers
         public ActionResult Index(string usuario, string password)
 
         {
-           
+            string module = "Comedor";
+            QuestionsService service = new QuestionsService();
+
+            service.SendEmail(module);
             log.Info("inicio compras");
             return View();
         }
