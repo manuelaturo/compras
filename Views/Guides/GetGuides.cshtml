@@ -299,9 +299,8 @@
 
                                         <div class="col-sm-3">
                                             <br>
-                                            <button class="btn btn-primary btn-block" onclick="EviarFechas()">Filtrar</button>
-                                            <button class="btn btn-primary btn-block" onclick="EviarFechasHoy()">Filtrar</button>
-                                            <button type="button" class="btn btn-info">Guías solicitadas hoy</button>
+                                            <button type="button" class="btn btn-info" onclick="EviarFechas(1)">Filtrar</button>
+                                            <button type="button" class="btn btn-info" onclick="EviarFechas(2)">Filtrar</button>
 
                                         </div>
                                     </div>
@@ -504,11 +503,27 @@
             }).buttons().container().appendTo('#tablausuarios_wrapper .col-md-6:eq(0)');
 
 
-            function EviarFechas() {
+            function EviarFechas(type) {
 
-                let Desde = document.getElementById("datesD").value;
-                let Hasta = document.getElementById("datesH").value;
+                let Desde;
+                let Hasta;
+                if (type == 2) {
+                    console.log("entra")
+                    var now = new Date();
+                    var month = (now.getMonth() + 1);
+                    var day = now.getDate();
+                    if (month < 10)
+                        month = "0" + month;
+                    if (day < 10)
+                        day = "0" + day;
+                    var today = day + '-' + month + '-' + now.getFullYear();
 
+                    Desde = today;
+                    Hasta = today;
+                } else {
+                    Desde = document.getElementById("datesD").value;
+                    Hasta = document.getElementById("datesH").value;
+                }
                 console.log(Hasta)
                 console.log(Desde)
 
@@ -549,9 +564,5 @@
 
 
     </script>
-
-
-
-
 </body>
 </html>

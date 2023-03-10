@@ -1,8 +1,7 @@
-﻿@model List<compras.Models.CoustomerReportComedorRS>
-
+﻿@model  compras.Models.Response.GuideResult
 
 @{
-    ViewBag.Title = "ReportesSala";
+    ViewBag.Title = "ReportesGuias";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -27,30 +26,20 @@
     <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="~/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="~/plugins/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="~/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="~/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="~/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="~/plugins/daterangepicker/daterangepicker.css">
-
     <!-- Toastr -->
     <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-    <script src="~/plugins/toastr/toastr.min.js"></script>
-    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-
-    <script src="~/plugins/toastr/toastr.min.js"></script>
-    @*Dentro de carpeta:*@
-
-    <!-- Toastr -->
-    <link rel="stylesheet" href="~/plugins/toastr/toastr.min.css">
-
-    <script src="~/plugins/toastr/toastr.min.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
+
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
@@ -101,38 +90,38 @@
 
                             </ li >
                             @*<li class="nav-item">
-                <a href="productos/productos.html" class="nav-link">
-                    <p
-                        Productos
+                                    <a href="productos/productos.html" class="nav-link">
+                                        <p
+                                            Productos
 
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="kits/kits.html" class="nav-link">
-                    <p>
-                        Kits
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="kits/kits.html" class="nav-link">
+                                        <p>
+                                            Kits
 
-                    </p>
-                </a>
-            </li>*@
+                                        </p>
+                                    </a>
+                                </li>*@
                             @*<li class="nav-item">
-                <a href="ordenes/ordenes.html" class="nav-link">
-                    <p>
-                        Órdenes de compra
+                                    <a href="ordenes/ordenes.html" class="nav-link">
+                                        <p>
+                                            Órdenes de compra
 
-                    </p>
-                </a>
-            </li>
+                                        </p>
+                                    </a>
+                                </li>
 
-            <li class="nav-item">
-                <a href="apertura/apertura.html" class="nav-link">
-                    <p>
-                        Apertura de sistema
+                                <li class="nav-item">
+                                    <a href="apertura/apertura.html" class="nav-link">
+                                        <p>
+                                            Apertura de sistema
 
-                    </p>
-                </a>
-            </li>*@
+                                        </p>
+                                    </a>
+                                </li>*@
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -157,35 +146,30 @@
                                     <i class="far fa-circle nav-icon"></i>
                                     <a> @Html.ActionLink("Reporte Salas", "ReportesSala", "Home") </a>
                                 </li>
-
-                                <li class="nav-item">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <a> @Html.ActionLink("Reporte Encuestas", "ReportesSala", "Home") </a>
-                                </li>
                                 @*<li class="nav-item">
-            <a href="reportes/ordenescompra.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Órdenes de compra</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="reportes/productoscotizar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Productos por cotizar</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="reportes/sla.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>SLA's</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="reportes/validaorden.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Validación de órdenes</p>
-            </a>
-        </li>*@
+                                        <a href="reportes/ordenescompra.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Órdenes de compra</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/productoscotizar.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Productos por cotizar</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/sla.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>SLA's</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="reportes/validaorden.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Validación de órdenes</p>
+                                        </a>
+                                    </li>*@
                             </ul>
                         </li>
 
@@ -217,57 +201,57 @@
                         </li>
 
                         @*<li class="nav-item">
-            <a href="#" class="nav-link">
+                                <a href="#" class="nav-link">
 
-                <p>
-                    Previsualización
-                    <i class="right fas fa-angle-left"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="productos/vistaproductos.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Productos</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="aprobaciones/vistaaprobaciones.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Aprobaciones</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="ordenes/vistaordenes.html" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Órdenes de compra</p>
-                    </a>
-                </li>
+                                    <p>
+                                        Previsualización
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="productos/vistaproductos.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Productos</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="aprobaciones/vistaaprobaciones.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Aprobaciones</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="ordenes/vistaordenes.html" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Órdenes de compra</p>
+                                        </a>
+                                    </li>
 
-            </ul>
-        </li>*@
+                                </ul>
+                            </li>*@
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Usuarios de Salas</h1>
+                        <div class="col-sm-12">
+                            <h1 class="m-0">Comedor</h1>
                         </div><!-- /.col -->
+                        <div class="col-sm-12">
 
+                        </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-            <!-- Main content -->
             <section class="content">
 
                 <div class="container-fluid">
@@ -278,7 +262,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Reporte de usuarios</h3>
+                                    <h3 class="card-title">Reporte de guías solicitadas</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -290,7 +274,7 @@
                                             <div class="form-group">
 
                                                 <div class="input-group date" id="fromDate" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input" id="datesD" name="datesD" data-target="#fromDate" />
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#fromDate" id="datesD" name="datesD" />
                                                     <div class="input-group-append" data-target="#fromDate" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                     </div>
@@ -305,7 +289,7 @@
                                             <div class="form-group">
 
                                                 <div class="input-group date" id="toDate" data-target-input="nearest">
-                                                    <input type="text" class="form-control datetimepicker-input" id="datesH" name="datesH" data-target="#toDate" />
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#toDate" id="datesH" name="datesH" />
                                                     <div class="input-group-append" data-target="#toDate" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                     </div>
@@ -315,61 +299,70 @@
 
                                         <div class="col-sm-3">
                                             <br>
-                                            <button type="button" class="btn btn-info" onclick="EviarFechas(1)">Filtro</button>
-                                            <button type="button" class="btn btn-info" onclick="EviarFechas(2)">Consultar lo del día</button>
+                                            <button type="button" class="btn btn-info" onclick="EviarFechas(1)">Filtrar</button>
+                                            <button type="button" class="btn btn-info" onclick="EviarFechas(2)">Filtrar</button>
 
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        Total de gasto: $ @Model.totalCost <br>
+                                    </div>
+                                    @foreach (var total in Model.guidesTotals)
+                                    {
+                                        <div class="row">
+                                            <p>Total de guias  @Html.DisplayFor(modelTotal => total.guide) :   @Html.DisplayFor(modelTotal => total.count) Costo $@Html.DisplayFor(modelTotal => total.price) </p> <br>
+                                        </div>
+                                    }
+                                    <br>
                                     <table id="tablausuarios" class="table table-bordered table-striped">
                                         <thead>
+
                                             <tr>
-                                                <th>Folio</th>
+
                                                 <th>Número Empleado</th>
-                                                <th>Nombre</th>
-                                                <th>Fecha</th>
+                                                <th>Nombre Empleado</th>
                                                 <th>Empresa</th>
-                                                <th>Lugar</th>
-                                                <th>Sala</th>
-                                                <th>Capacidad</th>
-                                                <th>Correo</th>
-                                                <th>Nombre del Evento</th>
-                                                <th>Tipo de reunión </th>
-                                                <th>Servicios</th>
+                                                <th>Destino</th>
+                                                <th>Descripción</th>
+                                                <th>Kilos</th>
+                                                <th>Cuenta contable</th>
+                                                <th>Tipo de guía</th>
+                                                <th>Costo</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var item in Model)
+                                            @foreach (var item in Model.guidesRs)
                                             {
-                                            <tr>
-                                                <td>@Html.DisplayFor(modelItem => item.id)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.numEmploye)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.date)  - @Html.DisplayFor(modelItem => item.dateEnd) </td>
-                                                <td>@Html.DisplayFor(modelItem => item.name)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.empresa)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.comedor)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.nameSalaDetail)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.numberPeople)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.email)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.eventName)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.meetType)</td>
-                                                <td>@Html.DisplayFor(modelItem => item.service)</td>
-                                            </tr>
+                                                <tr>
+
+                                                    <td>@Html.DisplayFor(modelItem => item.numEmpployed)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.conpany)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.destination)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.description)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.kg)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.ledgerAccount)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.guideType)</td>
+                                                    <td>@Html.DisplayFor(modelItem => item.costCenter)</td>
+                                                </tr>
+
                                             }
+
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Folio</th>
+
                                                 <th>Número Empleado</th>
-                                                <th>Fecha</th>
-                                                <th>Nombre</th>
+                                                <th>Nombre Empleado</th>
                                                 <th>Empresa</th>
-                                                <th>Lugar</th>
-                                                <th>Sala</th>
-                                                <th>Capacidad</th>
-                                                <th>Correo</th>
-                                                <th>Nombre del Evento</th>
-                                                <th>Tipo de reunión</th>
-                                                <th>Servicios</th>
+                                                <th>Destino</th>
+                                                <th>Descripción</th>
+                                                <th>Kilos</th>
+                                                <th>Cuenta contable</th>
+                                                <th>Tipo de guía</th>
+                                                <th>Costo</th>
+
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -407,7 +400,9 @@
     <!-- jQuery UI 1.11.4 -->
     <script src="~/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>$.widget.bridge('uibutton', $.ui.button)</script>
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
     <!-- Bootstrap 4 -->
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Select2 -->
@@ -433,6 +428,8 @@
     <!-- AdminLTE App -->
     <script src="~/dist/js/adminlte.js"></script>
 
+    <script src="~/dist/js/adminlte.min.js"></script>
+
 
 
     <!-- DataTables  & Plugins -->
@@ -452,7 +449,7 @@
 
 
     <script>
-    $(function () {
+        $(function () {
             //Date picker
             $('#fromDate').datetimepicker({
                 format: 'DD-MM-YYYY'
@@ -506,72 +503,66 @@
             }).buttons().container().appendTo('#tablausuarios_wrapper .col-md-6:eq(0)');
 
 
+            function EviarFechas(type) {
 
-    });
+                let Desde;
+                let Hasta;
+                if (type == 2) {
+                    console.log("entra")
+                    var now = new Date();
+                    var month = (now.getMonth() + 1);
+                    var day = now.getDate();
+                    if (month < 10)
+                        month = "0" + month;
+                    if (day < 10)
+                        day = "0" + day;
+                    var today = day + '-' + month + '-' + now.getFullYear();
 
-        function EviarFechas(type) {
-
-            let Desde;
-            let Hasta;
-            if (type == 2) {
-                console.log("entra")
-                var now = new Date();
-                var month = (now.getMonth() + 1);
-                var day = now.getDate();
-                if (month < 10)
-                    month = "0" + month;
-                if (day < 10)
-                    day = "0" + day;
-                var today = day + '-' + month + '-' + now.getFullYear();
-
-                Desde = today;
-                Hasta = today;
-            } else {
-                Desde = document.getElementById("datesD").value;
-                Hasta = document.getElementById("datesH").value;
-            }
-            console.log(Hasta)
-            console.log(Desde)
-
-            if (Desde != "") {
-                if (Hasta != null && Hasta != "") {
-                    fetch(`/compras/Reportes/SearchSalarbyDate?datesD=${Desde}&datesH=${Hasta}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-type': 'application/json',
-                        }
-                    }).then(function (response) {
-                        console.log(response.status)
-                        if (response.status == 200) {
-                            console.log("exito")
-                            console.log(response.url)
-                            window.location = response.url
-                            toastr.success('Registro Sala');
-
-                        } else {
-                            console.log("error")
-                            toastr.error('Error al registrar Sala');
-                        }
-                    }).then(data => {
-                        console.log("exito")
-                    }).catch(function (error) {
-                        console.log("error", error)
-                        toastr.error('Error al registrar Sala');
-                    });
+                    Desde = today;
+                    Hasta = today;
                 } else {
-                    toastr.warning('Indique fin de rango de fecha');
+                    Desde = document.getElementById("datesD").value;
+                    Hasta = document.getElementById("datesH").value;
                 }
-            } else {
-                toastr.warning('Indique Inicio de rango de fecha');
+                console.log(Hasta)
+                console.log(Desde)
+
+                if (Desde != "") {
+                    if (Hasta != null && Hasta != "") {
+                        fetch(`/compras/Guides/GetGuidesBydate`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                datesD: Desde,
+                                datesH: Hasta
+                            })
+                        }).then(function (response) {
+                            console.log(response.status)
+                            if (response.status == 200) {
+                                console.log("exito")
+                                toastr.success('Registro agregado');
+
+                            } else {
+                                console.log("error")
+                                toastr.error('Error al traer reporte Comedor');
+                            }
+                        }).then(data => {
+                            console.log("exito")
+                        }).catch(function (error) {
+                            console.log("error", error)
+                            toastr.error('Error al traer reporte Comedor');
+                        });
+                    } else {
+                        toastr.warning('Indique fin de rango de fecha');
+                    }
+                } else {
+                    toastr.warning('Indique Inicio de rango de fecha');
+                }
             }
-        }
 
-        
+
     </script>
-
-
-
-
 </body>
 </html>
-
