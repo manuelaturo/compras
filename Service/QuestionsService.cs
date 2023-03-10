@@ -79,63 +79,63 @@ namespace compras.Service
             {
                 throw e;
             }
-            public List<QuetionsRS> getQuestions(List<QuetionsEntity> entities )
-        {
-            return entities.ConvertAll(x => new QuetionsRS(x.question, x.module, x.registerUser));
         }
-
-        public void SendEmail (string module)
-        {
-            
-            string table = "Visitas" + module;
-            UsuariosDAO dao = new UsuariosDAO();
-            string asunto = "Encuesta de servicio " + module;
-            string body;
-            List<UsuariosEntity> usuarios =  dao.GetUsuariosByquestions(table);
-            usuarios.ForEach(
-            x =>
+            public List<QuetionsRS> getQuestions(List<QuetionsEntity> entities)
             {
-                body = @"<h1>Este Estimado " + x.nombre+ "</h1></br>" +
-                                "<h2>Pedimos tu apoyo para ayudarnos a mejorar nuestro servicio," +
-                    " dedicando 5 minutos de tu tiempo a contestar la siguiente encuesta:</h2>"+
-                    " <h2>link</h2>";
-                sendEmail(x.email,asunto, body);
-            }
-            );
-        }
-        public void sendEmail(string to, string asunto, string body)
-        {
-            string msge = "Error al enviar este correo. Por favor verifique los datos o intente más tarde.";
-            string from = "pv.encuestas@cloudtech.com.mx";
-            string displayName = "Nombre Para Mostrar";
-            try
-            {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress(from, displayName);
-                mail.To.Add(to);
-
-                mail.Subject = asunto;
-                mail.Body = body;
-                mail.IsBodyHtml = true;
-
-
-                SmtpClient client = new SmtpClient("smtp.office365.com", 587); //Aquí debes sustituir tu servidor SMTP y el puerto
-                client.Credentials = new NetworkCredential(from, "Compras.1");
-                client.EnableSsl = true;//En caso de que tu servidor de correo no utilice cifrado SSL,poner en false
-
-
-                client.Send(mail);
-                msge = "¡Correo enviado exitosamente! Pronto te contactaremos.";
-
-            }
-            catch (Exception ex)
-            {
-                msge = ex.Message + ". Por favor verifica tu conexión a internet y que tus datos sean correctos e intenta nuevamente.";
+                return entities.ConvertAll(x => new QuetionsRS(x.question, x.module, x.registerUser));
             }
 
-           
+            public void SendEmail(string module)
+            {
+
+                string table = "Visitas" + module;
+                UsuariosDAO dao = new UsuariosDAO();
+                string asunto = "Encuesta de servicio " + module;
+                string body;
+                List<UsuariosEntity> usuarios = dao.GetUsuariosByquestions(table);
+                usuarios.ForEach(
+                x =>
+                {
+                    body = @"<h1>Este Estimado " + x.nombre + "</h1></br>" +
+                                    "<h2>Pedimos tu apoyo para ayudarnos a mejorar nuestro servicio," +
+                        " dedicando 5 minutos de tu tiempo a contestar la siguiente encuesta:</h2>" +
+                        " <h2>link</h2>";
+                    sendEmail(x.email, asunto, body);
+                }
+                );
+            }
+            public void sendEmail(string to, string asunto, string body)
+            {
+                string msge = "Error al enviar este correo. Por favor verifique los datos o intente más tarde.";
+                string from = "pv.encuestas@cloudtech.com.mx";
+                string displayName = "Nombre Para Mostrar";
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress(from, displayName);
+                    mail.To.Add(to);
+
+                    mail.Subject = asunto;
+                    mail.Body = body;
+                    mail.IsBodyHtml = true;
+
+
+                    SmtpClient client = new SmtpClient("smtp.office365.com", 587); //Aquí debes sustituir tu servidor SMTP y el puerto
+                    client.Credentials = new NetworkCredential(from, "Compras.1");
+                    client.EnableSsl = true;//En caso de que tu servidor de correo no utilice cifrado SSL,poner en false
+
+
+                    client.Send(mail);
+                    msge = "¡Correo enviado exitosamente! Pronto te contactaremos.";
+
+                }
+                catch (Exception ex)
+                {
+                    msge = ex.Message + ". Por favor verifica tu conexión a internet y que tus datos sean correctos e intenta nuevamente.";
+                }
+
+
+            }
         }
-    
 
     }
-}

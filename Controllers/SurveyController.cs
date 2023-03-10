@@ -20,11 +20,20 @@ namespace compras.Controllers
 
             return View(result);
         }
-        public ActionResult GetQuetions()
+        public ActionResult GetSurvey()
         {
 
             SurveyService service = new SurveyService();
             var result = service.getSurvey();
+
+            return View(result);
+        }
+
+        public ActionResult GetSurvey(string initDate, string endDate)
+        {
+
+            SurveyService service = new SurveyService();
+            var result = service.getSurvey(initDate, endDate);
 
             return View(result);
         }

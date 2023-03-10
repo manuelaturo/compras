@@ -73,5 +73,33 @@ namespace compras.BD
                 throw e;
             }
         }
+        public List<SurveyEntity> GetSurvey(DateTime initDate, DateTime endDate)
+        {
+            try
+            {
+                List<SurveyEntity> quiz = new List<SurveyEntity>();
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@dateInit", initDate);
+                    queryParameters.Add("@dateEnd", endDate);
+                    quiz = db.Query<SurveyEntity>("SELECT  idSurvey ,idQuestion,response,module,company,numEmplouyed " +
+                        "FROM Survey where registerDate between @dateInit and @dateEnd", commandType: CommandType.Text).ToList();
+                    db.Close();
+                    return quiz;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
