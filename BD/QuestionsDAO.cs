@@ -104,6 +104,35 @@ namespace compras.BD
                 throw e;
             }
         }
+        public List<QuetionsEntity> GetQuestions(string module)
+        {
+            try
+            {
+                List<QuetionsEntity> guides = new List<QuetionsEntity>();
+
+                using (var db = new SqlConnection(con))
+                {
+
+                    db.Open();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@module", module);
+
+                    guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,module,registerUser    FROM Questions" +
+                        "Where module like @module ", queryParameters, commandType: CommandType.Text).ToList();
+                    db.Close();
+                    return guides;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
 
 

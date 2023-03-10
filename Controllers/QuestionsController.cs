@@ -39,11 +39,19 @@ namespace compras.Controllers
 
             return View(result);
         }
-        public ActionResult Index()
+        public ActionResult GetQuestions()
         {
 
             QuestionsService service = new QuestionsService();
             var result = service.getQuestions();
+
+            return View(result);
+        }
+        public ActionResult GetQuestionsByModule(string module )
+        {
+
+            QuestionsService service = new QuestionsService();
+            var result = service.getQuestions(module);
 
             return View(result);
         }

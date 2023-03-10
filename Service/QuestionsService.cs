@@ -61,9 +61,25 @@ namespace compras.Service
             {
                 throw e;
             }
-        }
 
-    public List<QuetionsRS> getQuestions(List<QuetionsEntity> entities )
+        }
+        public List<QuetionsRS> getQuestions(string module)
+        {
+            try
+            {
+                List<QuetionsRS> response = new List<QuetionsRS>();
+                QuestionsDAO dao = new QuestionsDAO();
+
+                response = getQuestions(dao.GetQuestions(module));
+
+
+                return response;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            public List<QuetionsRS> getQuestions(List<QuetionsEntity> entities )
         {
             return entities.ConvertAll(x => new QuetionsRS(x.question, x.module, x.registerUser));
         }
