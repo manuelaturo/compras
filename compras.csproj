@@ -183,6 +183,7 @@
     </Compile>
     <Compile Include="Models\guidesTotal.cs" />
     <Compile Include="Models\Request\CoustomerReportComedorRQ.cs" />
+    <Compile Include="Models\Request\EmailRQ.cs" />
     <Compile Include="Models\Request\ProductsRQ.cs" />
     <Compile Include="Models\Request\QuesionsRQ.cs" />
     <Compile Include="Models\Request\UpdateProdcuts.cs" />

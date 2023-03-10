@@ -9,6 +9,7 @@ namespace compras.Models.Request
     {
         public string question { get; set; }
         public int module { get; set; }
+        public int idQuestions { get; set; }
         public int registerUser { get; set; }
     }
 }

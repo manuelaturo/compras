@@ -9,6 +9,7 @@ namespace compras.BD.Entities
     {
         public string question { get; set; }
         public int module { get; set; }
+        public int idQuestions { get; set; }
         public int registerUser { get; set; }
 
         public QuetionsEntity() { }
@@ -17,6 +18,14 @@ namespace compras.BD.Entities
             this.module = module;
             this.registerUser = registerUser;
 
+
+        }
+        public QuetionsEntity(string question, int module, int registerUser,int idQuestions)
+        {
+            this.question = question;
+            this.module = module;
+            this.registerUser = registerUser;
+            this.idQuestions = idQuestions;
 
         }
     }

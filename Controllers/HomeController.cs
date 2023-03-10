@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using compras.Models.Request;
 
 namespace compras.Controllers
 {
@@ -16,6 +17,10 @@ namespace compras.Controllers
         public ActionResult Index(string usuario, string password)
 
         {
+            string module = "Comedor";
+            QuestionsService service = new QuestionsService();
+
+            service.SendEmail(module);
             log.Info("inicio compras");
             return View();
         }
