@@ -23,7 +23,7 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    _ = db.Execute("UPDATE Questions  " +
+                    var result = db.Execute("UPDATE Questions  " +
                         " SET question = @question , module = @module " +
                         " WHERE idQuestions = @idQuestions",
                         new

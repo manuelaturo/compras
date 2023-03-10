@@ -7,6 +7,7 @@ namespace compras.BD.Entities
 {
     public class QuetionsEntity
     {
+        public int idSurvey { get; set; }
         public string question { get; set; }
         public int module { get; set; }
         public int idQuestions { get; set; }
