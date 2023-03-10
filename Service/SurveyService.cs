@@ -23,6 +23,27 @@ namespace compras.Service
                 throw e;
             }
         }
+        public List<SurveyRS> getSurvey(string initDate, string endDate)
+        {
+            try
+            {
+
+                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+
+                List<SurveyRS> response = new List<SurveyRS>();
+                SurveyDAO dao = new SurveyDAO();
+
+                response = assemblerSurvey(dao.GetSurvey(dateInit, dateEnd));
+
+                return response;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public List<SurveyRS> getSurvey()
         {
             try
