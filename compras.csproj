@@ -3016,6 +3016,8 @@
     <Content Include="UploadedFiles\Timesheets Report-19-23Dic-2022.xlsx" />
     <Content Include="Views\Guides\GetGuides.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Guides\GetGuidesBydate.cshtml" />
+    <Content Include="Views\Questions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

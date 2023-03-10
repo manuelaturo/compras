@@ -20,7 +20,7 @@ namespace compras.Controllers
 
             return View(result);
         }
-        public ActionResult GetQuetions()
+        public ActionResult Index()
         {
 
             QuestionsService service = new QuestionsService();

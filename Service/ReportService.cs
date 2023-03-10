@@ -95,8 +95,8 @@ namespace compras.Service
         {
             try
             {
-                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
-                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
 
                 List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
                 List<ReportComedor> responseDAO = new List<ReportComedor>();
@@ -119,8 +119,8 @@ namespace compras.Service
         {
             try
             {
-                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
-                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateInit = DateTime.ParseExact(initDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
+                var dateEnd = DateTime.ParseExact(endDate, "dd-MM-yyyy", System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat);
 
                 List<CoustomerReportComedorRS> response = new List<CoustomerReportComedorRS>();
                 List<ReportComedor> responseDAO = new List<ReportComedor>();
