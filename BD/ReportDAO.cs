@@ -153,10 +153,9 @@ namespace compras.BD
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
 
-                    report = db.Query<ReportComedor>("SELECT s.idVisitasSalas as id, cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date,s.dateEnd, s.Name,s.numberPeople,s.LastName, cc.nombre as Empresa " +
+                    report = db.Query<ReportComedor>("SELECT s.idVisitasSalas as id, cs.Description as comedor,csr.Description as service, s.numEmployed, s.dateInit as date,s.dateEnd, s.Name,s.numberPeople,s.LastName, u.Compañia  as Empresa " +
                     " ,cs.Description, csr.Description,s.correo as email,s.NombreEvento as eventName,s.comments,mt.name as meetType,csd.NombreSalaDetail as nameSalaDetail  from VisitasSalas s  left " +
                     " join Usuarios u  on s.numEmployed = u.Numero_Empleado " +
-                    " left join  Cat_Compañias cc on u.Compañia  =cc.idCompañia " +
                     " inner join Cat_Sala cs on s.IdSala = cs.idCatSala " +
                     " inner join Cat_Servicios csr on s.services = csr.Id_Servicios_Eventos " +
                     " left join Cat_MeetsType mt on mt.Id_Meet = s.meetType " +

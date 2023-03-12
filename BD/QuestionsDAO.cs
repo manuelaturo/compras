@@ -80,6 +80,34 @@ namespace compras.BD
                 throw e;
             }
         }
+        public bool deleteQuestions(int idQuestions)
+        {
+            try
+            {
+                DateTime registerDate = DateTime.Now;
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    var i = db.Execute("DELETE FROM Questions WHERE idQuestions = @idQuestions",
+                        new
+                        {
+                            idQuestions
+                        });
+                    db.Close();
+                    return true;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         public List<QuetionsEntity> GetQuestions()
         {
             try
@@ -90,6 +118,34 @@ namespace compras.BD
                 {
                     db.Open();
                     guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,module,registerUser    FROM Questions", commandType: CommandType.Text).ToList();
+                    db.Close();
+                    return guides;
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public List<QuetionsEntity> GetQuestions(DateTime initDate,DateTime endDate)
+        {
+            try
+            {
+                List<QuetionsEntity> guides = new List<QuetionsEntity>();
+
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@dateInit", initDate);
+                    queryParameters.Add("@dateEnd", endDate);
+                    guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,module,registerUser " +
+                        " FROM Questions  where registerDate between @dateInit and @dateEnd", queryParameters, commandType: CommandType.Text).ToList();
                     db.Close();
                     return guides;
                 }

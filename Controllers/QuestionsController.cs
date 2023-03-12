@@ -13,7 +13,7 @@ namespace compras.Controllers
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public ActionResult denEmail(string module)
+        public ActionResult sendEmail(string module)
         {
 
             QuestionsService service = new QuestionsService();
@@ -27,6 +27,14 @@ namespace compras.Controllers
 
             QuestionsService service = new QuestionsService();
             var result = service.AddQuestions(quesions);
+
+            return View(result);
+        }
+        public ActionResult addQuetions(int idQuesions)
+        {
+
+            QuestionsService service = new QuestionsService();
+            var result = service.deleteQuestions(idQuesions);
 
             return View(result);
         }
@@ -44,6 +52,14 @@ namespace compras.Controllers
 
             QuestionsService service = new QuestionsService();
             var result = service.getQuestions();
+
+            return View(result);
+        }
+        public ActionResult GetQuestions(string initDate, string endDate)
+        {
+
+            QuestionsService service = new QuestionsService();
+            var result = service.getQuestions(initDate, endDate);
 
             return View(result);
         }
