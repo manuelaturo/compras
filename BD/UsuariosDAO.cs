@@ -4,6 +4,7 @@ using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -33,7 +34,9 @@ namespace compras.BD
                 throw;
             }
         }
-           public  List<UsuariosEntity> GetUsuariosByquestions(string table)
+      
+
+        public List<UsuariosEntity> GetUsuariosByquestions(string email)
         {
 
             try
@@ -42,8 +45,10 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    lista = db.Query<UsuariosEntity>("SELECT Correo as email ,Nombre +' '+ Apellido_Paterno + ' ' + Apellido_Materno as nombre" +
-                        " FROM Usuarios where Numero_Empleado in (select  distinct numEmployed from "+ table +")").ToList();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@email", email);
+                    lista = db.Query<UsuariosEntity>("SELECT Id_Usuario, Correo as email ,Nombre +' '+ Apellido_Paterno + ' ' + Apellido_Materno as nombre" +
+                        " FROM Usuarios where  Correo like @email", queryParameters, commandType: CommandType.Text).ToList();
                     db.Close();
                 }
                 return lista;

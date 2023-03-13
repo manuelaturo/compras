@@ -8,6 +8,7 @@ namespace compras.BD.Entities
     public class UsuariosEntity
     {
 
+        public int Id_Usuario { get; set; }
         public int noEmpledo { get; set; }
         public string nombre { get; set; }
         public string APaterno { get; set; }
