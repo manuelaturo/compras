@@ -117,7 +117,8 @@ namespace compras.BD
                 using (var db = new SqlConnection(con))
                 {
                     db.Open();
-                    guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,module,registerUser    FROM Questions", commandType: CommandType.Text).ToList();
+                    guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,m.module as nameModule,registerUser  " +
+                        "FROM Questions q inner join  module m on q.module = m.idModule", commandType: CommandType.Text).ToList();
                     db.Close();
                     return guides;
                 }
@@ -144,8 +145,8 @@ namespace compras.BD
                     var queryParameters = new DynamicParameters();
                     queryParameters.Add("@dateInit", initDate);
                     queryParameters.Add("@dateEnd", endDate);
-                    guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,module,registerUser " +
-                        " FROM Questions  where registerDate between @dateInit and @dateEnd", queryParameters, commandType: CommandType.Text).ToList();
+                    guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,m.module as nameModule,registerUser  " +
+                        "FROM Questions q inner join  module m on q.module = m.idModule where registerDate between @dateInit and @dateEnd", queryParameters, commandType: CommandType.Text).ToList();
                     db.Close();
                     return guides;
                 }
@@ -160,7 +161,7 @@ namespace compras.BD
                 throw e;
             }
         }
-        public List<QuetionsEntity> GetQuestions(string module)
+        public List<QuetionsEntity> GetQuestions(int module)
         {
             try
             {
@@ -173,8 +174,8 @@ namespace compras.BD
                     var queryParameters = new DynamicParameters();
                     queryParameters.Add("@module", module);
 
-                    guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,module,registerUser    FROM Questions" +
-                        "Where module like @module ", queryParameters, commandType: CommandType.Text).ToList();
+                    guides = db.Query<QuetionsEntity>("SELECT  idQuestions,question,m.module as nameModule,registerUser  " +
+                        "FROM Questions q inner join  module m on q.module = m.idModule Where q.module = @module ", queryParameters, commandType: CommandType.Text).ToList();
                     db.Close();
                     return guides;
                 }
