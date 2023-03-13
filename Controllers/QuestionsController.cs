@@ -22,7 +22,7 @@ namespace compras.Controllers
 
             return View();
         }
-        public ActionResult addQuetions(QuesionsRQ quesions)
+        public ActionResult AddQuetions(QuesionsRQ quesions)
         {
 
             QuestionsService service = new QuestionsService();
@@ -30,7 +30,7 @@ namespace compras.Controllers
 
             return View(result);
         }
-        public ActionResult addQuetions(int idQuesions)
+        public ActionResult deleteQuetions(int idQuesions)
         {
 
             QuestionsService service = new QuestionsService();
@@ -55,7 +55,7 @@ namespace compras.Controllers
 
             return View(result);
         }
-        public ActionResult GetQuestions(string initDate, string endDate)
+        public ActionResult GetQuestionsByDate(string initDate, string endDate)
         {
 
             QuestionsService service = new QuestionsService();
@@ -63,7 +63,7 @@ namespace compras.Controllers
 
             return View(result);
         }
-        public ActionResult GetQuestionsByModule(string module )
+        public ActionResult GetQuestionsByModule(int module )
         {
 
             QuestionsService service = new QuestionsService();

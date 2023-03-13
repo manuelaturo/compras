@@ -22,7 +22,7 @@ namespace compras.Service
             {
                 QuestionsDAO dao = new QuestionsDAO();
 
-                return dao.AddQuestions(new QuetionsEntity (quesions.question,quesions.module,quesions.registerUser));
+                return dao.AddQuestions(new QuetionsEntity (quesions.question,quesions.module,quesions.registerUser,null));
             }
             catch(Exception e)
             {
@@ -50,7 +50,7 @@ namespace compras.Service
                 QuestionsDAO dao = new QuestionsDAO();
 
                 return dao.UpdateQuestions(new QuetionsEntity(quesions.question, quesions.module, 
-                    quesions.registerUser,quesions.idQuestions));
+                    quesions.registerUser,quesions.idQuestions,null));
             }
             catch (Exception e)
             {
@@ -95,7 +95,7 @@ namespace compras.Service
             }
 
         }
-        public List<QuetionsRS> getQuestions(string module)
+        public List<QuetionsRS> getQuestions(int module)
         {
             try
             {
