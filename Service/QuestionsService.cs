@@ -114,7 +114,7 @@ namespace compras.Service
         }
             public List<QuetionsRS> getQuestions(List<QuetionsEntity> entities)
             {
-                return entities.ConvertAll(x => new QuetionsRS(x.question, x.module, x.registerUser));
+                return entities.ConvertAll(x => new QuetionsRS(x.question, x.module, x.registerUser,x.nameModule));
             }
 
             public void SendEmail(string module,string email)
