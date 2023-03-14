@@ -29,7 +29,7 @@ namespace compras.Controllers
             return View(result);
         }
 
-        public ActionResult GetSurvey(string initDate, string endDate)
+        public ActionResult GetSurveybydate(string initDate, string endDate)
         {
 
             SurveyService service = new SurveyService();
