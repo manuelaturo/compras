@@ -14,7 +14,7 @@ namespace compras.Service
 {
     public class QuestionsService
     {
-        private readonly string link = ConfigurationManager.ConnectionStrings["Survey"].ConnectionString;
+              private readonly string link = ConfigurationManager.ConnectionStrings["Survey"].ConnectionString;
         Dictionary<int, string> modules = new Dictionary<int, string>() {{1, "Comedor"},{2, "Salas"},{3, "Eventos"},{4, "Guias"},};
         public bool AddQuestions(QuesionsRQ quesions)
         {
@@ -161,25 +161,44 @@ namespace compras.Service
             modules.TryGetValue(r.Next(1, 4), out string moduleRandom);
             return moduleRandom.ToString();
         } 
-        public void SendEmailRandom( string email)
+        public void SendEmailRandom()
         {
 
-            string module = getRandomModule();
+         
             UsuariosDAO dao = new UsuariosDAO();
-            string asunto = "Encuesta de servicio " + module;
-            string body;
-            List<UsuariosEntity> usuarios = dao.GetUsuariosByquestions(email);
            
-            usuarios.ForEach(
-            x =>
-            {
-                body = @"<h1>Este Estimado " + x.nombre + "</h1></br>" +
-                                "<h2>Pedimos tu apoyo para ayudarnos a mejorar nuestro servicio," +
-                    " dedicando 5 minutos de tu tiempo a contestar la siguiente encuesta:</h2>" +
-                    " <h2>" + link + "</h2>";
-                sendEmail(x.email, asunto, body);
+            string body;
+            for (int i = 1; i <= 10; i++) {
+                Random r = new Random();
+                string module = getRandomModule();
+                string asunto = "Encuesta de servicio " + module;
+                int idmodule = 0;
+                if (module.Contains("Comedor"))
+                {
+                    idmodule = 1;
+                }
+                else if (module.Contains("Salas"))
+                {
+                    idmodule = 2;
+                }
+                else if (module.Contains("Eventos"))
+                {
+                    idmodule = 3;
+                }
+                else if (module.Contains("Guias"))
+                {
+                    idmodule = 4;
+                }
+                UsuariosEntity usuarios = dao.GetUsuariosByquestions(r.Next(1, 100));
+
+                var l = link + "module=" + idmodule.ToString() + "&user=" + usuarios.Id_Usuario;
+                body = @"<h1>Este Estimado " + usuarios.nombre + "</h1></br>" +
+                                    "<h2>Pedimos tu apoyo para ayudarnos a mejorar nuestro servicio," +
+                        " dedicando 5 minutos de tu tiempo a contestar la siguiente encuesta:</h2>" +
+                        " <h2>" + l + "</h2>";
+                    sendEmail(usuarios.email, asunto, body);
+                
             }
-            );
         }
         public void sendEmail(string to, string asunto, string body)
             {

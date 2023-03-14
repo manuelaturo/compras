@@ -59,6 +59,29 @@ namespace compras.BD
             }
         }
 
+        public UsuariosEntity GetUsuariosByquestions(int idUser)
+        {
+
+            try
+            {
+                UsuariosEntity lista = new UsuariosEntity();
+                using (var db = new SqlConnection(con))
+                {
+                    db.Open();
+                    var queryParameters = new DynamicParameters();
+                    queryParameters.Add("@Id_Usuario", idUser);
+                    lista = db.Query<UsuariosEntity>("SELECT Id_Usuario, Correo as email ,Nombre +' '+ Apellido_Paterno + ' ' + Apellido_Materno as nombre" +
+                        " FROM Usuarios where  Id_Usuario like @Id_Usuario", queryParameters, commandType: CommandType.Text).FirstOrDefault();
+                    db.Close();
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
 
         public bool AddUsuario(UsuariosEntity us)
         {

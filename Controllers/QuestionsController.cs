@@ -22,12 +22,12 @@ namespace compras.Controllers
 
             return View();
         }
-        public ActionResult sendEmailRandom(string email)
+        public ActionResult sendEmailRandom()
         {
 
             QuestionsService service = new QuestionsService();
 
-            service.SendEmailRandom( email);
+            service.SendEmailRandom( );
 
             return View();
         }
