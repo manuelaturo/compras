@@ -377,41 +377,20 @@
                                         </thead>
                                         <tbody>
 
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
 
-                                            <tr>
 
+                                                    <td>@Html.DisplayFor(modelItem => item.question) </td>
+                                                    <td>@Html.DisplayFor(modelItem => item.module)</td>
+                                                    <td>
+                                                            <button type="button" class="fas fa-edit" onclick="EnviarPreguntas()">Agregar</button> 
+                                                            <button type="button" class="fas fa-trash" onclick="EnviarPreguntas()">Agregar</button> 
+                                                    </td>
 
-                                                <td>234</td>
-                                                <td>234</td>
-                                                <td>
-
-                                                    <a class="btn  bg-warning" href="guardar">
-
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <a class="btn  bg-danger" href="borrar">
-
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>234</td>
-                                                <td>234</td>
-                                                <td>
-
-                                                    <a class="btn  bg-warning" href="guardar">
-
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <a class="btn  bg-danger" href="borrar">
-
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                </td>
-
-                                            </tr>
+                                                </tr>
+                                            }
                                         </tbody>
                                         <tfoot>
                                             <tr>
